@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">pbwallet</string>
+    <color name="celeste">#7BB2FF</color>
 </resources>

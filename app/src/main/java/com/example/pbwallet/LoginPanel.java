@@ -8,4 +8,5 @@ public class LoginPanel extends View {
     public LoginPanel(Context context) {
         super(context);
     }
+
 }
