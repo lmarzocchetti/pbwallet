@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".LoginPanel" />
         <activity android:name=".HomePanel" />
+        <activity android:label="@string/app_name" />
     </application>
 
 </manifest>
