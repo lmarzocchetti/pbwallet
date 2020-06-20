@@ -3,5 +3,6 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="button">Button</string>
+    <string name="enter">Enter</string>
     <color name="celeste">#7BB2FF</color>
 </resources>
