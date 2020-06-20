@@ -2,10 +2,12 @@ package com.example.pbwallet;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-public class LoginPanel extends Activity {
+
+public class LoginPanel extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +25,4 @@ public class LoginPanel extends Activity {
             }
         });
     }
-
 }
