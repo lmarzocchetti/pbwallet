@@ -4,5 +4,8 @@
     <string name="password">Password</string>
     <string name="button">Button</string>
     <string name="enter">Enter</string>
+    <string name="home">Home</string>
+    <string name="funds">Funds</string>
+    <string name="stats">Stats</string>
     <color name="celeste">#7BB2FF</color>
 </resources>
