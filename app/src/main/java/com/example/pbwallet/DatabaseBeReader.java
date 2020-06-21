@@ -25,12 +25,64 @@ public class DatabaseBeReader {
     {
         mDb.close();
     }
+
     //inserimento values in table da modificare per ogni tabella
-    public void inserisci(String name){
+    public void insertUser(String name, String surname, String birthday, String username, String password, String hobby, int idcard, int idbudget){
         ContentValues cv = new ContentValues();
         cv.put("name",name);
+        cv.put("surname",surname);
+        cv.put("birthday", birthday);
+        cv.put("username",username);
+        cv.put("password",password);
+        cv.put("hobby",hobby);
+        cv.put("idcard",idcard);
+        cv.put("idbudget",idbudget);
         mDb.insert("user",null,cv);
     }
+
+    public void insertCard(int idcard, int numcard, String uscard, double money, int idtrans){
+        ContentValues cv = new ContentValues();
+        cv.put("idcard",idcard);
+        cv.put("numcard",numcard);
+        cv.put("uscard",uscard);
+        cv.put("money",money);
+        cv.put("idtrans",idtrans);
+        mDb.insert("card",null,cv);
+    }
+
+    public void insertTrans(int idtrans,int idsubtype,double money,String date){
+        ContentValues cv = new ContentValues();
+        cv.put("idtrans",idtrans);
+        cv.put("idsubtype",idsubtype);
+        cv.put("money",money);
+        cv.put("date",date);
+        mDb.insert("trans",null,cv);
+    }
+
+    public void insertBudget(int idbudget, double bound, int idsubtype){
+        ContentValues cv = new ContentValues();
+        cv.put("idbudget",idbudget);
+        cv.put("bound",bound);
+        cv.put("idsubtype",idsubtype);
+        mDb.insert("budget",null,cv);
+    }
+
+    public void insertSubtype(int idsubtype, int idtype, String name){
+        ContentValues cv = new ContentValues();
+        cv.put("idsubtype",idsubtype);
+        cv.put("idtype",idtype);
+        cv.put("name",name);
+        mDb.insert("subtype",null,cv);
+    }
+
+    public void insertType(int idtype, String name, String image){
+        ContentValues cv = new ContentValues();
+        cv.put("idtype",idtype);
+        cv.put("name",name);
+        cv.put("image",image);
+        mDb.insert("type",null,cv);
+    }
+
     //query da modificare per ogni caso
     public Cursor query(String str){
         return mDb.query("user",null,null/*"name"+"='"+str+"'"*/,null,null,null,null);
