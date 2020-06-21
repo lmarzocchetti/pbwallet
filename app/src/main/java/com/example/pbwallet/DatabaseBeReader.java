@@ -64,7 +64,6 @@ public class DatabaseBeReader {
         cv.put("idbudget",idbudget);
         cv.put("bound",bound);
         cv.put("idsubtype",idsubtype);
-        mDb.insert("budget",null,cv);
     }
 
     public void insertSubtype(int idsubtype, int idtype, String name){
@@ -84,9 +83,27 @@ public class DatabaseBeReader {
     }
 
     //query da modificare per ogni caso
-    public Cursor query(String str){
-        return mDb.query("user",null,null/*"name"+"='"+str+"'"*/,null,null,null,null);
+    public Cursor queryUser(String ricerca, String values){
+        return mDb.query("user",null,ricerca+"='"+values+"'",null,null,null,null);
     }
 
+    public Cursor queryCard(String ricerca, String values){
+        return mDb.query("card",null,ricerca+"='"+values+"'",null,null,null,null);
+    }
 
+    public Cursor queryTrans(String ricerca, String values){
+        return mDb.query("trans",null,ricerca+"='"+values+"'",null,null,null,null);
+    }
+
+    public Cursor queryBudget(String ricerca, String values){
+        return mDb.query("budget",null,ricerca+"='"+values+"'",null,null,null,null);
+    }
+
+    public Cursor querySubtype(String ricerca, String values){
+        return mDb.query("subtype",null,ricerca+"='"+values+"'",null,null,null,null);
+    }
+
+    public Cursor queryType(String ricerca, String values){
+        return mDb.query("type",null,ricerca+"='"+values+"'",null,null,null,null);
+    }
 }

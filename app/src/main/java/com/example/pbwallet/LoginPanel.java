@@ -1,6 +1,7 @@
 package com.example.pbwallet;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,4 +35,5 @@ public class LoginPanel extends Activity{
     protected boolean checkEnter(String username, String passwd) {
         return true;
     }
+
 }
