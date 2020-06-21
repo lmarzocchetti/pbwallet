@@ -39,6 +39,17 @@ public class Database {
         db.close();
     }
 
+    public void salva(){
+        DatabaseBeReader db = new DatabaseBeReader(this);
+        db.open();
+        db.insertUser("Giuseppe","Pultrone","12/34/4543",username.getText().toString(),passwd.getText().toString(),"sport",1,1);
+        Cursor cur = db.queryUser("name","Giuseppe");
+        while(cur.moveToNext()) {
+            System.out.println(cur.getString(cur.getColumnIndex("username")));
+        }
+        db.close();
+    }
+
     private void ChangeName(TextView name, TextView surname, String strname, String strsurname){
         name.setText(strname);
         surname.setText(strsurname);
