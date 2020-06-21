@@ -24,8 +24,6 @@ public class HomePanel extends AppCompatActivity {
 
         BottomNavigationView navbar = findViewById(R.id.nav_bar);
         navbar.setOnNavigationItemSelectedListener(navigationlistener);
-
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
