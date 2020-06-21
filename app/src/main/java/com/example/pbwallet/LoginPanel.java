@@ -19,7 +19,7 @@ public class LoginPanel extends Activity{
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent homepage = new Intent(LoginPanel.this ,LoginPanel.class);
+                Intent homepage = new Intent(LoginPanel.this ,HomePanel.class);
                 startActivity(homepage);
                 finish();
             }
