@@ -2,9 +2,13 @@
     <string name="app_name">pbwallet</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="hobby">Hobby</string>
     <string name="button">Button</string>
     <string name="home">Home</string>
     <string name="funds">Funds</string>
     <string name="stats">Stats</string>
     <string name="enter">Enter</string>
+    <string name="signin">Sign In</string>
 </resources>
