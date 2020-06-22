@@ -53,5 +53,23 @@ public class Database {
     private void ChangeName(TextView name, TextView surname, String strname, String strsurname){
         name.setText(strname);
         surname.setText(strsurname);
+    }
+
+    //check password loginpanel
+    public boolean checkPass() {
+        DatabaseBeReader db = new DatabaseBeReader(this);
+        db.open();
+        Cursor cur = db.queryUser("username", username.getText().toString());
+        if(cur.moveToFirst()) {
+            if (passwd.getText().toString().equals(cur.getString(cur.getColumnIndex("password")))) {
+                db.close();
+                return true;
+            } else {
+                db.close();
+                return false;
+            }
+        }
+        db.close();
+        return false;
     }*/
 }
