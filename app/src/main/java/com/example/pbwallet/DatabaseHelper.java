@@ -18,11 +18,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "name varchar(30) not null,"
                 + "surname varchar(30) not null,"
                 + "birthday date not null,"
-                + "username varchar(30) primary key,"
+                + "username varchar(30),"
                 + "password varchar(30),"
                 + "hobby varchar(30),"
                 + "idcard int,"
                 + "idbudget int,"
+                + "primary key(username,password),"
                 + "foreign key(idcard) references card(idcard),"
                 + "foreign key(idbudget) references budget(idbudget));";
         db.execSQL(create_table_user);

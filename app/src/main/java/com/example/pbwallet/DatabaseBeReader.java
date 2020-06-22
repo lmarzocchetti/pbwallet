@@ -9,7 +9,7 @@ public class DatabaseBeReader {
     SQLiteDatabase mDb;
     DatabaseHelper mDbHelper;
     Context mContext;
-    private static final String DB_NAME = "bereader_db1";
+    private static final String DB_NAME = "bereader_db";
     private static final int DB_VERSION = 1;
 
     public DatabaseBeReader(Context ctx) {

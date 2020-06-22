@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-public class LoginPanel extends Activity{
+public class LoginPanel extends Activity {
     EditText username, passwd;
 
     @Override
@@ -23,8 +23,8 @@ public class LoginPanel extends Activity{
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent homepage = new Intent(LoginPanel.this ,HomePanel.class);
-                if(checkEnter(username.getText().toString(), passwd.getText().toString())) {
+                Intent homepage = new Intent(LoginPanel.this, HomePanel.class);
+                if (checkEnter(username.getText().toString(), passwd.getText().toString())) {
                     startActivity(homepage);
                     finish();
                 }
