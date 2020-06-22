@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent loginpage = new Intent(MainActivity.this,LoginPanel.class);
+        Intent loginpage = new Intent(MainActivity.this, LoginPanel.class);
         startActivity(loginpage);
     }
 }

@@ -1,9 +1,7 @@
 package com.example.pbwallet;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +43,7 @@ public class HomePanel extends AppCompatActivity {
                             break;
                     }
 
+                    assert selected != null;
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_frameLayout, selected).commit();
                     return true;
                 }
