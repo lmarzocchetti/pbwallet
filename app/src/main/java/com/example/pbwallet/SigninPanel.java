@@ -1,70 +1,66 @@
 package com.example.pbwallet;
+
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
 
+public class SigninPanel extends Activity {
+    TextInputEditText name, surname, passwd, passwdconfirm, username, hobby;
 
-public class LoginPanel extends Activity {
-    TextInputEditText username, passwd;
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loginpanel);
+        setContentView(R.layout.activity_signinpanel);
 
         Button enter = findViewById(R.id.button);
+        name = findViewById(R.id.nameTF);
+        surname = findViewById(R.id.surnameTF);
         username = findViewById(R.id.usernameTF);
         passwd = findViewById(R.id.passwdTF);
+        passwdconfirm = findViewById(R.id.passwdconfirmTF);
+        hobby = findViewById(R.id.hobbyTF);
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent homepage = new Intent(LoginPanel.this , HomePanel.class);
+                Intent homepage = new Intent(SigninPanel.this, HomePanel.class);
                 if(checkEnter(Objects.requireNonNull(username.getText()).toString(), Objects.requireNonNull(passwd.getText()).toString())) {
-                    if(checkPass()) {
+                    if (checkPass()) {
+                        save();
                         startActivity(homepage);
                         finish();
                     }
-                    else{
-                        wrongup();
-                    }
+                    else
+                        wrongPasswd();
                 }
             }
         });
     }
 
-    public void wrongup(){
-        Toast toast = Toast.makeText(this, "Username/Password is not valid", Toast.LENGTH_SHORT);
+    public void wrongPasswd(){
+        Toast toast = Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
     }
 
-    public boolean checkPass() {
+    //aggiungere birthday
+    public void save(){
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
-        Cursor cur = db.queryUser("username", username.getText().toString());
-        if(cur.moveToFirst()) {
-            if (passwd.getText().toString().equals(cur.getString(cur.getColumnIndex("password")))) {
-                db.close();
-                return true;
-            } else {
-                db.close();
-                return false;
-            }
-        }
+        //db.insertUser(name.getText().toString(),surname.getText().toString(),birthday.getText().toString(), username.getText().toString(),passwd.getText().toString(), hobby.getText().toString(),null,null);
         db.close();
+    }
+
+    public boolean checkPass(){
+        if(passwd.getText().toString().equals(passwdconfirm.getText().toString()))
+            return true;
         return false;
     }
 
