@@ -7,9 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.google.android.material.textfield.TextInputEditText;
-
 import java.util.Objects;
 
 public class SigninPanel extends Activity {
@@ -32,16 +30,23 @@ public class SigninPanel extends Activity {
             public void onClick(View view) {
                 Intent homepage = new Intent(SigninPanel.this, HomePanel.class);
                 if(checkEnter(Objects.requireNonNull(username.getText()).toString(), Objects.requireNonNull(passwd.getText()).toString())) {
-                    if (checkPass()) {
-                        save();
-                        startActivity(homepage);
-                        finish();
+                    if(checkLenPass()) {
+                        if (checkPass()) {
+                            save();
+                            startActivity(homepage);
+                            finish();
+                        } else
+                            wrongPasswd();
                     }
-                    else
-                        wrongPasswd();
                 }
             }
         });
+    }
+
+    public boolean checkLenPass(){
+        if(passwd.getText().toString().length() > 30)
+            return false;
+        return true;
     }
 
     public void wrongPasswd(){
