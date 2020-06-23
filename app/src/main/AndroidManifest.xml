@@ -17,8 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginPanel" />
-        <activity android:name=".HomePanel" />
         <activity android:name=".SigninPanel" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".StatsActivity" />
+        <activity android:name=".FundsActivity" />
     </application>
 
 </manifest>
