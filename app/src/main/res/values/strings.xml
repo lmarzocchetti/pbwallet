@@ -11,4 +11,7 @@
     <string name="stats">Stats</string>
     <string name="enter">Enter</string>
     <string name="signin">Sign In</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="required_fields">*Required fields</string>
+    <string name="registration_page">Registration Page</string>
 </resources>

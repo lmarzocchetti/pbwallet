@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
         Cursor cur = db.queryUserFull();
