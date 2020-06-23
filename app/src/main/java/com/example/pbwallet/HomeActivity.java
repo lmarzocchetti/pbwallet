@@ -19,13 +19,15 @@ import androidx.fragment.app.FragmentActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
-    TextView name;
+    TextView name, cash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         name = findViewById(R.id.nameandsurname);
+        cash = findViewById(R.id.totalfunds);
+        changeCash();
         changeNameandSur();
 
         BottomNavigationView navbar = findViewById(R.id.nav_bar);
@@ -55,6 +57,21 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    public void changeCash(){
+        double totalcash = 0;
+        DatabaseBeReader db = new DatabaseBeReader(this);
+        db.open();
+        Cursor cur = db.queryCardFull();
+        if(cur.moveToFirst()) {
+            while (cur.moveToNext()) {
+                totalcash += cur.getDouble(cur.getColumnIndex("money"));
+            }
+        }
+        db.close();
+        String strcash = new Double(totalcash).toString()+" €";
+        cash.setText(strcash);
+    }
 
     public void changeNameandSur(){
         String nameandsur = null;
