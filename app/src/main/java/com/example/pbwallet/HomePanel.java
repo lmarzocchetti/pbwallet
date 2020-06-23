@@ -1,7 +1,9 @@
 package com.example.pbwallet;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,4 +50,5 @@ public class HomePanel extends AppCompatActivity {
                     return true;
                 }
             };
+
 }
