@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="celeste">#7BB2FF</color>
+    <color name="nero">#000000</color>
+    <color name="grigio">#282828</color>
 </resources>
