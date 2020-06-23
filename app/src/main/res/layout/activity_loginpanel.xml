@@ -8,15 +8,18 @@
     tools:context=".LoginPanel">
 
     <Space
-        android:layout_width="1dp"
+        android:layout_width="match_parent"
         android:layout_height="250dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        app:hintTextColor="@color/celeste"
+        app:boxStrokeColor="@color/celeste"
         android:hint="@string/username">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -29,10 +32,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwd"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         app:endIconMode="password_toggle"
+        app:hintTextColor="@color/celeste"
+        app:boxStrokeColor="@color/celeste"
         android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -43,7 +49,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Space
-        android:layout_width="1dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"/>
 
     <Button
@@ -51,8 +57,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:textColorHint="@color/grigio"
         android:hint="@string/enter"
-        android:background="@color/celeste"
+        android:backgroundTint="@color/celeste"
         android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

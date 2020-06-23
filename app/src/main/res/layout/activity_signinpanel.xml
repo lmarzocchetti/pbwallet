@@ -25,12 +25,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
+        app:hintTextColor="@color/celeste"
+        app:boxStrokeColor="@color/celeste"
         app:helperTextEnabled="true"
         app:helperText="*Required field"
         android:hint="@string/name">
@@ -45,11 +48,14 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/surname"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
+        app:hintTextColor="@color/celeste"
+        app:boxStrokeColor="@color/celeste"
         app:helperTextEnabled="true"
         app:helperText="*Required field"
         android:hint="@string/surname">
@@ -64,10 +70,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwd"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        app:hintTextColor="@color/celeste"
+        app:boxStrokeColor="@color/celeste"
         app:counterEnabled="true"
         app:counterMaxLength="30"
         app:endIconMode="password_toggle"
@@ -83,11 +92,14 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwdconfirm"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        app:hintTextColor="@color/celeste"
+        app:boxStrokeColor="@color/celeste"
         app:counterEnabled="true"
         app:counterMaxLength="30"
         app:endIconMode="password_toggle"
@@ -103,12 +115,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
+        app:hintTextColor="@color/celeste"
+        app:boxStrokeColor="@color/celeste"
         app:helperTextEnabled="true"
         app:helperText="*Required field"
         android:hint="@string/username">
@@ -123,10 +138,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/hobby"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        app:hintTextColor="@color/celeste"
+        app:boxStrokeColor="@color/celeste"
         app:helperTextEnabled="true"
         app:helperText="*Required field"
         android:hint="@string/hobby">
@@ -149,7 +167,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:hint="@string/signin"
-        android:background="@color/celeste"
+        android:textColorHint="@color/grigio"
+        android:backgroundTint="@color/celeste"
         android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

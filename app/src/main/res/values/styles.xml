@@ -7,4 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextInputLayoutAppearance" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorControlNormal">@color/grigio</item>
+        <item name="colorControlActivated">@color/grigio</item>
+        <item name="colorControlHighlight">@color/grigio</item>
+    </style>
 </resources>

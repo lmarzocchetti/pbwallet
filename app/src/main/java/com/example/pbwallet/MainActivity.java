@@ -20,17 +20,20 @@ public class MainActivity extends AppCompatActivity {
                 Intent homepage = new Intent(MainActivity.this, HomePanel.class);
                 db.close();
                 startActivity(homepage);
+                finish();
             }
             else{
                 Intent loginpage = new Intent(MainActivity.this, LoginPanel.class);
                 db.close();
                 startActivity(loginpage);
+                finish();
             }
         }
         else{
             Intent signinpage = new Intent(MainActivity.this, SigninPanel.class);
             db.close();
             startActivity(signinpage);
+            finish();
         }
     }
 }
