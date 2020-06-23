@@ -39,7 +39,7 @@ public class DatabaseBeReader {
         mDb.insert("user",null,cv);
     }
 
-    public void insertCard(int idcard, int numcard, String uscard, double money, int idtrans){
+    public void insertCard(int idcard, int numcard, String uscard, double money, Integer idtrans){
         ContentValues cv = new ContentValues();
         cv.put("idcard",idcard);
         cv.put("numcard",numcard);
@@ -95,7 +95,7 @@ public class DatabaseBeReader {
     }
 
     public Cursor queryCardFull(){
-        return mDb.query("user",null,null,null,null,null,null);
+        return mDb.query("card",null,null,null,null,null,null);
     }
 
     public Cursor queryTrans(String ricerca, String values){

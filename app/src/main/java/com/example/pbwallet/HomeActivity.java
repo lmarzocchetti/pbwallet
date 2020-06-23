@@ -3,6 +3,7 @@ package com.example.pbwallet;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -64,9 +65,9 @@ public class HomeActivity extends AppCompatActivity {
         db.open();
         Cursor cur = db.queryCardFull();
         if(cur.moveToFirst()) {
-            while (cur.moveToNext()) {
+            do{
                 totalcash += cur.getDouble(cur.getColumnIndex("money"));
-            }
+            }while(cur.moveToNext());
         }
         db.close();
         String strcash = new Double(totalcash).toString()+" €";
