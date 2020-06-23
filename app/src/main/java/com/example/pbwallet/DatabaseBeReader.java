@@ -27,11 +27,10 @@ public class DatabaseBeReader {
     }
 
     //inserimento values in table da modificare per ogni tabella
-    public void insertUser(String name, String surname, String birthday, String username, String password, String hobby, int idcard, int idbudget){
+    public void insertUser(String name, String surname, String username, String password, String hobby, Integer idcard, Integer idbudget){
         ContentValues cv = new ContentValues();
         cv.put("name",name);
         cv.put("surname",surname);
-        cv.put("birthday", birthday);
         cv.put("username",username);
         cv.put("password",password);
         cv.put("hobby",hobby);
@@ -85,6 +84,10 @@ public class DatabaseBeReader {
     //query da modificare per ogni caso
     public Cursor queryUser(String ricerca, String values){
         return mDb.query("user",null,ricerca+"='"+values+"'",null,null,null,null);
+    }
+
+    public Cursor queryUserFull(){
+        return mDb.query("user",null,null,null,null,null,null);
     }
 
     public Cursor queryCard(String ricerca, String values){

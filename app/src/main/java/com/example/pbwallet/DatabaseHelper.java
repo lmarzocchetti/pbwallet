@@ -15,12 +15,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String create_table_user = "create table user("
-                + "name varchar(30) not null,"
+                + "name varchar(50) not null,"
                 + "surname varchar(30) not null,"
-                + "birthday date not null,"
-                + "username varchar(30),"
+                + "username varchar(30) not null,"
                 + "password varchar(30),"
-                + "hobby varchar(30),"
+                + "hobby varchar(30) not null,"
                 + "idcard int,"
                 + "idbudget int,"
                 + "primary key(username,password),"
