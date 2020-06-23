@@ -31,7 +31,7 @@ public class LoginPanel extends Activity {
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent homepage = new Intent(LoginPanel.this , HomePanel.class);
+                Intent homepage = new Intent(LoginPanel.this , HomeActivity.class);
                 if(checkEnter(Objects.requireNonNull(username.getText()).toString(), Objects.requireNonNull(passwd.getText()).toString())) {
                     if(checkPass()) {
                         startActivity(homepage);

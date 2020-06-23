@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cur = db.queryUserFull();
         if(cur.moveToFirst()){
             if(cur.getString(cur.getColumnIndex("password")) == null){
-                Intent homepage = new Intent(MainActivity.this, HomePanel.class);
+                Intent homepage = new Intent(MainActivity.this, HomeActivity.class);
                 db.close();
                 startActivity(homepage);
                 finish();
