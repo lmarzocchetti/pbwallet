@@ -32,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "numcard int not null,"
                 + "uscard varchar(30) not null,"
                 + "money double not null,"
-                + "idtrans int not null,"
+                + "idtrans int,"
                 + "foreign key(idtrans) references trans(idtrans),"
                 + "primary key(idcard,numcard,uscard));";
         db.execSQL(create_table_card);
