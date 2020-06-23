@@ -54,7 +54,11 @@ public class SigninPanel extends Activity {
     public void save(){
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
-        //db.insertUser(name.getText().toString(),surname.getText().toString(),birthday.getText().toString(), username.getText().toString(),passwd.getText().toString(), hobby.getText().toString(),null,null);
+        if(passwd.getText().toString().isEmpty()) {
+            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), null, hobby.getText().toString(), null, null);
+        }
+        else
+            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), passwd.getText().toString(), hobby.getText().toString(), null, null);
         db.close();
     }
 
