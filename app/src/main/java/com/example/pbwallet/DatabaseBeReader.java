@@ -94,6 +94,10 @@ public class DatabaseBeReader {
         return mDb.query("card",null,ricerca+"='"+values+"'",null,null,null,null);
     }
 
+    public Cursor queryCardFull(){
+        return mDb.query("user",null,null,null,null,null,null);
+    }
+
     public Cursor queryTrans(String ricerca, String values){
         return mDb.query("trans",null,ricerca+"='"+values+"'",null,null,null,null);
     }
