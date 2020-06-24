@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "idsubtype int not null,"
                 + "money double not null,"
                 + "date date not null,"
-                + "foreign key(idsubtype) references subtype(idsubtypre));";
+                + "foreign key(idsubtype) references subtype(idsubtype));";
         db.execSQL(create_table_trans);
 
         String create_table_budget = "create table budget("
