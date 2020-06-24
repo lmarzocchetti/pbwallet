@@ -5,53 +5,56 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/nav_frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/nav_bar"
-        />
+        android:layout_above="@id/nav_bar">
 
-    <TextView
-        android:id="@+id/nameandsurname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint=""
-        android:fontFamily="@font/cocon_regular"
-        android:textSize="15sp"
-        android:textColorHint="@color/grigio"
-        android:gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/nameandsurname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint=""
+            android:fontFamily="@font/cocon_regular"
+            android:textSize="15sp"
+            android:textColorHint="@color/grigio"
+            android:gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/TXtotalfunds"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:hint="Your Total Funds"
-        android:fontFamily="@font/cocon_regular"
-        android:textSize="35sp"
-        android:textColorHint="@color/celeste"
-        android:gravity="center_horizontal" />
+        <TextView
+            android:id="@+id/TXtotalfunds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:hint="@string/your_total_funds"
+            android:fontFamily="@font/cocon_regular"
+            android:textSize="35sp"
+            android:textColorHint="@color/celeste"
+            android:gravity="center_horizontal" />
 
-    <TextView
-        android:id="@+id/totalfunds"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:hint=""
-        android:fontFamily="@font/cocon_regular"
-        android:textSize="35sp"
-        android:textColorHint="@color/grigio"
-        android:gravity="center_horizontal" />
+        <TextView
+            android:id="@+id/totalfunds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:hint=""
+            android:fontFamily="@font/cocon_regular"
+            android:textSize="35sp"
+            android:textColorHint="@color/grigio"
+            android:gravity="center_horizontal" />
+
+        </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bar"
+        style="@style/BottomNavView"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        app:backgroundTint="@color/celeste"
         app:menu="@menu/navigation_button"
+        app:itemIconTint="@color/bianco_papiro"
         android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
         />
 
 </RelativeLayout>
