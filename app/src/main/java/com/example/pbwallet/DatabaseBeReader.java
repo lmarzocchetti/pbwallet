@@ -39,33 +39,33 @@ public class DatabaseBeReader {
         mDb.insert("user",null,cv);
     }
 
-    public void insertCard(int idcard, int numcard, String uscard, double money, Integer idtrans){
+    public void insertCard(Integer idcard, Integer numcard, String uscard, double money){
         ContentValues cv = new ContentValues();
         cv.put("idcard",idcard);
         cv.put("numcard",numcard);
         cv.put("uscard",uscard);
         cv.put("money",money);
-        cv.put("idtrans",idtrans);
         mDb.insert("card",null,cv);
     }
 
-    public void insertTrans(int idtrans,int idsubtype,double money,String date){
+    public void insertTrans(Integer idtrans,Integer idcard, Integer idsubtype,double money,String date){
         ContentValues cv = new ContentValues();
         cv.put("idtrans",idtrans);
+        cv.put("idcard",idcard);
         cv.put("idsubtype",idsubtype);
         cv.put("money",money);
         cv.put("date",date);
         mDb.insert("trans",null,cv);
     }
 
-    public void insertBudget(int idbudget, double bound, int idsubtype){
+    public void insertBudget(Integer idbudget, double bound, Integer idsubtype){
         ContentValues cv = new ContentValues();
         cv.put("idbudget",idbudget);
         cv.put("bound",bound);
         cv.put("idsubtype",idsubtype);
     }
 
-    public void insertSubtype(int idsubtype, int idtype, String name){
+    public void insertSubtype(Integer idsubtype, Integer idtype, String name){
         ContentValues cv = new ContentValues();
         cv.put("idsubtype",idsubtype);
         cv.put("idtype",idtype);
@@ -73,11 +73,10 @@ public class DatabaseBeReader {
         mDb.insert("subtype",null,cv);
     }
 
-    public void insertType(int idtype, String name, String image){
+    public void insertType(Integer idtype, String name, String image){
         ContentValues cv = new ContentValues();
         cv.put("idtype",idtype);
         cv.put("name",name);
-        cv.put("image",image);
         mDb.insert("type",null,cv);
     }
 
@@ -113,4 +112,8 @@ public class DatabaseBeReader {
     public Cursor queryType(String ricerca, String values){
         return mDb.query("type",null,ricerca+"='"+values+"'",null,null,null,null);
     }
+
+    //public Cursor queryLastTrans(){
+     //   return mDb.query("trans",null,)
+    //}
 }

@@ -35,16 +35,20 @@ public class FundsActivity extends AppCompatActivity {
                     Fragment selected = null;
                     switch(item.getItemId()) {
                         case R.id.nav_home:
+                            onPause();
                             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
                             overridePendingTransition(0,0);
+                            onStop();
                             break;
 
                         case R.id.nav_fund:
                             break;
 
                         case R.id.nav_stats:
+                            onPause();
                             startActivity(new Intent(getApplicationContext(),StatsActivity.class));
                             overridePendingTransition(0,0);
+                            onStop();
                             break;
                     }
                     return true;

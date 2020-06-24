@@ -35,13 +35,17 @@ public class StatsActivity extends AppCompatActivity {
                     Fragment selected = null;
                     switch(item.getItemId()) {
                         case R.id.nav_home:
+                            onPause();
                             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
                             overridePendingTransition(0,0);
+                            onStop();
                             break;
 
                         case R.id.nav_fund:
+                            onPause();
                             startActivity(new Intent(getApplicationContext(),FundsActivity.class));
                             overridePendingTransition(0,0);
+                            onStop();
                             break;
 
                         case R.id.nav_stats:
