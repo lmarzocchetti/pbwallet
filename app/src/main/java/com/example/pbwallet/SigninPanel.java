@@ -31,7 +31,7 @@ public class SigninPanel extends Activity {
                 Intent homepage = new Intent(SigninPanel.this, HomeActivity.class);
                 if(checkEnter(Objects.requireNonNull(username.getText()).toString(), Objects.requireNonNull(passwd.getText()).toString())) {
                     if(checkLenPass()) {
-                        if (checkPass()) {
+                        if (checkPass() && checkField()) {
                             save();
                             startActivity(homepage);
                             finish();
@@ -41,6 +41,12 @@ public class SigninPanel extends Activity {
                 }
             }
         });
+    }
+
+    public boolean checkField(){
+        if(name.getText().toString() != null && surname.getText().toString() != null && username.getText().toString() != null && hobby.getText().toString() != null)
+            return true;
+        return false;
     }
 
     public boolean checkLenPass(){
