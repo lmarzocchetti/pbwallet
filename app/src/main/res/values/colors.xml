@@ -6,4 +6,6 @@
     <color name="celeste">#7BB2FF</color>
     <color name="nero">#000000</color>
     <color name="grigio">#282828</color>
+    <color name="bianco">#FFFFFF</color>
+    <color name="bianco_papiro">#D7D7D7</color>
 </resources>

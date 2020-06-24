@@ -4,20 +4,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/nav_frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/nav_bar"
-        />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nameandsurnameFUNDS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint=""
+            android:fontFamily="@font/cocon_regular"
+            android:textSize="15sp"
+            android:textColorHint="@color/grigio"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/wallets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/your_wallets"
+            android:fontFamily="@font/cocon_regular"
+            android:textSize="35sp"
+            android:textColorHint="@color/celeste"
+            android:gravity="center_horizontal" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_fundmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        app:boxStrokeColor="@color/celeste"
+        app:endIconTint="@color/celeste"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+        <AutoCompleteTextView
+            android:id="@+id/fund_menu"
+            android:labelFor="@+id/fund_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bar"
+        style="@style/BottomNavView"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        app:backgroundTint="@color/celeste"
         app:menu="@menu/navigation_button"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        />
+        app:itemIconTint="@color/bianco_papiro"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
