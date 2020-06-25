@@ -28,11 +28,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(create_table_user);
 
         String create_table_card = "create table card("
-                + "idcard int,"
-                + "numcard int,"
-                + "uscard varchar(30),"
-                + "money double not null,"
-                + "primary key(idcard,numcard,uscard));";
+                + "idcard int primary key,"
+                + "numcard int not null,"
+                + "uscard varchar(30) not null,"
+                + "money double not null);";
         db.execSQL(create_table_card);
 
         String create_table_trans = "create table trans("

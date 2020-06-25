@@ -52,6 +52,175 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="210dp"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text=""
+                android:id="@+id/type1"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="center"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text=""
+                android:layout_alignParentEnd="true"
+                android:id="@+id/trans1"
+                android:layout_gravity="center"
+                android:padding="10dp"/>
+
+        </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/bar1"
+                android:layout_width="match_parent"
+                android:background="@drawable/border"
+                android:layout_height="1dp"
+                android:contentDescription="@string/lineforseparate"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/type2"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/trans2"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/bar2"
+                android:layout_width="match_parent"
+                android:background="@drawable/border"
+                android:layout_height="1dp"
+                android:contentDescription="@string/lineforseparate"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/type3"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/trans3"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/bar3"
+                android:layout_width="match_parent"
+                android:background="@drawable/border"
+                android:layout_height="1dp"
+                android:contentDescription="@string/lineforseparate"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/type4"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/trans4"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/bar4"
+                android:layout_width="match_parent"
+                android:background="@drawable/border"
+                android:layout_height="1dp"
+                android:contentDescription="@string/lineforseparate"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/type5"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/trans5"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

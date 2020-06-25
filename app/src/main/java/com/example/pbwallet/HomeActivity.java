@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
     TextView name, cash, table1, table2, table3, table4, table5;
@@ -89,7 +88,6 @@ public class HomeActivity extends AppCompatActivity {
             };
 
     public void changeLastTrans(){
-        int cont = 0;
         int i = 0;
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();

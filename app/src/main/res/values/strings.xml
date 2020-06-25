@@ -16,4 +16,5 @@
     <string name="registration_page">Registration Page</string>
     <string name="your_wallets">Your Wallets</string>
     <string name="your_total_funds">Your Total Funds</string>
+    <string name="lineforseparate">lineforseparate</string>
 </resources>
