@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
     TextView name, cash, table1, table2, table3, table4, table5, table1_1, table2_1, table3_1, table4_1, table5_1, table1_2, table2_2, table3_2, table4_2, table5_2;

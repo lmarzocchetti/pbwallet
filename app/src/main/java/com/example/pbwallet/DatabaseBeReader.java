@@ -123,6 +123,14 @@ public class DatabaseBeReader {
         return mDb.query("trans",null,null,null,null,null,"datetime(date) DESC");
     }
 
+    public Cursor queryLastTransCard(int card) {
+        return mDb.query("card c, trans t", null, "c.idcard = t.idcard and t.idcard ="+card, null, null, null, "datetime(t.date) DESC");
+    }
+
+    public Cursor querySubtype(int idtrans) {
+        return mDb.query("subtype s, trans t", null, "s.idsubtype = t.idsubtype and t.idtrans ="+idtrans, null, null, null, null);
+    }
+  
     public Cursor queryUsCard(){
         return mDb.query("card c, trans t", null,"c.idcard = t.idcard", null,null,null,"datetime(date) DESC");
     }
