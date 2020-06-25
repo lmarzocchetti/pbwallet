@@ -14,9 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class HomeActivity extends AppCompatActivity {
     TextView name, cash, table1, table2, table3, table4, table5;
     ImageView bar1,bar2,bar3,bar4;
+    ArrayList<TextView> aT;
+    ArrayList<ImageView> aI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +34,28 @@ public class HomeActivity extends AppCompatActivity {
         table3 = findViewById(R.id.textView3);
         table4 = findViewById(R.id.textView4);
         table5 = findViewById(R.id.textView5);
+        aT = new ArrayList<TextView>();
+        aT.add(table1);
+        aT.add(table2);
+        aT.add(table3);
+        aT.add(table4);
+        aT.add(table5);
         bar1 = findViewById(R.id.bar1);
         bar2 = findViewById(R.id.bar2);
         bar3 = findViewById(R.id.bar3);
         bar4 = findViewById(R.id.bar4);
+        aI = new ArrayList<ImageView>();
+        aI.add(bar1);
+        aI.add(bar2);
+        aI.add(bar3);
+        aI.add(bar4);
         bar1.setVisibility(View.INVISIBLE);
         bar2.setVisibility(View.INVISIBLE);
         bar3.setVisibility(View.INVISIBLE);
         bar4.setVisibility(View.INVISIBLE);
         changeCash();
         changeNameandSur();
-        //changeLastTrans();
+        changeLastTrans();
 
         BottomNavigationView navbar = findViewById(R.id.nav_bar);
         navbar.setSelectedItemId(R.id.nav_home);
@@ -72,11 +88,23 @@ public class HomeActivity extends AppCompatActivity {
                 }
             };
 
-    /*public void changeLastTrans(){
+    public void changeLastTrans(){
+        int cont = 0;
+        int i = 0;
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
         Cursor cur = db.queryLastTrans();
-    }*/
+        if(cur.moveToFirst()){
+            do{
+                aT.get(i).setText(new Double(cur.getString(cur.getColumnIndex("money"))).toString() + " €");
+                i++;
+            }while(cur.moveToNext() && i < 5);
+        }
+        db.close();
+        for(int j = 0; j < i-1; j++){
+            aI.get(j).setVisibility(View.VISIBLE);
+        }
+    }
 
     public void changeCash(){
         double totalcash = 0;

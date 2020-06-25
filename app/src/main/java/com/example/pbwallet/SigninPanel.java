@@ -31,22 +31,32 @@ public class SigninPanel extends Activity {
                 Intent homepage = new Intent(SigninPanel.this, HomeActivity.class);
                 if(checkEnter(Objects.requireNonNull(username.getText()).toString(), Objects.requireNonNull(passwd.getText()).toString())) {
                     if(checkLenPass()) {
-                        if (checkPass() && checkField()) {
-                            save();
-                            startActivity(homepage);
-                            finish();
-                        } else
-                            wrongPasswd();
+                        if(checkField()) {
+                            if (checkPass()) {
+                                save();
+                                startActivity(homepage);
+                                finish();
+                            } else
+                                wrongPasswd();
+                        }
+                        else
+                            emptyField();
                     }
                 }
             }
         });
     }
 
+    public void emptyField(){
+        Toast toast = Toast.makeText(this, "One or more fileds empty", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
+    }
+
     public boolean checkField(){
-        if(name.getText().toString() != null && surname.getText().toString() != null && username.getText().toString() != null && hobby.getText().toString() != null)
-            return true;
-        return false;
+        if(name.getText().toString().isEmpty() || surname.getText().toString().isEmpty() || username.getText().toString().isEmpty() || hobby.getText().toString().isEmpty())
+            return false;
+        return true;
     }
 
     public boolean checkLenPass(){
