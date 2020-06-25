@@ -2,6 +2,7 @@ package com.example.pbwallet;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
-    TextView name, cash, table1, table2, table3, table4, table5;
+    TextView name, cash, table1, table2, table3, table4, table5, table1_1, table2_1, table3_1, table4_1, table5_1, table1_2, table2_2, table3_2, table4_2, table5_2;
     ImageView bar1,bar2,bar3,bar4;
-    ArrayList<TextView> aT;
+    ArrayList<TextView> aT, aT1, aT2;
     ArrayList<ImageView> aI;
 
     @Override
@@ -34,12 +35,34 @@ public class HomeActivity extends AppCompatActivity {
         table3 = findViewById(R.id.textView3);
         table4 = findViewById(R.id.textView4);
         table5 = findViewById(R.id.textView5);
+        table1_1 = findViewById(R.id.textView1_1);
+        table2_1 = findViewById(R.id.textView2_1);
+        table3_1 = findViewById(R.id.textView3_1);
+        table4_1 = findViewById(R.id.textView4_1);
+        table5_1 = findViewById(R.id.textView5_1);
+        table1_2 = findViewById(R.id.textView1_2);
+        table2_2 = findViewById(R.id.textView2_2);
+        table3_2 = findViewById(R.id.textView3_2);
+        table4_2 = findViewById(R.id.textView4_2);
+        table5_2 = findViewById(R.id.textView5_2);
         aT = new ArrayList<TextView>();
         aT.add(table1);
         aT.add(table2);
         aT.add(table3);
         aT.add(table4);
         aT.add(table5);
+        aT1 = new ArrayList<TextView>();
+        aT1.add(table1_1);
+        aT1.add(table2_1);
+        aT1.add(table3_1);
+        aT1.add(table4_1);
+        aT1.add(table5_1);
+        aT2 = new ArrayList<TextView>();
+        aT2.add(table1_2);
+        aT2.add(table2_2);
+        aT2.add(table3_2);
+        aT2.add(table4_2);
+        aT2.add(table5_2);
         bar1 = findViewById(R.id.bar1);
         bar2 = findViewById(R.id.bar2);
         bar3 = findViewById(R.id.bar3);
@@ -89,21 +112,45 @@ public class HomeActivity extends AppCompatActivity {
             };
 
     public void changeLastTrans(){
-        int cont = 0;
         int i = 0;
+        Double totaltrans;
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
         Cursor cur = db.queryLastTrans();
         if(cur.moveToFirst()){
             do{
-                aT.get(i).setText(new Double(cur.getString(cur.getColumnIndex("money"))).toString() + " €");
+                totaltrans = new Double(cur.getString(cur.getColumnIndex("money")));
+                if(totaltrans > 0){
+                    aT.get(i).setTextColor(Color.GREEN);
+                }
+                else{
+                    totaltrans = Math.abs(totaltrans);
+                    aT.get(i).setTextColor(Color.RED);
+                }
+                aT.get(i).setText(totaltrans.toString() + " €");
+                i++;
+            }while(cur.moveToNext() && i < 5);
+        }
+        cur = db.queryUsCard();
+        i = 0;
+        if(cur.moveToFirst()){
+            do{
+                aT1.get(i).setText(cur.getString(cur.getColumnIndex("uscard")));
+                i++;
+            }while(cur.moveToNext() && i < 5);
+        }
+        for(int j = 0; j < i-1; j++){
+            aI.get(j).setVisibility(View.VISIBLE);
+        }
+        i = 0;
+        cur = db.querySubtypeFull();
+        if(cur.moveToFirst()){
+            do{
+                aT2.get(i).setText(cur.getString(cur.getColumnIndex("name")));
                 i++;
             }while(cur.moveToNext() && i < 5);
         }
         db.close();
-        for(int j = 0; j < i-1; j++){
-            aI.get(j).setVisibility(View.VISIBLE);
-        }
     }
 
     public void changeCash(){
