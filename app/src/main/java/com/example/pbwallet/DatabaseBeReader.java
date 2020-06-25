@@ -130,4 +130,12 @@ public class DatabaseBeReader {
     public Cursor querySubtype(int idtrans) {
         return mDb.query("subtype s, trans t", null, "s.idsubtype = t.idsubtype and t.idtrans ="+idtrans, null, null, null, null);
     }
+  
+    public Cursor queryUsCard(){
+        return mDb.query("card c, trans t", null,"c.idcard = t.idcard", null,null,null,"datetime(date) DESC");
+    }
+
+    public Cursor querySubtypeFull(){
+        return mDb.query("trans t, subtype s", null, "s.idsubtype = t.idsubtype",null,null,null,"datetime(date) DESC");
+    }
 }
