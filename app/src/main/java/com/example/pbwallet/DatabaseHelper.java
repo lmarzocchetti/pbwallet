@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "idcard int not null,"
                 + "idsubtype int not null,"
                 + "money double not null,"
-                + "date date not null,"
+                + "date datetime not null,"
                 + "foreign key(idcard) references card(idcard),"
                 + "foreign key(idsubtype) references subtype(idsubtype));";
         db.execSQL(create_table_trans);
@@ -55,15 +55,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String create_table_subtype = "create table subtype("
                 + "idsubtype int,"
                 + "idtype int not null,"
-                + "name varchar(30),"
-                + "primary key(idsubtype,name),"
+                + "name varchar(30) not null,"
+                + "primary key(idsubtype),"
                 + "foreign key(idtype) references type(idtype));";
         db.execSQL(create_table_subtype);
 
         String create_table_type = "create table type("
                 + "idtype int,"
-                + "name varchar(30),"
-                + "primary key(idtype,name));";
+                + "name varchar(30) not null,"
+                + "primary key(idtype));";
         db.execSQL(create_table_type);
     }
 

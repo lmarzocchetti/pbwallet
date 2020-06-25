@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.Date;
+
 public class DatabaseBeReader {
     SQLiteDatabase mDb;
     DatabaseHelper mDbHelper;
@@ -48,13 +50,13 @@ public class DatabaseBeReader {
         mDb.insert("card",null,cv);
     }
 
-    public void insertTrans(Integer idtrans,Integer idcard, Integer idsubtype,double money,String date){
+    public void insertTrans(Integer idtrans, Integer idcard, Integer idsubtype, double money, String date){
         ContentValues cv = new ContentValues();
         cv.put("idtrans",idtrans);
         cv.put("idcard",idcard);
         cv.put("idsubtype",idsubtype);
         cv.put("money",money);
-        cv.put("date",date);
+        cv.put("date", date);
         mDb.insert("trans",null,cv);
     }
 
@@ -101,6 +103,10 @@ public class DatabaseBeReader {
         return mDb.query("trans",null,ricerca+"='"+values+"'",null,null,null,null);
     }
 
+    public Cursor queryTransFull(){
+        return mDb.query("trans",null,null,null,null,null,null);
+    }
+
     public Cursor queryBudget(String ricerca, String values){
         return mDb.query("budget",null,ricerca+"='"+values+"'",null,null,null,null);
     }
@@ -113,7 +119,7 @@ public class DatabaseBeReader {
         return mDb.query("type",null,ricerca+"='"+values+"'",null,null,null,null);
     }
 
-    //public Cursor queryLastTrans(){
-     //   return mDb.query("trans",null,)
-    //}
+    public Cursor queryLastTrans(){
+        return mDb.query("trans",null,null,null,null,null,"datetime(date) DESC");
+    }
 }

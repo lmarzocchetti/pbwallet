@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Window;
 
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
