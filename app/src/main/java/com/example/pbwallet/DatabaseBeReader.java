@@ -75,7 +75,7 @@ public class DatabaseBeReader {
         mDb.insert("subtype",null,cv);
     }
 
-    public void insertType(Integer idtype, String name, String image){
+    public void insertType(Integer idtype, String name){
         ContentValues cv = new ContentValues();
         cv.put("idtype",idtype);
         cv.put("name",name);
@@ -121,5 +121,13 @@ public class DatabaseBeReader {
 
     public Cursor queryLastTrans(){
         return mDb.query("trans",null,null,null,null,null,"datetime(date) DESC");
+    }
+
+    public Cursor queryUsCard(){
+        return mDb.query("card c, trans t", null,"c.idcard = t.idcard", null,null,null,"datetime(date) DESC");
+    }
+
+    public Cursor querySubtypeFull(){
+        return mDb.query("trans t, subtype s", null, "s.idsubtype = t.idsubtype",null,null,null,"datetime(date) DESC");
     }
 }
