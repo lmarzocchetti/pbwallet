@@ -8,4 +8,6 @@
     <color name="grigio">#282828</color>
     <color name="bianco">#FFFFFF</color>
     <color name="bianco_papiro">#D7D7D7</color>
+    <color name="verde_cash">#008C5D</color>
+    <color name="rosso_bordeaux">#D00000</color>
 </resources>

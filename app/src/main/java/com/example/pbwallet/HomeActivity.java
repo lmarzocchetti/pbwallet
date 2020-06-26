@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -120,11 +121,11 @@ public class HomeActivity extends AppCompatActivity {
             do{
                 totaltrans = new Double(cur.getString(cur.getColumnIndex("money")));
                 if(totaltrans > 0){
-                    aT.get(i).setTextColor(Color.GREEN);
+                    aT.get(i).setTextColor(ContextCompat.getColor(this, R.color.verde_cash));
                 }
                 else{
                     totaltrans = Math.abs(totaltrans);
-                    aT.get(i).setTextColor(Color.RED);
+                    aT.get(i).setTextColor(ContextCompat.getColor(this, R.color.rosso_bordeaux));
                 }
                 aT.get(i).setText(totaltrans.toString() + " €");
                 i++;
