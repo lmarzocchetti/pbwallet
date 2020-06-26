@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/nav_frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,57 +21,62 @@
         android:fontFamily="@font/cocon_regular"
         android:textSize="15sp"
         android:textColorHint="@color/grigio"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"/>
 
     <TextView
         android:id="@+id/TXtotalfunds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Your Total Funds"
+        android:text="Your Total Funds"
         android:fontFamily="@font/cocon_regular"
         android:textSize="35sp"
-        android:textColorHint="@color/celeste"
-        android:gravity="center_horizontal" />
+        android:textColor="@color/celeste"
+        android:gravity="center_horizontal"
+        android:layout_alignTop="@+id/nameandsurname"
+        android:layout_marginTop="30dp"/>
 
     <TextView
         android:id="@+id/totalfunds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:hint=""
         android:fontFamily="@font/cocon_regular"
         android:textSize="35sp"
         android:textColorHint="@color/grigio"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:layout_alignTop="@+id/TXtotalfunds"
+        android:layout_marginTop="140dp"/>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:padding="0dp">
+            android:padding="0dp"
+            android:layout_alignParentBottom="true">
 
             <RelativeLayout
+                android:id="@+id/relative1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:fontFamily="@font/cocon_regular">
+                android:fontFamily="@font/cocon_regular"
+                android:layout_alignBottom="@+id/relative2"
+                android:layout_marginBottom="60dp">
 
                 <TextView
+                    android:id="@+id/textView1.1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text=""
-                    android:textSize="13sp"
+                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/cocon_regular"
-                    android:layout_gravity="center"
-                    android:id="@+id/textView1.1"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_margin="8dp"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/textView1"
@@ -79,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cocon_regular"
                     android:padding="10dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:text=""
                     android:layout_centerInParent="true"
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -94,7 +99,8 @@
                     android:textSize="13sp"
                     android:fontFamily="@font/cocon_regular"
                     android:layout_alignParentEnd="true"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="8dp"
                     android:padding="10dp"/>
             </RelativeLayout>
 
@@ -102,12 +108,17 @@
                 android:id="@+id/bar1"
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
-                android:layout_height="1dp" />
+                android:layout_height="1dp"
+                android:layout_alignBottom="@+id/relative2"
+                android:layout_marginBottom="60dp"/>
 
             <RelativeLayout
+                android:id="@+id/relative2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_alignBottom="@+id/relative3"
+                android:layout_marginBottom="60dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -118,6 +129,7 @@
                     android:textSize="13sp"
                     android:fontFamily="@font/cocon_regular"
                 android:id="@+id/textView2.1"
+                    android:layout_margin="8dp"
                 android:padding="10dp"/>
 
             <TextView
@@ -142,6 +154,7 @@
                 android:fontFamily="@font/cocon_regular"
                 android:layout_gravity="center"
                 android:layout_alignParentEnd="true"
+                android:layout_margin="8dp"
                 android:padding="10dp"/>
         </RelativeLayout>
 
@@ -149,12 +162,17 @@
                 android:id="@+id/bar2"
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
-                android:layout_height="1dp" />
+                android:layout_height="1dp"
+                android:layout_alignBottom="@+id/relative3"
+                android:layout_marginBottom="60dp"/>
 
             <RelativeLayout
+                android:id="@+id/relative3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_alignBottom="@+id/relative4"
+                android:layout_marginBottom="60dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -165,6 +183,7 @@
                     android:fontFamily="@font/cocon_regular"
                     android:layout_gravity="center"
                     android:id="@+id/textView3.1"
+                    android:layout_margin="8dp"
                     android:padding="10dp"/>
 
                 <TextView
@@ -189,6 +208,7 @@
                     android:layout_gravity="center"
                     android:textSize="13sp"
                     android:fontFamily="@font/cocon_regular"
+                    android:layout_margin="8dp"
                     android:padding="10dp"/>
             </RelativeLayout>
 
@@ -196,58 +216,70 @@
                 android:id="@+id/bar3"
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
-                android:layout_height="1dp" />
-         <RelativeLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:orientation="horizontal">
+                android:layout_height="1dp"
+                android:layout_alignBottom="@+id/relative4"
+                android:layout_marginBottom="60dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/relative4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text=""
-                android:textSize="13sp"
-                android:layout_gravity="center"
-                android:fontFamily="@font/cocon_regular"
-                android:id="@+id/textView4.1"
-                android:padding="10dp"/>
+                android:orientation="horizontal"
+                android:layout_alignBottom="@+id/relative5"
+                android:layout_marginBottom="60dp">
 
-             <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:textAppearance="?android:attr/textAppearanceLarge"
-                 android:text=""
-                 android:id="@+id/textView4"
-                 android:textSize="21sp"
-                 android:fontFamily="@font/cocon_regular"
-                 android:layout_gravity="center"
-                 android:layout_centerInParent="true"
-                 android:padding="10dp"/>
+                <TextView
+                    android:id="@+id/textView4.1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="13sp" />
 
-             <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:textAppearance="?android:attr/textAppearanceLarge"
-                 android:text=""
-                 android:id="@+id/textView4.2"
-                 android:textSize="13sp"
-                 android:layout_gravity="center"
-                 android:layout_alignParentEnd="true"
-                 android:fontFamily="@font/cocon_regular"
-                 android:padding="10dp"/>
-         </RelativeLayout>
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/cocon_regular"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="21sp" />
+
+                <TextView
+                    android:id="@+id/textView4.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="13sp" />
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/bar4"
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
-                android:layout_height="1dp" />
+                android:layout_height="1dp"
+                android:layout_alignBottom="@+id/relative5"
+                android:layout_marginBottom="60dp"/>
 
          <RelativeLayout
+             android:id="@+id/relative5"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:orientation="horizontal">
+             android:orientation="horizontal"
+             android:layout_alignParentBottom="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -258,6 +290,7 @@
                 android:fontFamily="@font/cocon_regular"
                 android:layout_gravity="center"
                 android:id="@+id/textView5.1"
+                android:layout_margin="8dp"
                 android:padding="10dp"/>
 
              <TextView
@@ -282,11 +315,12 @@
                  android:textSize="13sp"
                  android:layout_gravity="center"
                  android:fontFamily="@font/cocon_regular"
+                 android:layout_margin="8dp"
                  android:padding="10dp"/>
          </RelativeLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bar"

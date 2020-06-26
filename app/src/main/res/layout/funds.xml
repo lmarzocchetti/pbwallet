@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/nav_frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +20,8 @@
             android:fontFamily="@font/cocon_regular"
             android:textSize="15sp"
             android:textColorHint="@color/grigio"
-            android:gravity="center_horizontal"/>
+            android:gravity="center_horizontal"
+            android:layout_alignParentTop="true"/>
 
         <TextView
             android:id="@+id/wallets"
@@ -30,17 +31,20 @@
             android:fontFamily="@font/cocon_regular"
             android:textSize="35sp"
             android:textColorHint="@color/celeste"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/nameandsurnameFUNDS"
+            android:layout_marginTop="30dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_fundmenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
         app:boxStrokeColor="@color/celeste"
         app:endIconTint="@color/celeste"
+        android:layout_alignTop="@+id/wallets"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
         <AutoCompleteTextView
@@ -56,16 +60,20 @@
             android:layout_width="match_parent"
             android:layout_height="210dp"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:padding="0dp">
+            android:padding="0dp"
+            android:layout_alignParentBottom="true">
 
             <RelativeLayout
+                android:id="@+id/relative1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/relative2"
+                android:layout_marginBottom="60dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -94,11 +102,16 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
                 android:layout_height="1dp"
-                android:contentDescription="@string/lineforseparate"/>
+                android:contentDescription="@string/lineforseparate"
+                android:layout_alignBottom="@+id/relative2"
+                android:layout_marginBottom="60dp"/>
 
             <RelativeLayout
+                android:id="@+id/relative2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/relative3"
+                android:layout_marginBottom="60dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -127,11 +140,16 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
                 android:layout_height="1dp"
-                android:contentDescription="@string/lineforseparate"/>
+                android:contentDescription="@string/lineforseparate"
+                android:layout_alignBottom="@+id/relative3"
+                android:layout_marginBottom="60dp"/>
 
             <RelativeLayout
+                android:id="@+id/relative3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/relative4"
+                android:layout_marginBottom="60dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -160,11 +178,16 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
                 android:layout_height="1dp"
-                android:contentDescription="@string/lineforseparate"/>
+                android:contentDescription="@string/lineforseparate"
+                android:layout_alignBottom="@+id/relative4"
+                android:layout_marginBottom="60dp"/>
 
             <RelativeLayout
+                android:id="@+id/relative4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/relative5"
+                android:layout_marginBottom="60dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -193,11 +216,15 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
                 android:layout_height="1dp"
-                android:contentDescription="@string/lineforseparate"/>
+                android:contentDescription="@string/lineforseparate"
+                android:layout_alignBottom="@+id/relative5"
+                android:layout_marginBottom="60dp"/>
 
             <RelativeLayout
+                android:id="@+id/relative5"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -220,8 +247,8 @@
                     android:padding="10dp"/>
 
             </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bar"
