@@ -37,11 +37,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_fundmenu"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:layout_marginLeft="75dp"
-        android:layout_marginRight="75dp"
+        android:layout_centerHorizontal="true"
         app:boxStrokeColor="@color/celeste"
         app:endIconTint="@color/celeste"
         android:layout_alignTop="@+id/wallets"
@@ -56,9 +55,39 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-        <Space
+        <ImageView
+            android:id="@+id/shadow_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_shadow"
+            android:layout_alignTop="@id/shopcard"
+            android:layout_alignStart="@id/shopcard"
+            android:layout_marginHorizontal="3dp"
+            android:layout_marginTop="3dp"/>
+
+        <ImageView
+            android:id="@+id/shopcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shopcard"
+            android:layout_alignTop="@id/layout_fundmenu"
+            android:layout_centerHorizontal="true"
+            android:alpha="0.8"
+            android:layout_marginTop="100dp"/>
+
+        <TextView
+            android:id="@+id/wallet_money"
             android:layout_width="match_parent"
-            android:layout_height="210dp"/>
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=""
+            android:textColor="@color/bianco"
+            android:fontFamily="@font/cocon_regular"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_margin="35dp"
+            android:layout_alignTop="@id/shopcard"
+            android:layout_alignBottom="@id/shopcard"/>
 
         <RelativeLayout
             android:orientation="vertical"
@@ -80,17 +109,36 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text=""
+                android:layout_margin="8dp"
+                android:fontFamily="@font/cocon_regular"
                 android:id="@+id/type1"
-                android:layout_alignParentStart="true"
+                android:textSize="13sp"
+                android:layout_alignParentEnd="true"
                 android:layout_gravity="center"
                 android:padding="10dp"/>
+
+            <TextView
+                android:id="@+id/date1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cocon_regular"
+                android:padding="10dp"
+                android:layout_gravity="center"
+                android:text=""
+                android:layout_margin="8dp"
+                android:textSize="13sp"
+                android:layout_alignParentStart="true"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text=""
-                android:layout_alignParentEnd="true"
+                android:textSize="21sp"
+                android:fontFamily="@font/cocon_regular"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="8dp"
                 android:id="@+id/trans1"
                 android:layout_gravity="center"
                 android:padding="10dp"/>
@@ -102,6 +150,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
                 android:layout_height="1dp"
+                android:visibility="invisible"
                 android:contentDescription="@string/lineforseparate"
                 android:layout_alignBottom="@+id/relative2"
                 android:layout_marginBottom="60dp"/>
@@ -118,17 +167,36 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/cocon_regular"
                     android:id="@+id/type2"
-                    android:layout_alignParentStart="true"
+                    android:textSize="13sp"
+                    android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
                     android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cocon_regular"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:layout_margin="8dp"
+                    android:textSize="13sp"
+                    android:layout_alignParentStart="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
-                    android:layout_alignParentEnd="true"
+                    android:textSize="21sp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="8dp"
                     android:id="@+id/trans2"
                     android:layout_gravity="center"
                     android:padding="10dp"/>
@@ -140,6 +208,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
                 android:layout_height="1dp"
+                android:visibility="invisible"
                 android:contentDescription="@string/lineforseparate"
                 android:layout_alignBottom="@+id/relative3"
                 android:layout_marginBottom="60dp"/>
@@ -156,17 +225,36 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/cocon_regular"
                     android:id="@+id/type3"
-                    android:layout_alignParentStart="true"
+                    android:textSize="13sp"
+                    android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
                     android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/date3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cocon_regular"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:layout_margin="8dp"
+                    android:textSize="13sp"
+                    android:layout_alignParentStart="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
-                    android:layout_alignParentEnd="true"
+                    android:textSize="21sp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="8dp"
                     android:id="@+id/trans3"
                     android:layout_gravity="center"
                     android:padding="10dp"/>
@@ -178,6 +266,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
                 android:layout_height="1dp"
+                android:visibility="invisible"
                 android:contentDescription="@string/lineforseparate"
                 android:layout_alignBottom="@+id/relative4"
                 android:layout_marginBottom="60dp"/>
@@ -194,17 +283,36 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/cocon_regular"
                     android:id="@+id/type4"
-                    android:layout_alignParentStart="true"
+                    android:textSize="13sp"
+                    android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
                     android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/date4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cocon_regular"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:layout_margin="8dp"
+                    android:textSize="13sp"
+                    android:layout_alignParentStart="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
-                    android:layout_alignParentEnd="true"
+                    android:textSize="21sp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="8dp"
                     android:id="@+id/trans4"
                     android:layout_gravity="center"
                     android:padding="10dp"/>
@@ -216,6 +324,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/border"
                 android:layout_height="1dp"
+                android:visibility="invisible"
                 android:contentDescription="@string/lineforseparate"
                 android:layout_alignBottom="@+id/relative5"
                 android:layout_marginBottom="60dp"/>
@@ -231,17 +340,36 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/cocon_regular"
                     android:id="@+id/type5"
-                    android:layout_alignParentStart="true"
+                    android:textSize="13sp"
+                    android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
                     android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/date5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cocon_regular"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:layout_margin="8dp"
+                    android:textSize="13sp"
+                    android:layout_alignParentStart="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
-                    android:layout_alignParentEnd="true"
+                    android:textSize="21sp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="8dp"
                     android:id="@+id/trans5"
                     android:layout_gravity="center"
                     android:padding="10dp"/>
@@ -259,5 +387,4 @@
         app:menu="@menu/navigation_button"
         app:itemIconTint="@color/bianco_papiro"
         android:layout_alignParentBottom="true" />
-
 </RelativeLayout>
