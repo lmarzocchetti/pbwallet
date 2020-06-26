@@ -4,12 +4,302 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/nav_frameLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/nav_bar"
-        />
+        android:layout_above="@+id/nav_bar"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nameandsurname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint=""
+        android:fontFamily="@font/cocon_regular"
+        android:textSize="15sp"
+        android:textColorHint="@color/grigio"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:id="@+id/TXtotalstats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Stats"
+            android:fontFamily="@font/cocon_regular"
+            android:textSize="35sp"
+            android:textColor="@color/celeste"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/nameandsurname"
+            android:layout_marginTop="30dp"/>
+
+    <ImageView
+        android:id="@+id/background_graphic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/graphic_background"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/TXtotalstats"
+        android:layout_marginTop="90dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@+id/background_graphic"
+            android:layout_marginTop="220dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_fundmenu1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentEnd="true"
+            app:boxStrokeColor="@color/rosso_bordeaux"
+            app:endIconTint="@color/rosso_bordeaux"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/fund_menu1"
+                android:labelFor="@+id/fund_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_fundmenu2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_alignParentStart="true"
+            app:boxStrokeColor="@color/verde_cash"
+            app:endIconTint="@color/verde_cash"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/fund_menu2"
+                android:labelFor="@+id/fund_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignBottom="@+id/relative3"
+                android:layout_marginBottom="60dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:layout_gravity="center"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:id="@+id/textView2.1"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="8dp"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/mese1"
+                    android:textSize="21sp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/mese2"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_gravity="center"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    android:padding="10dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignBottom="@+id/relative4"
+                android:layout_marginBottom="60dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Entrata"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_gravity="center"
+                    android:id="@+id/textView3.1"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="8dp"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/entrata1"
+                    android:textSize="21sp"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/entrata2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_margin="8dp"
+                    android:padding="10dp"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/bar3"
+                android:layout_width="match_parent"
+                android:background="@drawable/border"
+                android:layout_height="1dp"
+                android:layout_alignBottom="@+id/relative4"
+                android:layout_marginBottom="60dp"/>
+
+            <RelativeLayout
+                android:id="@+id/relative4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignBottom="@+id/relative5"
+                android:layout_marginBottom="60dp">
+
+                <TextView
+                    android:id="@+id/textView4.1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_alignParentStart="true"
+                    android:padding="10dp"
+                    android:text="Uscita"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/uscita1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/cocon_regular"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="21sp" />
+
+                <TextView
+                    android:id="@+id/uscita2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/bar4"
+                android:layout_width="match_parent"
+                android:background="@drawable/border"
+                android:layout_height="1dp"
+                android:layout_alignBottom="@+id/relative5"
+                android:layout_marginBottom="60dp"/>
+
+            <RelativeLayout
+                android:id="@+id/relative5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Percentuale"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_gravity="center"
+                    android:id="@+id/textView5.1"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="8dp"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/percentuale1"
+                    android:textSize="21sp"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_gravity="center"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/percentuale2"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="13sp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/cocon_regular"
+                    android:layout_margin="8dp"
+                    android:padding="10dp"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bar"

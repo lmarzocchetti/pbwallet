@@ -48,8 +48,20 @@
         android:layout_alignTop="@+id/TXtotalfunds"
         android:layout_marginTop="140dp"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Last Transitions"
+            android:fontFamily="@font/cocon_regular"
+            android:textColor="@color/grigio"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/lasttrans"
+            android:layout_marginBottom="300dp"
+             />
+
 
         <RelativeLayout
+            android:id="@+id/lasttrans"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,11 +82,12 @@
                     android:id="@+id/textView1.1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/cocon_regular"
                     android:padding="10dp"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_alignParentStart="true"
                     android:layout_margin="8dp"
                     android:textSize="13sp" />
 
@@ -84,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cocon_regular"
                     android:padding="10dp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
                     android:text=""
                     android:layout_centerInParent="true"
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -99,7 +112,7 @@
                     android:textSize="13sp"
                     android:fontFamily="@font/cocon_regular"
                     android:layout_alignParentEnd="true"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:padding="10dp"/>
             </RelativeLayout>
@@ -129,6 +142,7 @@
                     android:textSize="13sp"
                     android:fontFamily="@font/cocon_regular"
                 android:id="@+id/textView2.1"
+                    android:layout_alignParentStart="true"
                     android:layout_margin="8dp"
                 android:padding="10dp"/>
 
@@ -183,6 +197,7 @@
                     android:fontFamily="@font/cocon_regular"
                     android:layout_gravity="center"
                     android:id="@+id/textView3.1"
+                    android:layout_alignParentStart="true"
                     android:layout_margin="8dp"
                     android:padding="10dp"/>
 
@@ -235,6 +250,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:fontFamily="@font/cocon_regular"
+                    android:layout_alignParentStart="true"
                     android:padding="10dp"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -290,6 +306,7 @@
                 android:fontFamily="@font/cocon_regular"
                 android:layout_gravity="center"
                 android:id="@+id/textView5.1"
+                android:layout_alignParentStart="true"
                 android:layout_margin="8dp"
                 android:padding="10dp"/>
 
