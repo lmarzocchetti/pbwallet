@@ -19,4 +19,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="Switchpercent" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="colorOnSurface">@color/celeste</item>
+        <item name="colorSurface">@color/celeste</item>
+        <item name="colorSecondary">@color/celeste</item>
+    </style>
 </resources>
