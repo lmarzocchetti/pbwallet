@@ -17,4 +17,16 @@
     <string name="your_wallets">Your Wallets</string>
     <string name="your_total_funds">Your Total Funds</string>
     <string name="lineforseparate">lineforseparate</string>
+    <string name="shadow_of_card">Shadow of card</string>
+    <string name="card">Card</string>
+    <string name="plus_transaction">plus_transaction</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="money">Money</string>
+    <string name="euro">€</string>
+    <string name="comma">,</string>
+    <string name="purchase_reason">Purchase reason</string>
+    <string name="add_reason">Add Reason</string>
+    <string name="insert_a_new_reason">Insert A New Reason</string>
+    <string name="insert_a_new_reason1">Insert a new reason</string>
+    <string name="confirm">Confirm</string>
 </resources>

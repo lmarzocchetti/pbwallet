@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -63,7 +64,8 @@
             android:layout_alignTop="@id/shopcard"
             android:layout_alignStart="@id/shopcard"
             android:layout_marginHorizontal="3dp"
-            android:layout_marginTop="3dp"/>
+            android:layout_marginTop="3dp"
+            android:contentDescription="@string/shadow_of_card" />
 
         <ImageView
             android:id="@+id/shopcard"
@@ -73,7 +75,8 @@
             android:layout_alignTop="@id/layout_fundmenu"
             android:layout_centerHorizontal="true"
             android:alpha="0.8"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="100dp"
+            android:contentDescription="@string/card" />
 
         <TextView
             android:id="@+id/wallet_money"
@@ -115,7 +118,8 @@
                 android:textSize="13sp"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="center"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                tools:ignore="RelativeOverlap" />
 
             <TextView
                 android:id="@+id/date1"
@@ -173,7 +177,8 @@
                     android:textSize="13sp"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    tools:ignore="RelativeOverlap" />
 
                 <TextView
                     android:id="@+id/date2"
@@ -231,7 +236,8 @@
                     android:textSize="13sp"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    tools:ignore="RelativeOverlap" />
 
                 <TextView
                     android:id="@+id/date3"
@@ -289,7 +295,8 @@
                     android:textSize="13sp"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    tools:ignore="RelativeOverlap" />
 
                 <TextView
                     android:id="@+id/date4"
@@ -346,7 +353,8 @@
                     android:textSize="13sp"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    tools:ignore="RelativeOverlap" />
 
                 <TextView
                     android:id="@+id/date5"
