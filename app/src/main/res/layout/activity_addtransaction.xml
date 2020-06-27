@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/transaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_transaction"
+        android:fontFamily="@font/cocon_regular"
+        android:textSize="35sp"
+        android:textColorHint="@color/celeste"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentTop="true"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_fundmenu"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
+        app:boxStrokeColor="@color/celeste"
+        app:endIconTint="@color/celeste"
+        android:layout_alignTop="@+id/transaction"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+    <AutoCompleteTextView
+        android:id="@+id/wallet_menu"
+        android:labelFor="@+id/wallet_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/layout_fundmenu"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/money_symbol"
+            android:hint="@string/euro"
+            android:textSize="33sp"
+            android:fontFamily="@font/cocon_regular"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/money_int"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_toStartOf="@+id/money_dec"
+            android:layout_toEndOf="@+id/money_symbol"
+            android:hint="@string/money"
+            android:layout_marginStart="20dp"
+            android:theme="@style/TextInputLayoutAppearance"
+            app:boxStrokeColor="@color/celeste"
+            app:hintTextColor="@color/celeste">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/money_intTF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/comma_symbol"
+            android:hint="@string/comma"
+            android:textSize="33sp"
+            android:fontFamily="@font/cocon_regular"
+            android:gravity="center"
+            android:layout_toStartOf="@id/money_dec"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/money_dec"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/TextInputLayoutAppearance"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        app:hintTextColor="@color/celeste"
+        app:boxStrokeColor="@color/celeste">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/money_decTF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/select_subtype"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/purchase_reason"
+        android:fontFamily="@font/cocon_regular"
+        android:textSize="20sp"
+        android:layout_alignTop="@id/relative_money"
+        android:layout_marginTop="75dp"
+        android:textColorHint="@color/celeste"
+        android:gravity="center_horizontal" />
+
+    <RelativeLayout
+        android:id="@+id/relative_subtype"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/select_subtype"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_subtype"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/celeste"
+        app:endIconTint="@color/celeste">
+
+        <AutoCompleteTextView
+            android:id="@+id/subtype_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:labelFor="@+id/wallet_menu"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/add_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/cocon_regular"
+            android:textColor="@color/grigio"
+            android:text="@string/add_reason"
+            tools:ignore="RelativeOverlap" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_add_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/insert_a_new_reason1"
+        android:fontFamily="@font/cocon_regular"
+        android:textSize="20sp"
+        android:textColorHint="@color/celeste"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="75dp"
+        android:layout_alignTop="@id/relative_subtype"/>
+
+    <RelativeLayout
+        android:id="@+id/relative_new_subtype"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/text_add_reason"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/new_reason_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/money"
+            android:theme="@style/TextInputLayoutAppearance"
+            app:boxStrokeColor="@color/celeste"
+            app:hintTextColor="@color/celeste"
+            android:layout_toStartOf="@id/list_type"
+            android:layout_marginEnd="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/new_reason_layoutTF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/list_type"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/celeste"
+            app:endIconTint="@color/celeste"
+            android:layout_alignParentEnd="true">
+
+            <AutoCompleteTextView
+                android:id="@+id/list_type_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:labelFor="@+id/wallet_menu"
+                tools:ignore="LabelFor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/confirm_button_existing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm"
+        android:backgroundTint="@color/celeste"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@id/relative_subtype"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="75dp"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/confirm_button_not_existing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm"
+        android:backgroundTint="@color/celeste"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@id/relative_new_subtype"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="75dp"
+        android:visibility="invisible"/>
+</RelativeLayout>

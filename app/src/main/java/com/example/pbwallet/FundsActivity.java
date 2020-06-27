@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -31,13 +30,13 @@ public class FundsActivity extends AppCompatActivity {
     TextView date1, date2, date3, date4, date5;
     ImageView bar1, bar2, bar3, bar4;
     AutoCompleteTextView fund_switch;
+    BottomNavigationView navbar;
     String selected;
     DatabaseBeReader db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.funds);
 
         name = findViewById(R.id.nameandsurnameFUNDS);
@@ -45,7 +44,7 @@ public class FundsActivity extends AppCompatActivity {
 
         wallet_money = findViewById(R.id.wallet_money);
 
-        BottomNavigationView navbar = findViewById(R.id.nav_bar);
+        navbar = findViewById(R.id.nav_bar);
         navbar.setSelectedItemId(R.id.nav_fund);
         navbar.setOnNavigationItemSelectedListener(navigationlistener);
 
@@ -229,6 +228,13 @@ public class FundsActivity extends AppCompatActivity {
                             onPause();
                             startActivity(new Intent(getApplicationContext(),StatsActivity.class));
                             overridePendingTransition(0,0);
+                            onStop();
+                            break;
+
+                        case R.id.add_transaction:
+                            onPause();
+                            startActivity(new Intent(getApplicationContext(), AddTransactionActivity.class));
+                            overridePendingTransition(0, 0);
                             onStop();
                             break;
                     }
