@@ -103,6 +103,10 @@ public class DatabaseBeReader {
         return mDb.query("trans",null,ricerca+"='"+values+"'",null,null,null,null);
     }
 
+    public Cursor queryTransDate(String ricerca, String values){
+        return mDb.query("trans",null,ricerca+" like '"+values+"%'",null,null,null,null);
+    }
+
     public Cursor queryTransFull(){
         return mDb.query("trans",null,null,null,null,null,null);
     }
@@ -137,5 +141,9 @@ public class DatabaseBeReader {
 
     public Cursor querySubtypeFull(){
         return mDb.query("trans t, subtype s", null, "s.idsubtype = t.idsubtype",null,null,null,"datetime(date) DESC");
+    }
+
+    public Cursor queryTransDist(){
+        return mDb.query(true,"trans",null,null,null,null,null,"datetime(date) DESC", null);
     }
 }
