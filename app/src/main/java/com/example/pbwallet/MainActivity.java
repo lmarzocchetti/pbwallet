@@ -18,20 +18,20 @@ public class MainActivity extends AppCompatActivity {
         //db.insertSubtype(0, 2, "Caffe");
         //db.insertSubtype(1, 4, "Videogiochi");
         //db.insertSubtype(2, 0, "Computer");
-        //db.insertCard(0, 0, "Postepay", 2000);
+        //db.insertCard(0, 0, "Intesa", 0);
         //db.insertCard(1, 0, "MasterCard", 1000);
         //db.insertCard(2, 0, "DioCard", 666);
-        //db.insertTrans(0, 0, 0, 3, "2020-06-25 13:20:20");
-        //db.insertTrans(1, 0, 0, 3, "2020-06-24 13:20:20");
-        //db.insertTrans(2, 0, 0, 3, "2020-06-26 13:20:20");
-        //db.insertTrans(3, 0, 0, 3, "2020-06-28 13:20:20");
-        //db.insertTrans(6, 0, 0, 3, "2020-06-29 13:20:20");
+        //db.insertTrans(7, 0, 0, 4, "2020-06-25 13:20:20");
+        //db.insertTrans(8, 0, 0, 5, "2020-07-24 13:20:20");
+        //db.insertTrans(9, 0, 0, 36, "2020-08-26 13:20:20");
+        //db.insertTrans(10, 0, 0, 7, "2020-09-28 13:20:20");
+        //db.insertTrans(11, 0, 0, 1237, "2020-10-29 13:20:20");
         /*db.insertCard(1,1,"Visa",3700);
         db.insertCard(2,2,"Mastercard", 7888.8);
-        db.insertCard(3,3, "PostePay", 400);
-        db.insertTrans(1,1,1,-126,"2019-12-12 12:12:12");
-        db.insertTrans(2,2,1,123,"2019-12-12 12:11:12");
-        db.insertTrans(3,3,1,300,"2019-12-12 12:13:12");*/
+        db.insertCard(3,3, "PostePay", 400);*/
+        //db.insertTrans(12,1,1,-126,"2019-11-12 12:12:12");
+        //db.insertTrans(13,2,1,123,"2019-10-12 12:11:12");
+        //db.insertTrans(14,3,1,300,"2019-01-12 12:13:12");
         if(cur.moveToFirst()){
             if(cur.getString(cur.getColumnIndex("password")) == null){
                 Intent homepage = new Intent(MainActivity.this, HomeActivity.class);

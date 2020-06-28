@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,15 +20,19 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+import java.math.BigDecimal;
 import java.nio.DoubleBuffer;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class StatsActivity extends AppCompatActivity {
-    TextView name, mese1, mese2, entrata1, entrata2, uscita1, uscita2, percentuale1, percentuale2, textpercent;
+    TextView name, mese1, mese2, entrata1, entrata2, uscita1, uscita2, percentuale1, percentuale2, textpercent, date1, date2, date3, date4, date5, date6, cashdate1;
     AutoCompleteTextView fund_switch1,fund_switch2;
     String selected, selected2;
     ArrayList<String> fund_list, fund_list2;
-    ArrayList<String> As;
+    ArrayList<String> As, Am;
+    ArrayList<TextView> Atd;
+    ArrayList<Double> Amc;
     SwitchMaterial switchpercent;
     Double money1, money2;
     Double moneypos1, moneyneg1, moneypos2, moneyneg2;
@@ -49,8 +54,17 @@ public class StatsActivity extends AppCompatActivity {
         fund_switch1 = findViewById(R.id.fund_menu2);
         fund_switch2 = findViewById(R.id.fund_menu1);
         switchpercent = findViewById(R.id.switchperc);
+        Atd = new ArrayList<TextView>();
+        Atd.add(date1 = findViewById(R.id.date1));
+        Atd.add(date2 = findViewById(R.id.date2));
+        Atd.add(date3 = findViewById(R.id.date3));
+        Atd.add(date4 = findViewById(R.id.date4));
+        Atd.add(date5 = findViewById(R.id.date5));
+        Atd.add(date6 = findViewById(R.id.date6));
+        cashdate1 = findViewById(R.id.cashdate1);
         money1 = null;
         money2 = null;
+        populateMonths();
         changeNameandSur();
         selected = "";
         selected2 = "";
@@ -156,29 +170,128 @@ public class StatsActivity extends AppCompatActivity {
         uscita2.setText("");
     }
 
+    private void populateMonths(){
+        DatabaseBeReader db = new DatabaseBeReader(this);
+        db.open();
+        int j = 0;
+        Am = new ArrayList<String>();
+        Amc = new ArrayList<Double>();
+        boolean esit = false;
+        Cursor cur = db.queryTransDist();
+        if(cur.moveToFirst()) {
+            do {
+                String ins = cur.getString(cur.getColumnIndex("date"));
+                ins = ins.substring(0,7);
+                for(String i : Am){
+                    if(i.equals(ins)) {
+                        esit = true;
+                        break;
+                    }
+                    esit = false;
+                }
+                if(!esit) {
+                    Am.add(ins);
+                    j++;
+                }
+            } while(cur.moveToNext() && j<6);
+        }
+        for(int i = 5, h = 0; i >= 0; i--,h++){
+            Atd.get(h).setText(Am.get(i));
+        }
+        double cash;
+        for(int i = 0; i < 6; i++){
+            cash = 0;
+            cur = db.queryTransDate("date", Am.get(i));
+            if(cur.moveToFirst()){
+                do{
+                    cash += cur.getDouble(cur.getColumnIndex("money"));
+                }while(cur.moveToNext());
+            }
+            Amc.add(cash);
+        }
+        //aggiustare margini cash su grafico
+        cashdate1.setText(new Double(Amc.get(0)).toString());
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)cashdate1.getLayoutParams();
+        params.setMargins(25,0,0,70);
+        cashdate1.setLayoutParams(params);
+        db.close();
+    }
+
     private void percent(){
         if(money1 != null && money2 != null){
             if(switchpercent.isChecked()){
-                textpercent.setText("Guadagni");
-                double money = moneypos1/moneypos2;
-                money*=100;
-                money = 100-money;
-                percentuale1.setText(new Double(money).toString()+" %");
-                money = moneypos2/moneypos1;
-                money*=100;
-                money = 100-money;
-                percentuale2.setText(new Double(money).toString()+" %");
+                textpercent.setText("Percentuale\nGuadagni");
+                double money;
+                if(moneypos2 == 0 && moneypos1 != 0){
+                    percentuale1.setText(new Double(moneypos1).toString()+ " %");
+                }
+                else if(moneypos1 == 0){
+                    percentuale1.setText("0.0 %");
+                }
+                /*else {
+                    money = moneypos1 / moneypos2;
+                    money *= 100;
+                    money = 100 - money;
+                    DecimalFormat bigd = new DecimalFormat("#.00");
+                    percentuale1.setText(new Double(bigd.format(money)).toString() + " %");
+                }*/
+                else if(moneypos1 == 0 && moneypos2 != 0){
+                    percentuale2.setText(new Double(moneypos2).toString()+ " %");
+                }
+                else if(moneypos2 == 0){
+                    percentuale2.setText("0.0 %");
+                }
+                else {
+                    DecimalFormat bigd = new DecimalFormat("#.00");
+                    if(moneypos2 > moneypos1) {
+                        money = moneypos1 / moneypos2;
+                        money *= 100;
+                        percentuale1.setText(new Double(bigd.format(money)).toString() + " %");
+                        money = 100 - money;
+                        percentuale2.setText(new Double(bigd.format(money)).toString() + " %");
+                    }
+                    else if(moneypos1 > moneypos2){
+                        money = moneypos2 / moneypos1;
+                        money *= 100;
+                        percentuale2.setText(new Double(bigd.format(money)).toString() + " %");
+                        money = 100 - money;
+                        percentuale1.setText(new Double(bigd.format(money)).toString() + " %");
+                    }
+                    else{
+                        percentuale1.setText("0.0 %");
+                        percentuale2.setText("0.0 %");
+                    }
+                }
             }
             else{
-                textpercent.setText("Spesi");
-                double money = moneyneg1/moneyneg2;
-                money*=100;
-                money = 100-money;
-                percentuale1.setText(new Double(money).toString()+" %");
-                money = moneyneg2/moneyneg1;
-                money*=100;
-                money = 100-money;
-                percentuale2.setText(new Double(money).toString()+" %");
+                textpercent.setText("Percentuale\nSpesi");
+                double money;
+                if(moneyneg2 == 0 && moneyneg1 != 0){
+                    percentuale1.setText(new Double(moneyneg1).toString()+ " %");
+                }
+                else if(moneyneg1 == 0){
+                    percentuale1.setText("0.0 %");
+                }
+                else {
+                    money = moneyneg1 / moneyneg2;
+                    money *= 100;
+                    money = 100 - money;
+                    DecimalFormat bigd = new DecimalFormat("#.00");
+                    percentuale1.setText(new Double(bigd.format(money)).toString() + " %");
+                }
+                if(moneyneg1 == 0 && moneyneg2 != 0){
+                    percentuale2.setText(new Double(moneyneg2).toString()+ " %");
+                }
+                else if(moneyneg2 == 0){
+                    percentuale2.setText("0.0 %");
+                }
+                else {
+                    money = moneyneg2 / moneyneg1;
+                    money *= 100;
+                    money = 100 - money;
+                    DecimalFormat bigd = new DecimalFormat("#.00");
+                    percentuale2.setText(new Double(bigd.format(money)).toString() + " %");
+                }
             }
         }
     }
