@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         //db.insertCard(0, 0, "Intesa", 0);
         //db.insertCard(1, 0, "MasterCard", 1000);
         //db.insertCard(2, 0, "DioCard", 666);
-        //db.insertTrans(7, 0, 0, 4, "2020-06-25 13:20:20");
+        //db.insertTrans(21, 0, 0, 127, "2020-06-25 13:20:20");
         //db.insertTrans(8, 0, 0, 5, "2020-07-24 13:20:20");
         //db.insertTrans(9, 0, 0, 36, "2020-08-26 13:20:20");
         //db.insertTrans(10, 0, 0, 7, "2020-09-28 13:20:20");
