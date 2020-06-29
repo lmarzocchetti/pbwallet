@@ -69,13 +69,14 @@
             android:layout_marginStart="20dp"
             android:theme="@style/TextInputLayoutAppearance"
             app:boxStrokeColor="@color/celeste"
-            app:hintTextColor="@color/celeste">
+            app:hintTextColor="@color/celeste"
+            app:helperText="Minus sign for expenses">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/money_intTF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberPassword" />
+                android:inputType="numberSigned" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -104,7 +105,7 @@
             android:id="@+id/money_decTF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberPassword"/>
+            android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     </RelativeLayout>
@@ -170,7 +171,8 @@
         android:textColorHint="@color/celeste"
         android:gravity="center_horizontal"
         android:layout_marginTop="75dp"
-        android:layout_alignTop="@id/relative_subtype"/>
+        android:layout_alignTop="@id/relative_subtype"
+        android:visibility="invisible"/>
 
     <RelativeLayout
         android:id="@+id/relative_new_subtype"
@@ -186,18 +188,19 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/money"
+            android:hint="@string/reason"
             android:theme="@style/TextInputLayoutAppearance"
             app:boxStrokeColor="@color/celeste"
             app:hintTextColor="@color/celeste"
             android:layout_toStartOf="@id/list_type"
-            android:layout_marginEnd="20dp">
+            android:layout_marginEnd="20dp"
+            android:visibility="invisible">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/new_reason_layoutTF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberPassword"/>
+                android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -207,7 +210,8 @@
             android:layout_height="wrap_content"
             app:boxStrokeColor="@color/celeste"
             app:endIconTint="@color/celeste"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible">
 
             <AutoCompleteTextView
                 android:id="@+id/list_type_menu"
@@ -231,7 +235,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="75dp"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <Button
         android:id="@+id/confirm_button_not_existing"
