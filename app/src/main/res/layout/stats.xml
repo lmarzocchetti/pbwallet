@@ -93,17 +93,18 @@
         android:layout_height="wrap_content"
         android:background="@drawable/graphicx"
         android:layout_alignBottom="@+id/background_graphic"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="50dp"/>
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="30dp"/>
 
     <ImageView
+        android:id="@+id/graphicy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/graphicy"
         android:layout_alignBottom="@+id/background_graphic"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="30dp"/>
 
     <TextView
         android:id="@+id/date1"
@@ -112,8 +113,8 @@
         android:layout_alignBottom="@+id/background_graphic"
         android:text=""
         android:textColor="@color/bianco_papiro"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="35dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="55dp"
         android:textSize="8dp"/>
 
     <TextView
@@ -123,8 +124,8 @@
         android:layout_alignBottom="@+id/background_graphic"
         android:text=""
         android:textColor="@color/bianco_papiro"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="90dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="110dp"
         android:textSize="8dp"/>
 
     <TextView
@@ -134,8 +135,8 @@
         android:layout_alignBottom="@+id/background_graphic"
         android:text=""
         android:textColor="@color/bianco_papiro"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="145dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="165dp"
         android:textSize="8dp"/>
 
     <TextView
@@ -145,8 +146,8 @@
         android:layout_alignBottom="@+id/background_graphic"
         android:text=""
         android:textColor="@color/bianco_papiro"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="200dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="220dp"
         android:textSize="8dp"/>
 
     <TextView
@@ -156,8 +157,8 @@
         android:layout_alignBottom="@+id/background_graphic"
         android:text=""
         android:textColor="@color/bianco_papiro"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="255dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="275dp"
         android:textSize="8dp"/>
 
     <TextView
@@ -167,8 +168,8 @@
         android:layout_alignBottom="@+id/background_graphic"
         android:text=""
         android:textColor="@color/bianco_papiro"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="310dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="330dp"
         android:textSize="8dp"/>
 
     <TextView
@@ -176,11 +177,124 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/background_graphic"
+        android:gravity="center_horizontal"
         android:text=""
         android:textColor="@color/bianco_papiro"
         android:layout_marginBottom="1dp"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="10dp"
         android:textSize="8dp"/>
+
+    <TextView
+        android:id="@+id/cashdate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/background_graphic"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="@color/bianco_papiro"
+        android:layout_marginBottom="1dp"
+        android:layout_marginStart="10dp"
+        android:textSize="8dp"/>
+
+    <TextView
+        android:id="@+id/cashdate3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/background_graphic"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="@color/bianco_papiro"
+        android:layout_marginBottom="1dp"
+        android:layout_marginStart="10dp"
+        android:textSize="8dp"/>
+
+    <TextView
+        android:id="@+id/cashdate4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/background_graphic"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="@color/bianco_papiro"
+        android:layout_marginBottom="1dp"
+        android:layout_marginStart="10dp"
+        android:textSize="8dp"/>
+
+    <TextView
+        android:id="@+id/cashdate5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/background_graphic"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="@color/bianco_papiro"
+        android:layout_marginBottom="1dp"
+        android:layout_marginStart="10dp"
+        android:textSize="8dp"/>
+
+
+    <TextView
+        android:id="@+id/cashdate6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/background_graphic"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="@color/bianco_papiro"
+        android:layout_marginBottom="1dp"
+        android:layout_marginStart="10dp"
+        android:textSize="8dp"/>
+
+    <ImageView
+        android:id="@+id/circle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:layout_alignBottom="@id/background_graphic"/>
+
+    <ImageView
+        android:id="@+id/circle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:layout_alignBottom="@id/background_graphic"/>
+
+    <ImageView
+        android:id="@+id/circle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:layout_alignBottom="@id/background_graphic"/>
+
+    <ImageView
+        android:id="@+id/circle4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:layout_alignBottom="@id/background_graphic"/>
+
+    <ImageView
+        android:id="@+id/circle5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:layout_alignBottom="@id/background_graphic"/>
+
+    <ImageView
+        android:id="@+id/circle6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:layout_alignBottom="@id/background_graphic"/>
+
+    <!--<ImageView
+        android:id="@+id/linea1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/graphicx"
+        android:layout_alignBottom="@id/background_graphic"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="100dp"/-->
 
         <RelativeLayout
 

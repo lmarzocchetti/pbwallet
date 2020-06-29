@@ -2,6 +2,7 @@ package com.example.pbwallet;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,13 +27,15 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class StatsActivity extends AppCompatActivity {
-    TextView name, mese1, mese2, entrata1, entrata2, uscita1, uscita2, percentuale1, percentuale2, textpercent, date1, date2, date3, date4, date5, date6, cashdate1;
+    TextView name, mese1, mese2, entrata1, entrata2, uscita1, uscita2, percentuale1, percentuale2, textpercent, date1, date2, date3, date4, date5, date6, cashdate1, cashdate2, cashdate3, cashdate4, cashdate5, cashdate6;
     AutoCompleteTextView fund_switch1,fund_switch2;
+    ImageView circle1, circle2, circle3, circle4 , cirlce5, circle6, linea1;
     String selected, selected2;
     ArrayList<String> fund_list, fund_list2;
     ArrayList<String> As, Am;
-    ArrayList<TextView> Atd;
-    ArrayList<Double> Amc;
+    ArrayList<TextView> Atd, Acd;
+    ArrayList<Double> Amc, Amaxc, Atestmax;
+    ArrayList<ImageView> Acircle;
     SwitchMaterial switchpercent;
     Double money1, money2;
     Double moneypos1, moneyneg1, moneypos2, moneyneg2;
@@ -55,13 +58,30 @@ public class StatsActivity extends AppCompatActivity {
         fund_switch2 = findViewById(R.id.fund_menu1);
         switchpercent = findViewById(R.id.switchperc);
         Atd = new ArrayList<TextView>();
+        Acd = new ArrayList<TextView>();
+        Acircle = new ArrayList<ImageView>();
         Atd.add(date1 = findViewById(R.id.date1));
         Atd.add(date2 = findViewById(R.id.date2));
         Atd.add(date3 = findViewById(R.id.date3));
         Atd.add(date4 = findViewById(R.id.date4));
         Atd.add(date5 = findViewById(R.id.date5));
         Atd.add(date6 = findViewById(R.id.date6));
-        cashdate1 = findViewById(R.id.cashdate1);
+        Acd.add(cashdate1 = findViewById(R.id.cashdate1));
+        Acd.add(cashdate2 = findViewById(R.id.cashdate2));
+        Acd.add(cashdate3 = findViewById(R.id.cashdate3));
+        Acd.add(cashdate4 = findViewById(R.id.cashdate4));
+        Acd.add(cashdate5 = findViewById(R.id.cashdate5));
+        Acd.add(cashdate6 = findViewById(R.id.cashdate6));
+        Acircle.add(circle1 = findViewById(R.id.circle1));
+        Acircle.add(circle2 = findViewById(R.id.circle2));
+        Acircle.add(circle3 = findViewById(R.id.circle3));
+        Acircle.add(circle4 = findViewById(R.id.circle4));
+        Acircle.add(cirlce5 = findViewById(R.id.circle5));
+        Acircle.add(circle6 = findViewById(R.id.circle6));
+        for(ImageView i : Acircle){
+            i.setVisibility(View.INVISIBLE);
+        }
+        //linea1 = findViewById(R.id.linea1);
         money1 = null;
         money2 = null;
         populateMonths();
@@ -176,6 +196,7 @@ public class StatsActivity extends AppCompatActivity {
         int j = 0;
         Am = new ArrayList<String>();
         Amc = new ArrayList<Double>();
+        Atestmax = new ArrayList<Double>();
         boolean esit = false;
         Cursor cur = db.queryTransDist();
         if(cur.moveToFirst()) {
@@ -209,11 +230,75 @@ public class StatsActivity extends AppCompatActivity {
             }
             Amc.add(cash);
         }
-        //aggiustare margini cash su grafico
-        cashdate1.setText(new Double(Amc.get(0)).toString());
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)cashdate1.getLayoutParams();
-        params.setMargins(25,0,0,70);
-        cashdate1.setLayoutParams(params);
+        Atestmax.addAll(Amc);
+        Amaxc = new ArrayList<Double>();
+        int indice = 0;
+        Double max = 0.0;
+        esit = false;
+        for(int l = 0; l < 6; l++) {
+            for (int i = 0; i < Atestmax.size(); i++) {
+                if (i == 0) {
+                    max = Atestmax.get(i);
+                    indice = i;
+                } else {
+                    if (max <= Atestmax.get(i)) {
+                        max = Atestmax.get(i);
+                        indice = i;
+                    }
+                }
+            }
+            for(int i = 0; i < Amaxc.size(); i++) {
+                if(Amaxc.get(i).equals(max)){
+                    esit = true;
+                    break;
+                }
+                else
+                    esit = false;
+            }
+            if(!esit)
+                Amaxc.add(max);
+            esit = false;
+            Atestmax.remove(indice);
+        }
+
+        int bottom = 90;
+        RelativeLayout.LayoutParams params, params1, params2;
+        for(int i = Amaxc.size()-1, h=0; i >= 0; i--, h++){
+            Acd.get(h).setText(new Double(Amaxc.get(i)).toString());
+            params = (RelativeLayout.LayoutParams) Acd.get(h).getLayoutParams();
+            params.setMargins(0, 0, 0, bottom);
+            Acd.get(h).setLayoutParams(params);
+            bottom += 75;
+        }
+
+        for(int i = 0; i < Amc.size(); i++){
+            for(int c = 0; c < Amaxc.size(); c++) {
+                if(Amc.get(i).equals(Amaxc.get(c))){
+                    params = (RelativeLayout.LayoutParams) Acd.get(Amaxc.size()-c-1).getLayoutParams();
+                    params1 = (RelativeLayout.LayoutParams) Atd.get(Amc.size()-i-1).getLayoutParams();
+                    params2 = (RelativeLayout.LayoutParams) Acircle.get(i).getLayoutParams();
+                    int marginBottom = params.bottomMargin;
+                    int startMargin = params1.getMarginStart()+25;
+                    params2.setMargins(startMargin,0,0,marginBottom);
+                    Acircle.get(i).setLayoutParams(params2);
+                    Acircle.get(i).setVisibility(View.VISIBLE);
+                    break;
+                }
+            }
+        }
+        /*params = (RelativeLayout.LayoutParams) Acircle.get(0).getLayoutParams();
+        params2 = (RelativeLayout.LayoutParams) Acircle.get(2).getLayoutParams();
+        params1 = (RelativeLayout.LayoutParams) linea1.getLayoutParams();
+        float x = params.leftMargin-params2.leftMargin;
+        float y = params.bottomMargin-params2.bottomMargin;
+        params1.setMargins(params.getMarginStart(),params.topMargin,params.rightMargin,params.bottomMargin);
+        linea1.setLayoutParams(params1);
+        float xy = y/x;*/
+        //linea1.setRotationX((float) Math.atan(xy));
+        /*Matrix matrix = new Matrix();
+        linea1.setScaleType(ImageView.ScaleType.MATRIX);   //required
+        matrix.postRotate((float) 120);
+        linea1.setImageMatrix(matrix);*/
         db.close();
     }
 
