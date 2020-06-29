@@ -1,7 +1,9 @@
 package com.example.pbwallet;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -9,9 +11,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -34,6 +38,9 @@ public class AddTransactionActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addtransaction);
+        BottomNavigationView navbar = findViewById(R.id.nav_bar);
+        navbar.setSelectedItemId(R.id.add_transaction);
+        navbar.setOnNavigationItemSelectedListener(navigationlistener);
 
         reasonTV = findViewById(R.id.text_add_reason);
         add_reason = findViewById(R.id.add_reason);
@@ -68,6 +75,39 @@ public class AddTransactionActivity extends AppCompatActivity {
 
         conf_notExist.setOnClickListener(btn_not_ex_listener);
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch(item.getItemId()) {
+                        case R.id.nav_home:
+                            onPause();
+                            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                            overridePendingTransition(0,0);
+                            onStop();
+                            break;
+
+                        case R.id.nav_fund:
+                            onPause();
+                            startActivity(new Intent(getApplicationContext(),FundsActivity.class));
+                            overridePendingTransition(0,0);
+                            onStop();
+                            break;
+
+                        case R.id.nav_stats:
+                            onPause();
+                            startActivity(new Intent(getApplicationContext(),StatsActivity.class));
+                            overridePendingTransition(0,0);
+                            onStop();
+                            break;
+
+                        case R.id.add_transaction:
+                            break;
+                    }
+                    return true;
+                }
+            };
 
     private void populateWalletMenu() {
         db = new DatabaseBeReader(this);

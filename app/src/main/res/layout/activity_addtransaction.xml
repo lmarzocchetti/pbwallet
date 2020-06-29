@@ -249,4 +249,14 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="75dp"
         android:visibility="invisible"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_bar"
+        style="@style/BottomNavView"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:backgroundTint="@color/celeste"
+        app:menu="@menu/navigation_button"
+        app:itemIconTint="@color/bianco_papiro"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
