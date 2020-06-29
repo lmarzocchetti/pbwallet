@@ -29,4 +29,5 @@
     <string name="insert_a_new_reason">Insert A New Reason</string>
     <string name="insert_a_new_reason1">Insert a new reason</string>
     <string name="confirm">Confirm</string>
+    <string name="reason">Reason</string>
 </resources>

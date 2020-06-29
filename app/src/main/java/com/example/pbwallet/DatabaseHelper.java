@@ -28,10 +28,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(create_table_user);
 
         String create_table_card = "create table card("
-                + "idcard int primary key,"
+                + "idcard int,"
                 + "numcard int not null,"
                 + "uscard varchar(30) not null,"
-                + "money double not null);";
+                + "money double not null,"
+                + "primary key(idcard, uscard));";
         db.execSQL(create_table_card);
 
         String create_table_trans = "create table trans("
@@ -54,15 +55,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String create_table_subtype = "create table subtype("
                 + "idsubtype int,"
                 + "idtype int not null,"
-                + "name varchar(30) not null,"
-                + "primary key(idsubtype),"
+                + "name varchar(30),"
+                + "primary key(idsubtype, name),"
                 + "foreign key(idtype) references type(idtype));";
         db.execSQL(create_table_subtype);
 
         String create_table_type = "create table type("
                 + "idtype int,"
-                + "name varchar(30) not null,"
-                + "primary key(idtype));";
+                + "name varchar(30),"
+                + "primary key(idtype, name));";
         db.execSQL(create_table_type);
     }
 

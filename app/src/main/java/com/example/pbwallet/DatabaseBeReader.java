@@ -82,6 +82,14 @@ public class DatabaseBeReader {
         mDb.insert("type",null,cv);
     }
 
+    //update
+    public void updateMoneyCard(double newmoney, int modidcard) {
+        ContentValues newValues = new ContentValues();
+        newValues.put("money", newmoney);
+
+        mDb.update("card", newValues, "idcard="+modidcard, null);
+    }
+
     //query da modificare per ogni caso
     public Cursor queryUser(String ricerca, String values){
         return mDb.query("user",null,ricerca+"='"+values+"'",null,null,null,null);
@@ -123,6 +131,10 @@ public class DatabaseBeReader {
         return mDb.query("type",null,ricerca+"='"+values+"'",null,null,null,null);
     }
 
+    public Cursor queryTypeFull() {
+        return mDb.query("type", null, null, null, null, null, null);
+    }
+
     public Cursor queryLastTrans(){
         return mDb.query("trans",null,null,null,null,null,"datetime(date) DESC");
     }
@@ -139,11 +151,23 @@ public class DatabaseBeReader {
         return mDb.query("card c, trans t", null,"c.idcard = t.idcard", null,null,null,"datetime(date) DESC");
     }
 
+    public Cursor queryOnlySubType() {
+        return mDb.query("subtype", null, null, null, null, null, null, null);
+    }
+
     public Cursor querySubtypeFull(){
         return mDb.query("trans t, subtype s", null, "s.idsubtype = t.idsubtype",null,null,null,"datetime(date) DESC");
     }
 
     public Cursor queryTransDist(){
         return mDb.query(true,"trans",null,null,null,null,null,"datetime(date) DESC", null);
+    }
+
+    public Cursor queryTransbyID() {
+        return mDb.query("trans", null, null, null, null, null, "idtrans DESC");
+    }
+
+    public Cursor querySubTypebyID() {
+        return mDb.query("subtype", null, null, null, null, null, "idsubtype DESC");
     }
 }
