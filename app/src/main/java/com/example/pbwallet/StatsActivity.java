@@ -216,11 +216,11 @@ public class StatsActivity extends AppCompatActivity {
                 }
             } while(cur.moveToNext() && j<6);
         }
-        for(int i = 5, h = 0; i >= 0; i--,h++){
+        for(int i = Am.size()-1, h = 0; i >= 0; i--,h++){
             Atd.get(h).setText(Am.get(i));
         }
         double cash;
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < Am.size(); i++){
             cash = 0;
             cur = db.queryTransDate("date", Am.get(i));
             if(cur.moveToFirst()){
@@ -235,7 +235,7 @@ public class StatsActivity extends AppCompatActivity {
         int indice = 0;
         Double max = 0.0;
         esit = false;
-        for(int l = 0; l < 6; l++) {
+        for(int l = 0; l < Am.size(); l++) {
             for (int i = 0; i < Atestmax.size(); i++) {
                 if (i == 0) {
                     max = Atestmax.get(i);
