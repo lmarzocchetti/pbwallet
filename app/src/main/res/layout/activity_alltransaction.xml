@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/totaltransactions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/your_total_transactions"
+        android:fontFamily="@font/cocon_regular"
+        android:textSize="35sp"
+        android:textColorHint="@color/celeste"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentTop="true"/>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"/>
+</RelativeLayout>

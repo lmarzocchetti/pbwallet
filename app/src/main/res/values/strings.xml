@@ -30,4 +30,5 @@
     <string name="insert_a_new_reason1">Insert a new reason</string>
     <string name="confirm">Confirm</string>
     <string name="reason">Reason</string>
+    <string name="your_total_transactions">Your Total Transatcions</string>
 </resources>

@@ -48,7 +48,20 @@
         android:layout_alignTop="@+id/TXtotalfunds"
         android:layout_marginTop="140dp"/>
 
+        <Button
+            android:id="@+id/buttonalltrans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/TXlasttrans"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/celeste"
+            android:textColorHint="@color/bianco_papiro"
+            android:hint="@string/your_total_transactions"
+            android:textSize="12dp"/>
+
         <TextView
+            android:id="@+id/TXlasttrans"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Last Transitions"

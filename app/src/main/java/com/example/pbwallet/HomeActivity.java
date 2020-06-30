@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -76,6 +77,7 @@ public class HomeActivity extends AppCompatActivity {
         bar2.setVisibility(View.INVISIBLE);
         bar3.setVisibility(View.INVISIBLE);
         bar4.setVisibility(View.INVISIBLE);
+        Button alltrans = findViewById(R.id.buttonalltrans);
         changeCash();
         changeNameandSur();
         changeLastTrans();
@@ -83,6 +85,14 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView navbar = findViewById(R.id.nav_bar);
         navbar.setSelectedItemId(R.id.nav_home);
         navbar.setOnNavigationItemSelectedListener(navigationlistener);
+
+        alltrans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent allviewtrans = new Intent(HomeActivity.this, ViewAllTransaction.class);
+                startActivity(allviewtrans);
+            }
+        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
@@ -126,7 +136,7 @@ public class HomeActivity extends AppCompatActivity {
         Cursor cur = db.queryLastTrans();
         if(cur.moveToFirst()){
             do{
-                totaltrans = new Double(cur.getString(cur.getColumnIndex("money")));
+                totaltrans = cur.getDouble(cur.getColumnIndex("money"));
                 if(totaltrans > 0){
                     aT.get(i).setTextColor(ContextCompat.getColor(this, R.color.verde_cash));
                 }
@@ -135,6 +145,7 @@ public class HomeActivity extends AppCompatActivity {
                     aT.get(i).setTextColor(ContextCompat.getColor(this, R.color.rosso_bordeaux));
                 }
                 aT.get(i).setText(totaltrans.toString() + " €");
+                System.out.println(totaltrans);
                 i++;
             }while(cur.moveToNext() && i < 5);
         }

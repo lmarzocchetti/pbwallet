@@ -19,7 +19,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "surname varchar(30) not null,"
                 + "username varchar(30),"
                 + "password varchar(30),"
-                + "hobby varchar(30) not null,"
                 + "idcard int,"
                 + "idbudget int,"
                 + "primary key(username,password),"

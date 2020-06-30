@@ -206,7 +206,7 @@ public class AddTransactionActivity extends AppCompatActivity {
 
         double money = mergeMoney();
 
-        db.insertTrans(getNewTransID(), idcard, idsubtype, money, java.time.LocalDate.now().toString());
+        db.insertTrans(getNewTransID(), idcard, idsubtype, money, java.time.LocalDateTime.now().toString());
 
         cur_money = cur_money + money;
         db.close();
