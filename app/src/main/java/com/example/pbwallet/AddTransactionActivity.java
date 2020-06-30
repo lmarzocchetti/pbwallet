@@ -1,9 +1,7 @@
 package com.example.pbwallet;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,11 +9,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -26,7 +22,6 @@ import java.util.Objects;
 public class AddTransactionActivity extends AppCompatActivity {
     String selected_w, selected_subT, selected_type;
     ArrayList<String> wallet_list, subtype_list, type_list;
-    DatabaseBeReader db;
     TextView reasonTV;
     SwitchMaterial add_reason;
     Button conf_exist, conf_notExist;
@@ -38,9 +33,6 @@ public class AddTransactionActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addtransaction);
-        BottomNavigationView navbar = findViewById(R.id.nav_bar);
-        navbar.setSelectedItemId(R.id.add_transaction);
-        navbar.setOnNavigationItemSelectedListener(navigationlistener);
 
         reasonTV = findViewById(R.id.text_add_reason);
         add_reason = findViewById(R.id.add_reason);
@@ -76,41 +68,8 @@ public class AddTransactionActivity extends AppCompatActivity {
         conf_notExist.setOnClickListener(btn_not_ex_listener);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch(item.getItemId()) {
-                        case R.id.nav_home:
-                            onPause();
-                            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-                            overridePendingTransition(0,0);
-                            onStop();
-                            break;
-
-                        case R.id.nav_fund:
-                            onPause();
-                            startActivity(new Intent(getApplicationContext(),FundsActivity.class));
-                            overridePendingTransition(0,0);
-                            onStop();
-                            break;
-
-                        case R.id.nav_stats:
-                            onPause();
-                            startActivity(new Intent(getApplicationContext(),StatsActivity.class));
-                            overridePendingTransition(0,0);
-                            onStop();
-                            break;
-
-                        case R.id.add_transaction:
-                            break;
-                    }
-                    return true;
-                }
-            };
-
     private void populateWalletMenu() {
-        db = new DatabaseBeReader(this);
+        DatabaseBeReader db = new DatabaseBeReader(this);
         wallet_list = new ArrayList<>();
         db.open();
 
@@ -130,7 +89,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     }
 
     private void populateSubtypeMenu() {
-        db = new DatabaseBeReader(this);
+        DatabaseBeReader db = new DatabaseBeReader(this);
         subtype_list = new ArrayList<>();
         db.open();
 
@@ -150,7 +109,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     }
 
     private void populateTypeMenu() {
-        db = new DatabaseBeReader(this);
+        DatabaseBeReader db = new DatabaseBeReader(this);
         type_list = new ArrayList<>();
         db.open();
 
@@ -170,7 +129,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     }
 
     private int getNewTransID() {
-        db = new DatabaseBeReader(this);
+        DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
 
         Cursor cur = db.queryTransbyID();
@@ -190,7 +149,7 @@ public class AddTransactionActivity extends AppCompatActivity {
         int idcard = 0, idsubtype = 0;
         double cur_money = 0;
 
-        db = new DatabaseBeReader(this);
+        DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
 
         Cursor cur = db.queryCard("uscard", selected_w);
@@ -220,7 +179,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     }
 
     private void insertNewSubtype() {
-        db = new DatabaseBeReader(this);
+        DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
 
         selected_subT = Objects.requireNonNull(new_reason.getText()).toString();
@@ -231,7 +190,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     }
 
     private int getTypebyName() {
-        db = new DatabaseBeReader(this);
+        DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
 
         int ins = -1;
@@ -246,7 +205,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     }
 
     private int getNewSubtypeID() {
-        db = new DatabaseBeReader(this);
+        DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
 
         int ins = -1;
@@ -263,7 +222,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     }
 
     private void updateMoney(int idcard, double newmoney) {
-        db = new DatabaseBeReader(this);
+        DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
         db.updateMoneyCard(newmoney, idcard);
         db.close();

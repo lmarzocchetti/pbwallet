@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +31,7 @@ public class FundsActivity extends AppCompatActivity {
     TextView trans1, trans2, trans3, trans4, trans5;
     TextView date1, date2, date3, date4, date5;
     ImageView bar1, bar2, bar3, bar4;
+    ImageButton add_wallet;
     AutoCompleteTextView fund_switch;
     BottomNavigationView navbar;
     String selected;
@@ -43,6 +46,9 @@ public class FundsActivity extends AppCompatActivity {
         changeNameandSur();
 
         wallet_money = findViewById(R.id.wallet_money);
+
+        add_wallet = findViewById(R.id.add_wallet);
+        add_wallet.setOnClickListener(add_wallet_listener);
 
         navbar = findViewById(R.id.nav_bar);
         navbar.setSelectedItemId(R.id.nav_fund);
@@ -209,6 +215,16 @@ public class FundsActivity extends AppCompatActivity {
                 }
             };
 
+    private Button.OnClickListener add_wallet_listener =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onPause();
+                    startActivity(new Intent(getApplicationContext(), AddWalletActivity.class));
+                    onStop();
+                }
+            };
+
     private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -234,6 +250,12 @@ public class FundsActivity extends AppCompatActivity {
                         case R.id.add_transaction:
                             onPause();
                             startActivity(new Intent(getApplicationContext(), AddTransactionActivity.class));
+                            onStop();
+                            break;
+
+                        case R.id.nav_budget:
+                            onPause();
+                            startActivity(new Intent(getApplicationContext(), BudgetActivity.class));
                             overridePendingTransition(0, 0);
                             onStop();
                             break;

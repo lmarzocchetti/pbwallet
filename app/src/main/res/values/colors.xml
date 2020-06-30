@@ -11,7 +11,8 @@
     <color name="grigio_ombra">#4C4A44</color>
     <color name="azzurro_intesa">#0082C8</color>
     <color name="verde">#0ABAB5</color>
-    <color name="dollar_bill">#85BB65</color>
+    <color name="viola">#8f00ff</color>
     <color name="verde_cash">#008C5D</color>
     <color name="rosso_bordeaux">#D00000</color>
+    <color name="redorange">#FF4500</color>
 </resources>

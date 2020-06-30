@@ -15,7 +15,6 @@
     <string name="required_fields">*Required fields</string>
     <string name="registration_page">Registration Page</string>
     <string name="your_wallets">Your Wallets</string>
-    <string name="your_total_funds">Your Total Funds</string>
     <string name="lineforseparate">lineforseparate</string>
     <string name="shadow_of_card">Shadow of card</string>
     <string name="card">Card</string>
@@ -31,4 +30,8 @@
     <string name="confirm">Confirm</string>
     <string name="reason">Reason</string>
     <string name="your_total_transactions">Your Total Transatcions</string>
+    <string name="your_total_funds">Your Total Funds</string>
+    <string name="add_wallet">Add Wallet</string>
+    <string name="_00">00</string>
+    <string name="budget">Budget</string>
 </resources>
