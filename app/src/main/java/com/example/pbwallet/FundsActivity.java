@@ -120,7 +120,7 @@ public class FundsActivity extends AppCompatActivity {
         if(cur.moveToFirst()) {
             do {
                 idtrans = cur.getInt(cur.getColumnIndex("idtrans"));
-                sos = cur.getInt(cur.getColumnIndex("money"));
+                sos = cur.getDouble(cur.getColumnIndex("money"));
                 data = cur.getString(cur.getColumnIndex("date"));
                 data = data.substring(0, 10);
                 date.get(i).setText(data);

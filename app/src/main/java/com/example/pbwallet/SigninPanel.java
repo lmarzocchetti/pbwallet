@@ -11,7 +11,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.Objects;
 
 public class SigninPanel extends Activity {
-    TextInputEditText name, surname, passwd, passwdconfirm, username, hobby;
+    TextInputEditText name, surname, passwd, passwdconfirm, username;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +23,6 @@ public class SigninPanel extends Activity {
         username = findViewById(R.id.usernameTF);
         passwd = findViewById(R.id.passwdTF);
         passwdconfirm = findViewById(R.id.passwdconfirmTF);
-        hobby = findViewById(R.id.hobbyTF);
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +53,7 @@ public class SigninPanel extends Activity {
     }
 
     public boolean checkField(){
-        if(name.getText().toString().isEmpty() || surname.getText().toString().isEmpty() || username.getText().toString().isEmpty() || hobby.getText().toString().isEmpty())
+        if(name.getText().toString().isEmpty() || surname.getText().toString().isEmpty() || username.getText().toString().isEmpty())
             return false;
         return true;
     }
@@ -76,10 +75,10 @@ public class SigninPanel extends Activity {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
         if(passwd.getText().toString().isEmpty()) {
-            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), null, hobby.getText().toString(), null, null);
+            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), null, null, null);
         }
         else
-            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), passwd.getText().toString(), hobby.getText().toString(), null, null);
+            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), passwd.getText().toString(),null, null);
         db.close();
     }
 
