@@ -110,7 +110,6 @@ public class HomeActivity extends AppCompatActivity {
                         case R.id.add_transaction:
                             onPause();
                             startActivity(new Intent(getApplicationContext(), AddTransactionActivity.class));
-                            overridePendingTransition(0, 0);
                             onStop();
                             break;
                     }

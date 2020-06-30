@@ -41,10 +41,9 @@ public class DatabaseBeReader {
         mDb.insert("user",null,cv);
     }
 
-    public void insertCard(Integer idcard, Integer numcard, String uscard, double money){
+    public void insertCard(Integer idcard, String uscard, double money){
         ContentValues cv = new ContentValues();
         cv.put("idcard",idcard);
-        cv.put("numcard",numcard);
         cv.put("uscard",uscard);
         cv.put("money",money);
         mDb.insert("card",null,cv);
@@ -169,5 +168,9 @@ public class DatabaseBeReader {
 
     public Cursor querySubTypebyID() {
         return mDb.query("subtype", null, null, null, null, null, "idsubtype DESC");
+    }
+
+    public Cursor queryCardbyID() {
+        return mDb.query("card", null, null, null, null, null, "idcard DESC");
     }
 }

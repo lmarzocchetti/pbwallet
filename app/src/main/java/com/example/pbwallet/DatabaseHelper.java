@@ -29,7 +29,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String create_table_card = "create table card("
                 + "idcard int,"
-                + "numcard int not null,"
                 + "uscard varchar(30) not null,"
                 + "money double not null,"
                 + "primary key(idcard, uscard));";
