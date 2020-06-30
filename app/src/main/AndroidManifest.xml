@@ -22,6 +22,7 @@
         <activity android:name=".StatsActivity" />
         <activity android:name=".FundsActivity" />
         <activity android:name=".AddTransactionActivity"/>
+        <activity android:name=".AddWalletActivity"/>
     </application>
 
 </manifest>

@@ -28,7 +28,7 @@
         android:id="@+id/TXtotalfunds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your Total Funds"
+        android:text="@string/your_total_funds"
         android:fontFamily="@font/cocon_regular"
         android:textSize="35sp"
         android:textColor="@color/celeste"
