@@ -23,6 +23,7 @@
         <activity android:name=".FundsActivity" />
         <activity android:name=".AddTransactionActivity"/>
         <activity android:name=".AddWalletActivity"/>
+        <activity android:name=".BudgetActivity"/>
     </application>
 
 </manifest>

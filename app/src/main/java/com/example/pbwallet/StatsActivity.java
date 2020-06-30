@@ -134,6 +134,13 @@ public class StatsActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), AddTransactionActivity.class));
                             onStop();
                             break;
+
+                        case R.id.nav_budget:
+                            onPause();
+                            startActivity(new Intent(getApplicationContext(), BudgetActivity.class));
+                            overridePendingTransition(0, 0);
+                            onStop();
+                            break;
                     }
                     return true;
                 }
