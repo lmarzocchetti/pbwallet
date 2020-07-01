@@ -186,4 +186,8 @@ public class DatabaseBeReader {
     public Cursor queryBudgetAsc(){
         return mDb.query("budget b", null, null, null, null, null, "idbudget ASC");
     }
+
+    public Cursor querySubtypeByBudget() {
+        return mDb.query("subtype s, budget b", null, "s.idsubtype=b.idsubtype", null, null, null, "idbudget ASC");
+    }
 }

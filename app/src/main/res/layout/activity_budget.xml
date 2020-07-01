@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/nav_frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/nav_bar"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/totalbudget"
@@ -29,6 +37,23 @@
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"/>
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_budget_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            app:srcCompat="@drawable/ic_baseline_add_24"
+            android:backgroundTint="@color/celeste"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </RelativeLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bar"
         style="@style/BottomNavView"
@@ -37,6 +62,5 @@
         app:backgroundTint="@color/celeste"
         app:menu="@menu/navigation_button"
         app:itemIconTint="@color/bianco_papiro"
-        android:layout_alignParentBottom="true" />
-
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>
