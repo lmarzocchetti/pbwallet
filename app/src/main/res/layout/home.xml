@@ -56,9 +56,9 @@
             android:layout_alignBottom="@+id/TXlasttrans"
             android:layout_marginBottom="30dp"
             android:backgroundTint="@color/celeste"
-            android:textColorHint="@color/bianco_papiro"
+            android:textColorHint="@color/bianco"
             android:hint="@string/your_total_transactions"
-            android:textSize="12dp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/TXlasttrans"

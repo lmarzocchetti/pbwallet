@@ -58,11 +58,14 @@ public class DatabaseBeReader {
         mDb.insert("trans",null,cv);
     }
 
-    public void insertBudget(Integer idbudget, double bound, Integer idsubtype){
+    public void insertBudget(Integer idbudget, double money ,double bound, String date ,Integer idsubtype){
         ContentValues cv = new ContentValues();
         cv.put("idbudget",idbudget);
+        cv.put("money", money);
         cv.put("bound",bound);
+        cv.put("date", date);
         cv.put("idsubtype",idsubtype);
+        mDb.insert("budget", null, cv);
     }
 
     public void insertSubtype(Integer idsubtype, Integer idtype, String name){
@@ -84,7 +87,6 @@ public class DatabaseBeReader {
     public void updateMoneyCard(double newmoney, int modidcard) {
         ContentValues newValues = new ContentValues();
         newValues.put("money", newmoney);
-
         mDb.update("card", newValues, "idcard="+modidcard, null);
     }
 
@@ -171,5 +173,9 @@ public class DatabaseBeReader {
 
     public Cursor queryCardbyID() {
         return mDb.query("card", null, null, null, null, null, "idcard DESC");
+    }
+
+    public Cursor queryBudgetbyID() {
+        return mDb.query("budget", null, null, null, null, null, "idbudget DESC");
     }
 }

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/add_budget"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_budget"
+        android:fontFamily="@font/cocon_regular"
+        android:textSize="35sp"
+        android:textColorHint="@color/celeste"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/select_subtype"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/select_what_you_want_to_have_a_budget_on"
+        android:fontFamily="@font/cocon_regular"
+        android:textSize="15sp"
+        android:textColorHint="@color/celeste"
+        android:gravity="center_horizontal" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/subtype_menu_bud"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/celeste"
+        app:endIconTint="@color/celeste"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+        <AutoCompleteTextView
+            android:id="@+id/subtype_menu_budTF"
+            android:labelFor="@+id/wallet_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/bud_money"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/money"
+        android:theme="@style/TextInputLayoutAppearance"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        app:boxStrokeColor="@color/celeste"
+        app:hintTextColor="@color/celeste">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/bud_moneyTF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/your_budget_become_active_from_now_and_last_1_month"
+        android:fontFamily="@font/cocon_regular"
+        android:textSize="15sp"
+        android:layout_margin="20dp"
+        android:gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/celeste"/>
+
+</LinearLayout>

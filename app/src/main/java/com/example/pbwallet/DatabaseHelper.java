@@ -45,7 +45,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String create_table_budget = "create table budget("
                 + "idbudget int primary key,"
+                + "money double not null,"
                 + "bound double not null,"
+                + "date date not null,"
                 + "idsubtype int not null,"
                 + "foreign key(idsubtype) references subtype(idsubtype));";
         db.execSQL(create_table_budget);
