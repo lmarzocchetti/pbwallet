@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class FundsActivity extends AppCompatActivity {
@@ -101,11 +102,12 @@ public class FundsActivity extends AppCompatActivity {
         double money;
 
         Cursor cur = db.queryCard("uscard", selected);
+        DecimalFormat df = new DecimalFormat("#.00");
 
         if(cur.moveToFirst()) {
             idselcard = cur.getInt(cur.getColumnIndex("idcard"));
             money = cur.getDouble(cur.getColumnIndex("money"));
-            wallet_money.setText(Double.toString(money));
+            wallet_money.setText(df.format(money));
         }
         else {
             db.close();
@@ -139,7 +141,7 @@ public class FundsActivity extends AppCompatActivity {
                 else {
                     trans.get(i).setTextColor(ContextCompat.getColor(this, R.color.verde_cash));
                 }
-                trans.get(i).setText(Double.toString(sos));
+                trans.get(i).setText(df.format(sos));
                 ++i;
             } while(cur.moveToNext() && i < 5);
         }
