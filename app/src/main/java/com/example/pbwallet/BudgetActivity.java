@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.List;
 public class BudgetActivity extends AppCompatActivity {
     BottomNavigationView navbar;
     String nameType, nameSubtype;
+    FloatingActionButton add_budget;
     Double cash, bound;
     CustomAdapter1 adapter1;
 
@@ -31,7 +34,20 @@ public class BudgetActivity extends AppCompatActivity {
         navbar = findViewById(R.id.nav_bar);
         navbar.setSelectedItemId(R.id.nav_budget);
         navbar.setOnNavigationItemSelectedListener(navigationlistener);
+
+        add_budget = findViewById(R.id.add_budget_button);
+        add_budget.setOnClickListener(button_listener);
     }
+
+    private FloatingActionButton.OnClickListener button_listener =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onPause();
+                    startActivity(new Intent(getApplicationContext(), AddBudgetActivity.class));
+                    onStop();
+                }
+            };
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -78,7 +94,7 @@ public class BudgetActivity extends AppCompatActivity {
         Cursor cur = db.querySubtypeByBudget();
         Cursor cur2 = db.queryBudgetAsc();
         ListView listview = (ListView)findViewById(R.id.listview1);
-        List<ElementoLista1> list = new LinkedList<ElementoLista1>();
+        List<ElementoLista1> list = new LinkedList<>();
         if(cur.moveToFirst() && cur2.moveToFirst()){
             do {
                 nameSubtype = cur.getString(cur.getColumnIndex("name"));
