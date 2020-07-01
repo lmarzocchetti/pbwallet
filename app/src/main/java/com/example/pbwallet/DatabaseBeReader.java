@@ -178,4 +178,12 @@ public class DatabaseBeReader {
     public Cursor queryBudgetbyID() {
         return mDb.query("budget", null, null, null, null, null, "idbudget DESC");
     }
+
+    public Cursor queryTypeBySubtype(int idtype){
+        return mDb.query("type", null, "idtype ="+idtype, null, null, null, null);
+    }
+
+    public Cursor queryBudgetAsc(){
+        return mDb.query("budget b", null, null, null, null, null, "idbudget ASC");
+    }
 }

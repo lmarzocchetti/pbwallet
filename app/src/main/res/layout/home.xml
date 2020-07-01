@@ -355,10 +355,10 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bar"
         style="@style/BottomNavView"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         app:backgroundTint="@color/celeste"
-        app:menu="@menu/navigation_button"
-        app:itemIconTint="@color/bianco_papiro"
-        android:layout_alignParentBottom="true" />
+        android:textColorHint="@color/bianco"
+        app:menu="@menu/navigation_button" />
 </RelativeLayout>
