@@ -2,13 +2,11 @@ package com.example.pbwallet;
 
 public class ElementoLista {
     private String datecard, cash, subtype;
-    private int margintop;
 
-    public ElementoLista(String datecard, String cash, String subtype, int margintop){
+    public ElementoLista(String datecard, String cash, String subtype){
         this.datecard = datecard;
         this.cash = cash;
         this.subtype = subtype;
-        this.margintop = margintop;
     }
 
     public String getDatecard() {
@@ -33,13 +31,5 @@ public class ElementoLista {
 
     public void setSubtype(String subtype) {
         this.subtype = subtype;
-    }
-
-    public int getMargintop() {
-        return margintop;
-    }
-
-    public void setMargintop(int margintop) {
-        this.margintop = margintop;
     }
 }

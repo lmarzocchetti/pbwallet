@@ -58,11 +58,13 @@ public class DatabaseBeReader {
         mDb.insert("trans",null,cv);
     }
 
-    public void insertBudget(Integer idbudget, double bound, Integer idsubtype){
+    public void insertBudget(Integer idbudget, double money, double bound, Integer idsubtype){
         ContentValues cv = new ContentValues();
         cv.put("idbudget",idbudget);
+        cv.put("money",money);
         cv.put("bound",bound);
         cv.put("idsubtype",idsubtype);
+        mDb.insert("budget", null, cv);
     }
 
     public void insertSubtype(Integer idsubtype, Integer idtype, String name){
@@ -171,5 +173,17 @@ public class DatabaseBeReader {
 
     public Cursor queryCardbyID() {
         return mDb.query("card", null, null, null, null, null, "idcard DESC");
+    }
+
+    public Cursor querySubtypeByBudget(){
+        return mDb.query("budget b, subtype s", null, "s.idsubtype = b.idsubtype", null, null, null, "idbudget ASC");
+    }
+
+    public Cursor queryTypeBySubtype(int idtype){
+        return mDb.query("type", null, "idtype ="+idtype, null, null, null, null);
+    }
+
+    public Cursor queryBudgetAsc(){
+        return mDb.query("budget b", null, null, null, null, null, "idbudget ASC");
     }
 }

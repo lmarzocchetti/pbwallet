@@ -287,15 +287,6 @@
         android:background="@drawable/circle"
         android:layout_alignBottom="@id/background_graphic"/>
 
-    <!--<ImageView
-        android:id="@+id/linea1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/graphicx"
-        android:layout_alignBottom="@id/background_graphic"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="100dp"/-->
-
         <RelativeLayout
 
             android:layout_width="match_parent"
@@ -340,7 +331,8 @@
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:padding="10dp"
-                    android:textColor="@color/verde_cash"/>
+                    android:textColor="@color/verde_cash"
+                    android:layout_marginBottom="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -353,7 +345,8 @@
                     android:layout_gravity="center"
                     android:layout_alignParentEnd="true"
                     android:padding="10dp"
-                    android:textColor="@color/rosso_bordeaux"/>
+                    android:textColor="@color/rosso_bordeaux"
+                    android:layout_marginBottom="10dp"/>
             </RelativeLayout>
 
             <RelativeLayout

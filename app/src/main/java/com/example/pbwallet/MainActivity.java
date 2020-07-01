@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //db.insertTrans(12,1,1,-126,"2019-11-12 12:12:12");
         //db.insertTrans(13,2,1,123,"2019-10-12 12:11:12");
         //db.insertTrans(14,3,1,300,"2019-01-12 12:13:12");
+        //db.insertBudget(0,0,2000,1);
         if(cur.moveToFirst()){
             if(cur.getString(cur.getColumnIndex("password")) == null){
                 Intent homepage = new Intent(MainActivity.this, HomeActivity.class);
