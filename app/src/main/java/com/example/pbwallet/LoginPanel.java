@@ -29,14 +29,12 @@ public class LoginPanel extends Activity {
             @Override
             public void onClick(View view) {
                 Intent homepage = new Intent(LoginPanel.this , HomeActivity.class);
-                if(checkEnter(Objects.requireNonNull(username.getText()).toString(), Objects.requireNonNull(passwd.getText()).toString())) {
-                    if(checkPass()) {
-                        startActivity(homepage);
-                        finish();
-                    }
-                    else{
-                        wrongup();
-                    }
+                if(checkPass()) {
+                    startActivity(homepage);
+                    finish();
+                }
+                else {
+                    wrongup();
                 }
             }
         });
@@ -51,9 +49,9 @@ public class LoginPanel extends Activity {
     public boolean checkPass() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
-        Cursor cur = db.queryUser("username", username.getText().toString());
+        Cursor cur = db.queryUser("username", Objects.requireNonNull(username.getText()).toString());
         if(cur.moveToFirst()) {
-            if (passwd.getText().toString().equals(cur.getString(cur.getColumnIndex("password")))) {
+            if (Objects.requireNonNull(passwd.getText()).toString().equals(cur.getString(cur.getColumnIndex("password")))) {
                 db.close();
                 return true;
             } else {
@@ -63,9 +61,5 @@ public class LoginPanel extends Activity {
         }
         db.close();
         return false;
-    }
-
-    protected boolean checkEnter(String username, String passwd) {
-        return true;
     }
 }

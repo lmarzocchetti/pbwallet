@@ -1,12 +1,11 @@
 package com.example.pbwallet;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +23,7 @@ public class HomeActivity extends AppCompatActivity {
     ImageView bar1,bar2,bar3,bar4;
     ArrayList<TextView> aT, aT1, aT2;
     ArrayList<ImageView> aI;
+    BottomNavigationView navbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +46,19 @@ public class HomeActivity extends AppCompatActivity {
         table3_2 = findViewById(R.id.textView3_2);
         table4_2 = findViewById(R.id.textView4_2);
         table5_2 = findViewById(R.id.textView5_2);
-        aT = new ArrayList<TextView>();
+        aT = new ArrayList<>();
         aT.add(table1);
         aT.add(table2);
         aT.add(table3);
         aT.add(table4);
         aT.add(table5);
-        aT1 = new ArrayList<TextView>();
+        aT1 = new ArrayList<>();
         aT1.add(table1_1);
         aT1.add(table2_1);
         aT1.add(table3_1);
         aT1.add(table4_1);
         aT1.add(table5_1);
-        aT2 = new ArrayList<TextView>();
+        aT2 = new ArrayList<>();
         aT2.add(table1_2);
         aT2.add(table2_2);
         aT2.add(table3_2);
@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         bar2 = findViewById(R.id.bar2);
         bar3 = findViewById(R.id.bar3);
         bar4 = findViewById(R.id.bar4);
-        aI = new ArrayList<ImageView>();
+        aI = new ArrayList<>();
         aI.add(bar1);
         aI.add(bar2);
         aI.add(bar3);
@@ -82,7 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         changeNameandSur();
         changeLastTrans();
 
-        BottomNavigationView navbar = findViewById(R.id.nav_bar);
+        navbar = findViewById(R.id.nav_bar);
         navbar.setSelectedItemId(R.id.nav_home);
         navbar.setOnNavigationItemSelectedListener(navigationlistener);
 
@@ -93,6 +93,35 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(allviewtrans);
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        resetTrans();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        changeLastTrans();
+        changeCash();
+        navbar.setSelectedItemId(R.id.nav_home);
+    }
+
+    private void resetTrans() {
+        for(TextView t : aT) {
+            t.setText("");
+        }
+        for(TextView t : aT1) {
+            t.setText("");
+        }
+        for(TextView t : aT2) {
+            t.setText("");
+        }
+        for(ImageView t : aI) {
+            t.setVisibility(View.INVISIBLE);
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
@@ -108,6 +137,7 @@ public class HomeActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),FundsActivity.class));
                             overridePendingTransition(0,0);
                             onStop();
+                            finish();
                             break;
 
                         case R.id.nav_stats:
@@ -115,6 +145,7 @@ public class HomeActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),StatsActivity.class));
                             overridePendingTransition(0,0);
                             onStop();
+                            finish();
                             break;
 
                         case R.id.add_transaction:
@@ -128,15 +159,17 @@ public class HomeActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), BudgetActivity.class));
                             overridePendingTransition(0, 0);
                             onStop();
+                            finish();
                             break;
                     }
                     return true;
                 }
             };
 
+    @SuppressLint("SetTextI18n")
     public void changeLastTrans(){
         int i = 0;
-        Double totaltrans;
+        double totaltrans;
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
         Cursor cur = db.queryLastTrans();
@@ -150,7 +183,7 @@ public class HomeActivity extends AppCompatActivity {
                     totaltrans = Math.abs(totaltrans);
                     aT.get(i).setTextColor(ContextCompat.getColor(this, R.color.rosso_bordeaux));
                 }
-                aT.get(i).setText(totaltrans.toString() + " €");
+                aT.get(i).setText(totaltrans + " €");
                 System.out.println(totaltrans);
                 i++;
             }while(cur.moveToNext() && i < 5);
@@ -188,7 +221,7 @@ public class HomeActivity extends AppCompatActivity {
             }while(cur.moveToNext());
         }
         db.close();
-        String strcash = new Double(totalcash).toString()+" €";
+        String strcash = Double.valueOf(totalcash).toString()+" €";
         cash.setText(strcash);
     }
 
