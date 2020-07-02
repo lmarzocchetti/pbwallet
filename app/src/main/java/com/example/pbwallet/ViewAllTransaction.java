@@ -3,8 +3,6 @@ package com.example.pbwallet;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.LinkedList;
@@ -30,7 +28,7 @@ public class ViewAllTransaction extends AppCompatActivity {
         Cursor cur1 = db.queryUsCard();
         Cursor cur2 = db.querySubtypeFull();
         ListView listview = (ListView)findViewById(R.id.listview);
-        List<ElementoLista> list = new LinkedList<ElementoLista>();
+        List<ElementoLista> list = new LinkedList<>();
         if(cur.moveToFirst() && cur1.moveToFirst() && cur2.moveToFirst()) {
             do {
                 carddate = (cur1.getString(cur1.getColumnIndex("uscard")) + "\n" + (cur.getString(cur.getColumnIndex("date"))).substring(0, 10));

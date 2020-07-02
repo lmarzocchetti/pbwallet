@@ -16,16 +16,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginPanel" />
-        <activity android:name=".SigninPanel" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".StatsActivity" />
-        <activity android:name=".FundsActivity" />
-        <activity android:name=".AddTransactionActivity"/>
-        <activity android:name=".ViewAllTransaction"/>
-        <activity android:name=".AddWalletActivity"/>
-        <activity android:name=".BudgetActivity"/>
-        <activity android:name=".AddBudgetActivity"/>
+        <activity
+            android:name=".LoginPanel"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SigninPanel"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".StatsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".FundsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddTransactionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ViewAllTransaction"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddWalletActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".BudgetActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddBudgetActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

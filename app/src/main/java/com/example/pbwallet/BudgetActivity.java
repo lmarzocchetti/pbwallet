@@ -39,6 +39,18 @@ public class BudgetActivity extends AppCompatActivity {
         add_budget.setOnClickListener(button_listener);
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        populatedallbudget();
+        navbar.setSelectedItemId(R.id.nav_budget);
+    }
+
     private FloatingActionButton.OnClickListener button_listener =
             new View.OnClickListener() {
                 @Override
@@ -59,6 +71,7 @@ public class BudgetActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
                             overridePendingTransition(0,0);
                             onStop();
+                            finish();
                             break;
 
                         case R.id.nav_fund:
@@ -66,6 +79,7 @@ public class BudgetActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), FundsActivity.class));
                             overridePendingTransition(0, 0);
                             onStop();
+                            finish();
                             break;
 
                         case R.id.nav_stats:
@@ -73,6 +87,7 @@ public class BudgetActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),StatsActivity.class));
                             overridePendingTransition(0,0);
                             onStop();
+                            finish();
                             break;
 
                         case R.id.add_transaction:

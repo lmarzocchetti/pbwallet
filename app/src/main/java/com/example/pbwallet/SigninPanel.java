@@ -28,19 +28,17 @@ public class SigninPanel extends Activity {
             @Override
             public void onClick(View view) {
                 Intent homepage = new Intent(SigninPanel.this, HomeActivity.class);
-                if(checkEnter(Objects.requireNonNull(username.getText()).toString(), Objects.requireNonNull(passwd.getText()).toString())) {
-                    if(checkLenPass()) {
-                        if(checkField()) {
-                            if (checkPass()) {
-                                save();
-                                startActivity(homepage);
-                                finish();
-                            } else
-                                wrongPasswd();
-                        }
-                        else
-                            emptyField();
+                if(checkLenPass()) {
+                    if(checkField()) {
+                        if (checkPass()) {
+                            save();
+                            startActivity(homepage);
+                            finish();
+                        } else
+                            wrongPasswd();
                     }
+                    else
+                        emptyField();
                 }
             }
         });
@@ -53,15 +51,11 @@ public class SigninPanel extends Activity {
     }
 
     public boolean checkField(){
-        if(name.getText().toString().isEmpty() || surname.getText().toString().isEmpty() || username.getText().toString().isEmpty())
-            return false;
-        return true;
+        return !Objects.requireNonNull(name.getText()).toString().isEmpty() && !Objects.requireNonNull(surname.getText()).toString().isEmpty() && !Objects.requireNonNull(username.getText()).toString().isEmpty();
     }
 
     public boolean checkLenPass(){
-        if(passwd.getText().toString().length() > 30)
-            return false;
-        return true;
+        return Objects.requireNonNull(passwd.getText()).toString().length() <= 30;
     }
 
     public void wrongPasswd(){
@@ -74,21 +68,15 @@ public class SigninPanel extends Activity {
     public void save(){
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
-        if(passwd.getText().toString().isEmpty()) {
-            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), null, null, null);
+        if(Objects.requireNonNull(passwd.getText()).toString().isEmpty()) {
+            db.insertUser(Objects.requireNonNull(name.getText()).toString(), Objects.requireNonNull(surname.getText()).toString(), Objects.requireNonNull(username.getText()).toString(), null, null, null);
         }
         else
-            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), passwd.getText().toString(),null, null);
+            db.insertUser(Objects.requireNonNull(name.getText()).toString(), Objects.requireNonNull(surname.getText()).toString(), Objects.requireNonNull(username.getText()).toString(), passwd.getText().toString(),null, null);
         db.close();
     }
 
     public boolean checkPass(){
-        if(passwd.getText().toString().equals(passwdconfirm.getText().toString()))
-            return true;
-        return false;
-    }
-
-    protected boolean checkEnter(String username, String passwd) {
-        return true;
+        return Objects.requireNonNull(passwd.getText()).toString().equals(Objects.requireNonNull(passwdconfirm.getText()).toString());
     }
 }

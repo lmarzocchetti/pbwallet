@@ -1,5 +1,6 @@
 package com.example.pbwallet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ public class CustomAdapter1 extends ArrayAdapter<ElementoLista1> {
         super(context, resource, objects);
     }
 
+    @SuppressLint({"ViewHolder", "SetTextI18n", "InflateParams"})
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -27,12 +29,13 @@ public class CustomAdapter1 extends ArrayAdapter<ElementoLista1> {
         TextView nameType = (TextView)convertView.findViewById(R.id.layout1);
         TextView percentage = (TextView)convertView.findViewById(R.id.layout1_2);
         ElementoLista1 c = getItem(position);
+        assert c != null;
         percentage.setText(c.getCash()+" / "+c.getBound());
         nameType.setText(c.getSubtype());
         AccessImage ai = new AccessImage();
         imageType.setBackgroundResource(ai.get(c.getType()));
-        Double totalcash = new Double(c.getCash());
-        Double totalbound = new Double(c.getBound());
+        double totalcash = Double.parseDouble(c.getCash());
+        double totalbound = Double.parseDouble(c.getBound());
         if(totalcash < totalbound){
             percentage.setTextColor(ContextCompat.getColor(getContext(), R.color.verde_cash));
         }
