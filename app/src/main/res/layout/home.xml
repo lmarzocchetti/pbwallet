@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -64,7 +65,7 @@
             android:id="@+id/TXlasttrans"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Last Transitions"
+            android:text="@string/last_5_transactions"
             android:fontFamily="@font/cocon_regular"
             android:textColor="@color/grigio"
             android:gravity="center"
@@ -127,7 +128,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    tools:ignore="RelativeOverlap" />
             </RelativeLayout>
 
             <ImageView
@@ -136,7 +138,8 @@
                 android:background="@drawable/border"
                 android:layout_height="1dp"
                 android:layout_alignBottom="@+id/relative2"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="60dp"
+                android:contentDescription="@string/todo"/>
 
             <RelativeLayout
                 android:id="@+id/relative2"
@@ -182,7 +185,8 @@
                 android:layout_gravity="center"
                 android:layout_alignParentEnd="true"
                 android:layout_margin="8dp"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                tools:ignore="RelativeOverlap" />
         </RelativeLayout>
 
             <ImageView
@@ -191,7 +195,8 @@
                 android:background="@drawable/border"
                 android:layout_height="1dp"
                 android:layout_alignBottom="@+id/relative3"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="60dp"
+                android:contentDescription="@string/todo" />
 
             <RelativeLayout
                 android:id="@+id/relative3"
@@ -237,7 +242,8 @@
                     android:textSize="13sp"
                     android:fontFamily="@font/cocon_regular"
                     android:layout_margin="8dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    tools:ignore="RelativeOverlap" />
             </RelativeLayout>
 
             <ImageView
@@ -246,7 +252,8 @@
                 android:background="@drawable/border"
                 android:layout_height="1dp"
                 android:layout_alignBottom="@+id/relative4"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="60dp"
+                android:contentDescription="@string/todo" />
 
             <RelativeLayout
                 android:id="@+id/relative4"
@@ -292,7 +299,8 @@
                     android:padding="10dp"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    tools:ignore="RelativeOverlap" />
             </RelativeLayout>
 
             <ImageView
@@ -301,7 +309,8 @@
                 android:background="@drawable/border"
                 android:layout_height="1dp"
                 android:layout_alignBottom="@+id/relative5"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="60dp"
+                android:contentDescription="@string/todo" />
 
          <RelativeLayout
              android:id="@+id/relative5"
@@ -346,10 +355,10 @@
                  android:layout_gravity="center"
                  android:fontFamily="@font/cocon_regular"
                  android:layout_margin="8dp"
-                 android:padding="10dp"/>
+                 android:padding="10dp"
+                 tools:ignore="RelativeOverlap" />
          </RelativeLayout>
         </RelativeLayout>
-
     </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

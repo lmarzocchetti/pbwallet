@@ -30,6 +30,7 @@ public class LoginPanel extends Activity {
             public void onClick(View view) {
                 Intent homepage = new Intent(LoginPanel.this , HomeActivity.class);
                 if(checkPass()) {
+                    controlBudget();
                     startActivity(homepage);
                     finish();
                 }
@@ -61,5 +62,25 @@ public class LoginPanel extends Activity {
         }
         db.close();
         return false;
+    }
+
+    private void controlBudget() {
+        DatabaseBeReader db = new DatabaseBeReader(this);
+        db.open();
+
+        Cursor cur = db.queryBudgetFull();
+        String tmp = "";
+
+        if(cur.moveToFirst()) {
+            do {
+                tmp = cur.getString(cur.getColumnIndex("date"));
+                if(tmp.equals(java.time.LocalDate.now().toString())) {
+                    db.deleteBudget(cur.getInt(cur.getColumnIndex("idbudget")));
+                }
+
+            } while(cur.moveToNext());
+        }
+
+        db.close();
     }
 }

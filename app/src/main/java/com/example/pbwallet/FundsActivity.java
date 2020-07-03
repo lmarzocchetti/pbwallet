@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class FundsActivity extends AppCompatActivity {
     TextView trans1, trans2, trans3, trans4, trans5;
     TextView date1, date2, date3, date4, date5;
     ImageView bar1, bar2, bar3, bar4;
-    ImageButton add_wallet;
+    FloatingActionButton add_wallet;
     AutoCompleteTextView fund_switch;
     BottomNavigationView navbar;
     String selected;

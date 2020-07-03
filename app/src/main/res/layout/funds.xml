@@ -58,27 +58,20 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/wallets"
-            android:layout_alignTop="@id/wallets">
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/add_wallet"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/viola"
-            android:background="@drawable/round_button"/>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/add_wallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="16dp"
+                    app:srcCompat="@drawable/ic_baseline_add_24"
+                    android:backgroundTint="@color/celeste"/>
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/ic_baseline_add_24"
-            android:layout_centerInParent="true"
-            android:backgroundTint="@color/bianco"/>
-
-    </RelativeLayout>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <ImageView
             android:id="@+id/shadow_card"
