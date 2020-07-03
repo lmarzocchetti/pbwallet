@@ -27,7 +27,7 @@ public class ViewAllTransaction extends AppCompatActivity {
         Cursor cur = db.queryLastTrans();
         Cursor cur1 = db.queryUsCard();
         Cursor cur2 = db.querySubtypeFull();
-        ListView listview = (ListView)findViewById(R.id.listview);
+        ListView listview = findViewById(R.id.listview);
         List<ElementoLista> list = new LinkedList<>();
         if(cur.moveToFirst() && cur1.moveToFirst() && cur2.moveToFirst()) {
             do {

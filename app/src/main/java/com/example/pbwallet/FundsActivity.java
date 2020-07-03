@@ -121,7 +121,7 @@ public class FundsActivity extends AppCompatActivity {
         if(cur.moveToFirst()) {
             idselcard = cur.getInt(cur.getColumnIndex("idcard"));
             money = cur.getDouble(cur.getColumnIndex("money"));
-            wallet_money.setText(df.format(money));
+            wallet_money.setText(df.format(money)+" "+HomeActivity.currency);
         }
         else {
             db.close();
@@ -155,7 +155,7 @@ public class FundsActivity extends AppCompatActivity {
                 else {
                     trans.get(i).setTextColor(ContextCompat.getColor(this, R.color.verde_cash));
                 }
-                trans.get(i).setText(df.format(sos));
+                trans.get(i).setText(df.format(sos)+" "+HomeActivity.currency);
                 ++i;
             } while(cur.moveToNext() && i < 5);
         }
