@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     ImageView bar1,bar2,bar3,bar4;
     ArrayList<TextView> aT, aT1, aT2;
     ArrayList<ImageView> aI;
+    static String currency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +152,7 @@ public class HomeActivity extends AppCompatActivity {
                     totaltrans = Math.abs(totaltrans);
                     aT.get(i).setTextColor(ContextCompat.getColor(this, R.color.rosso_bordeaux));
                 }
-                aT.get(i).setText(totaltrans.toString() + " €");
+                aT.get(i).setText(totaltrans.toString() +" "+ currency);
                 System.out.println(totaltrans);
                 i++;
             }while(cur.moveToNext() && i < 5);
@@ -187,8 +189,13 @@ public class HomeActivity extends AppCompatActivity {
                 totalcash += cur.getDouble(cur.getColumnIndex("money"));
             }while(cur.moveToNext());
         }
+        cur = db.queryUserFull();
+        if(cur.moveToFirst()){
+            currency = cur.getString(cur.getColumnIndex("currency"));
+        }
         db.close();
-        String strcash = new Double(totalcash).toString()+" €";
+        DecimalFormat df = new DecimalFormat("#.00");
+        String strcash = new Double(df.format(totalcash)).toString()+" "+currency;
         cash.setText(strcash);
     }
 

@@ -21,6 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "password varchar(30),"
                 + "idcard int,"
                 + "idbudget int,"
+                + "currency varchar(2) not null,"
                 + "primary key(username,password),"
                 + "foreign key(idcard) references card(idcard),"
                 + "foreign key(idbudget) references budget(idbudget));";

@@ -22,7 +22,7 @@ import java.util.Objects;
 public class AddTransactionActivity extends AppCompatActivity {
     String selected_w, selected_subT, selected_type;
     ArrayList<String> wallet_list, subtype_list, type_list;
-    TextView reasonTV;
+    TextView reasonTV, moneySimbol;
     SwitchMaterial add_reason;
     Button conf_exist, conf_notExist;
     TextInputEditText money_int, money_dec, new_reason;
@@ -47,10 +47,12 @@ public class AddTransactionActivity extends AppCompatActivity {
         new_reasonLayout = findViewById(R.id.new_reason_layout);
         type_menuLayout = findViewById(R.id.list_type);
         subtypeLayout = findViewById(R.id.layout_subtype);
+        moneySimbol = findViewById(R.id.money_symbol);
 
         selected_w = "";
         selected_subT = "";
         selected_type = "";
+        moneySimbol.setText(HomeActivity.currency);
 
         populateWalletMenu();
         wallet_menu.setOnItemClickListener(wallet_listener);

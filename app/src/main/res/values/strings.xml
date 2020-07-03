@@ -38,4 +38,6 @@
     <string name="select_what_you_want_to_have_a_budget_on">Select what you want to have a budget on</string>
     <string name="your_budget_become_active_from_now_and_last_1_month">Your budget become active from now and last 1 month</string>
     <string name="your_total_budget">Your Total Budget</string>
+    <string name="dollaro">$</string>
+    <string name="sterlina">£</string>
 </resources>

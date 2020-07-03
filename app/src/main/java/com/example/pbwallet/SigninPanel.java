@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import java.util.Objects;
 
 public class SigninPanel extends Activity {
     TextInputEditText name, surname, passwd, passwdconfirm, username;
+    RadioGroup radiobutton;
+    String currency;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,7 @@ public class SigninPanel extends Activity {
         username = findViewById(R.id.usernameTF);
         passwd = findViewById(R.id.passwdTF);
         passwdconfirm = findViewById(R.id.passwdconfirmTF);
+        radiobutton = findViewById(R.id.radiobutton);
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +47,14 @@ public class SigninPanel extends Activity {
                             emptyField();
                     }
                 }
+            }
+        });
+
+        radiobutton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                RadioButton rb = findViewById(i);
+                currency = (String) rb.getText();
             }
         });
     }
@@ -75,10 +88,11 @@ public class SigninPanel extends Activity {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
         if(passwd.getText().toString().isEmpty()) {
-            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), null, null, null);
+            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), null, null, null, currency);
         }
-        else
-            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), passwd.getText().toString(),null, null);
+        else {
+            db.insertUser(name.getText().toString(), surname.getText().toString(), username.getText().toString(), passwd.getText().toString(), null, null, currency);
+        }
         db.close();
     }
 

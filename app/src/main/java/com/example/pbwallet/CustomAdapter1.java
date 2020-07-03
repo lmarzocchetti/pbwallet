@@ -26,18 +26,21 @@ public class CustomAdapter1 extends ArrayAdapter<ElementoLista1> {
         ImageView imageType = (ImageView) convertView.findViewById(R.id.layout1_1);
         TextView nameType = (TextView)convertView.findViewById(R.id.layout1);
         TextView percentage = (TextView)convertView.findViewById(R.id.layout1_2);
+        TextView date = (TextView)convertView.findViewById(R.id.layout1_3);
         ElementoLista1 c = getItem(position);
-        percentage.setText(c.getCash()+" / "+c.getBound());
+        percentage.setText(c.getCash()+HomeActivity.currency+"/"+c.getBound()+HomeActivity.currency);
         nameType.setText(c.getSubtype());
+        date.setText(c.getDate());
         AccessImage ai = new AccessImage();
         imageType.setBackgroundResource(ai.get(c.getType()));
-        Double totalcash = new Double(c.getCash());
-        Double totalbound = new Double(c.getBound());
-        if(totalcash < totalbound){
+        Double totalcash = Double.valueOf(c.getCash());
+        Double totalbound = Double.valueOf(c.getBound());
+        if(totalcash > totalbound){
+            percentage.setTextColor(ContextCompat.getColor(getContext(), R.color.rosso_bordeaux));
+        }
+        else{
             percentage.setTextColor(ContextCompat.getColor(getContext(), R.color.verde_cash));
         }
-        else
-            percentage.setTextColor(ContextCompat.getColor(getContext(), R.color.rosso_bordeaux));
         return convertView;
     }
 }
