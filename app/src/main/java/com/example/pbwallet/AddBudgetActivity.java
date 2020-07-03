@@ -16,6 +16,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+    This class let the user to add a new Budget based on his subtype.
+    This new budget is active instantly and last for one month
+ */
 public class AddBudgetActivity extends AppCompatActivity {
     String selected;
     ArrayList<String> subtype_list;
@@ -23,6 +27,10 @@ public class AddBudgetActivity extends AppCompatActivity {
     TextInputEditText bound;
     Button confirm;
 
+    /**
+     * Initialize attributes from this class, set their own listener and call a method to populate the Subtype menu
+     * @param savedInstanceState saved state for create this activity, in this application is NULL
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +49,9 @@ public class AddBudgetActivity extends AppCompatActivity {
         populateSubtypeMenu();
     }
 
+    /**
+     * Add a new Budget to the Database
+     */
     private void addBudget() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -50,6 +61,10 @@ public class AddBudgetActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Receive the last used idsubtype and increment it by 1
+     * @return new id for create a new subtype
+     */
     private int getSubtypeID() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -66,6 +81,10 @@ public class AddBudgetActivity extends AppCompatActivity {
         return ret;
     }
 
+    /**
+     * Receive the last used idbudget and increment it by 1
+     * @return new id for create a new Budget
+     */
     private int getNewBudgetID() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -85,6 +104,9 @@ public class AddBudgetActivity extends AppCompatActivity {
         return ret;
     }
 
+    /**
+     * populate the subtype menu with all user-created instance of subtype
+     */
     private void populateSubtypeMenu() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         subtype_list = new ArrayList<>();
@@ -105,6 +127,9 @@ public class AddBudgetActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * listener for the subtype menu, change the string 'selected'
+     */
     private AdapterView.OnItemClickListener subtype_listener =
             new AdapterView.OnItemClickListener() {
                 @Override
@@ -113,6 +138,9 @@ public class AddBudgetActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     * listener for the confirm button, if the controls is right, add a new Budget and finish this activity
+     */
     private Button.OnClickListener conf_listener =
             new View.OnClickListener() {
                 @Override
