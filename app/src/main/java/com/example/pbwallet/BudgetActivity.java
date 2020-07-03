@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.LinkedList;
 import java.util.List;
 
+/** Class that prints the BudgetActivity */
 public class BudgetActivity extends AppCompatActivity {
     BottomNavigationView navbar;
     String nameType, nameSubtype, date;
@@ -24,6 +25,7 @@ public class BudgetActivity extends AppCompatActivity {
     Double cash, bound;
     CustomAdapter1 adapter1;
 
+    /** This method initializes everything */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,9 @@ public class BudgetActivity extends AppCompatActivity {
         navbar.setSelectedItemId(R.id.nav_budget);
     }
 
+    /** This method is a listener of the button that start AddBudgetActivity class
+     * @see AddBudgetActivity
+     */
     private FloatingActionButton.OnClickListener button_listener =
             new View.OnClickListener() {
                 @Override
@@ -61,6 +66,12 @@ public class BudgetActivity extends AppCompatActivity {
                 }
             };
 
+    /** This method is a listener of the navigation bar that change activities
+     *  @see HomeActivity
+     *  @see FundsActivity
+     *  @see StatsActivity
+     *  @see AddTransactionActivity
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -103,6 +114,7 @@ public class BudgetActivity extends AppCompatActivity {
                 }
             };
 
+    /** This method populates the screen with all the budgets currently in the database*/
     private void populatedallbudget(){
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
