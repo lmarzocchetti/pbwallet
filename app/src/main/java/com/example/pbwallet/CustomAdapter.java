@@ -24,9 +24,9 @@ public class CustomAdapter  extends ArrayAdapter<ElementoLista> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater rl = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = rl.inflate(R.layout.relativelayout,null);
-        TextView datecard = (TextView)convertView.findViewById(R.id.layout1_1);
-        TextView cash = (TextView)convertView.findViewById(R.id.layout1);
-        TextView subtype = (TextView)convertView.findViewById(R.id.layout1_2);
+        TextView datecard = convertView.findViewById(R.id.layout1_1);
+        TextView cash = convertView.findViewById(R.id.layout1);
+        TextView subtype = convertView.findViewById(R.id.layout1_2);
         ElementoLista c = getItem(position);
         assert c != null;
         datecard.setText(c.getDatecard());
@@ -39,7 +39,7 @@ public class CustomAdapter  extends ArrayAdapter<ElementoLista> {
             totalcash = Math.abs(totalcash);
             cash.setTextColor(ContextCompat.getColor(getContext(), R.color.rosso_bordeaux));
         }
-        cash.setText(totalcash.toString()+" "+HomeActivity.currency);
+        cash.setText(totalcash+" "+HomeActivity.currency);
         return convertView;
     }
 }

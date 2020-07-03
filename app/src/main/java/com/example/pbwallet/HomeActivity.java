@@ -185,7 +185,7 @@ public class HomeActivity extends AppCompatActivity {
                     totaltrans = Math.abs(totaltrans);
                     aT.get(i).setTextColor(ContextCompat.getColor(this, R.color.rosso_bordeaux));
                 }
-                aT.get(i).setText(totaltrans.toString() +" "+ currency);
+                aT.get(i).setText(totaltrans +" "+ currency);
                 System.out.println(totaltrans);
                 i++;
             }while(cur.moveToNext() && i < 5);
@@ -228,7 +228,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         db.close();
         DecimalFormat df = new DecimalFormat("#.00");
-        String strcash = new Double(df.format(totalcash)).toString()+" "+currency;
+        String strcash = Double.valueOf(df.format(totalcash)).toString()+" "+currency;
         cash.setText(strcash);
     }
 

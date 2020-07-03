@@ -211,6 +211,7 @@ public class StatsActivity extends AppCompatActivity {
         uscita2.setText("");
     }
 
+    @SuppressLint("SetTextI18n")
     private void populateMonths(){
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -283,7 +284,7 @@ public class StatsActivity extends AppCompatActivity {
         int bottom = 90;
         RelativeLayout.LayoutParams params, params1, params2;
         for(int i = Amaxc.size()-1, h=0; i >= 0; i--, h++){
-            Acd.get(h).setText(new Double(Amaxc.get(i)).toString()+HomeActivity.currency);
+            Acd.get(h).setText(Amaxc.get(i).toString()+HomeActivity.currency);
             params = (RelativeLayout.LayoutParams) Acd.get(h).getLayoutParams();
             params.setMargins(0, 0, 0, bottom);
             Acd.get(h).setLayoutParams(params);
@@ -376,8 +377,8 @@ public class StatsActivity extends AppCompatActivity {
                 }
             }while(cur.moveToNext());
         }
-        entrata1.setText(new Double(moneypos1).toString()+" "+HomeActivity.currency);
-        uscita1.setText(new Double(moneyneg1).toString()+" "+HomeActivity.currency);
+        entrata1.setText(moneypos1.toString()+" "+HomeActivity.currency);
+        uscita1.setText(moneyneg1.toString()+" "+HomeActivity.currency);
         money1 = moneypos1 - moneyneg1;
         db.close();
     }
@@ -399,8 +400,8 @@ public class StatsActivity extends AppCompatActivity {
                 }
             }while(cur.moveToNext());
         }
-        entrata2.setText(new Double(moneypos2).toString()+" "+HomeActivity.currency);
-        uscita2.setText(new Double(moneyneg2).toString()+" "+HomeActivity.currency);
+        entrata2.setText(moneypos2.toString()+" "+HomeActivity.currency);
+        uscita2.setText(moneyneg2.toString()+" "+HomeActivity.currency);
         money2 = moneypos2 - moneyneg2;
         db.close();
     }

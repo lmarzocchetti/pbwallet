@@ -516,9 +516,6 @@
                     android:fontFamily="@font/cocon_regular"
                     android:layout_gravity="center_vertical"
                     android:layout_alignParentEnd="true"
-                    android:textSize="21sp"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/cocon_regular"
                     android:padding="10dp"
                     tools:ignore="RelativeOverlap" />
             </RelativeLayout>

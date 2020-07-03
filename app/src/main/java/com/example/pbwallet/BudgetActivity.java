@@ -108,7 +108,7 @@ public class BudgetActivity extends AppCompatActivity {
         db.open();
         Cursor cur = db.querySubtypeByBudget();
         Cursor cur2 = db.queryBudgetAsc();
-        ListView listview = (ListView)findViewById(R.id.listview1);
+        ListView listview = findViewById(R.id.listview1);
         List<ElementoLista1> list = new LinkedList<>();
         if(cur.moveToFirst() && cur2.moveToFirst()){
             do {

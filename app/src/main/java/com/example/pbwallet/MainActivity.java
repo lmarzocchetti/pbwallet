@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 
@@ -28,11 +27,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             } else {
                 Intent signinpage = new Intent(MainActivity.this, SigninPanel.class);
-                db.insertType(0, "Lavoro");
-                db.insertType(1, "Casa");
-                db.insertType(2, "Spesa");
-                db.insertType(3, "Hobby");
-                db.insertType(4, "Altro");
                 startActivity(signinpage);
             }
         }

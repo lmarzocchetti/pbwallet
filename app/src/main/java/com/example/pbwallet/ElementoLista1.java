@@ -15,39 +15,23 @@ public class ElementoLista1 {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getCash() {
         return cash;
     }
 
-    public void setCash(String cash) {
-        this.cash = cash;
-    }
 
     public String getBound() {
         return bound;
     }
 
-    public void setBound(String bound) {
-        this.bound = bound;
-    }
 
     public String getSubtype() {
         return subtype;
     }
 
-    public void setSubtype(String subtype) {
-        this.subtype = subtype;
-    }
 
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 }
