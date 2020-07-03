@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.util.Date;
 
 public class DatabaseBeReader {
     SQLiteDatabase mDb;
@@ -83,11 +82,22 @@ public class DatabaseBeReader {
         mDb.insert("type",null,cv);
     }
 
+    //delete
+    public void deleteBudget(int idbudget) {
+        mDb.delete("budget", "idbudget="+idbudget, null);
+    }
+
     //update
     public void updateMoneyCard(double newmoney, int modidcard) {
         ContentValues newValues = new ContentValues();
         newValues.put("money", newmoney);
         mDb.update("card", newValues, "idcard="+modidcard, null);
+    }
+
+    public void updateBudget (double newmoney, int idbudget) {
+        ContentValues newValues = new ContentValues();
+        newValues.put("money", newmoney);
+        mDb.update("budget", newValues, "idbudget="+idbudget, null);
     }
 
     //query da modificare per ogni caso
@@ -107,20 +117,20 @@ public class DatabaseBeReader {
         return mDb.query("card",null,null,null,null,null,null);
     }
 
-    public Cursor queryTrans(String ricerca, String values){
-        return mDb.query("trans",null,ricerca+"='"+values+"'",null,null,null,null);
+    public Cursor queryBudgetFull() {
+        return mDb.query("budget", null, null, null, null, null, null);
     }
 
     public Cursor queryTransDate(String ricerca, String values){
         return mDb.query("trans",null,ricerca+" like '"+values+"%'",null,null,null,null);
     }
 
-    public Cursor queryTransFull(){
-        return mDb.query("trans",null,null,null,null,null,null);
+    public Cursor queryBudgetbySubtype(int idsubtype){
+        return mDb.query("budget", null, "idsubtype="+idsubtype, null, null, null, null);
     }
 
-    public Cursor queryBudget(String ricerca, String values){
-        return mDb.query("budget",null,ricerca+"='"+values+"'",null,null,null,null);
+    public Cursor queryBudgetbyIdbudget(int idbudget) {
+        return mDb.query("budget", null, "idbudget="+idbudget, null, null, null, null);
     }
 
     public Cursor querySubtype(String ricerca, String values){

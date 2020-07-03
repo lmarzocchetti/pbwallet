@@ -171,6 +171,44 @@ public class AddTransactionActivity extends AppCompatActivity {
         db.close();
 
         updateMoney(idcard, cur_money);
+        if(money < 0) {
+            updateBudget(idsubtype, Math.abs(money));
+        }
+    }
+
+    private void updateBudget(int idsubtype, double money) {
+        DatabaseBeReader db = new DatabaseBeReader(this);
+        db.open();
+
+        Cursor cur = db.queryBudgetbySubtype(idsubtype);
+        int tmp;
+        double updatemoney;
+
+        if(cur.moveToFirst()) {
+            do {
+                tmp = cur.getInt(cur.getColumnIndex("idbudget"));
+                updatemoney = getCurMoneyBudget(tmp);
+                updatemoney += money;
+                db.updateBudget(updatemoney, tmp);
+            } while(cur.moveToNext());
+        }
+
+        db.close();
+    }
+
+    private double getCurMoneyBudget(int idbudget) {
+        DatabaseBeReader db = new DatabaseBeReader(this);
+        db.open();
+
+        Cursor cur = db.queryBudgetbyIdbudget(idbudget);
+        double ret = -1;
+
+        if(cur.moveToFirst()) {
+            ret = cur.getDouble(cur.getColumnIndex("money"));
+        }
+
+        db.close();
+        return ret;
     }
 
     private void insertNewTransandSubtype() {

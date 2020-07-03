@@ -29,7 +29,6 @@
     <string name="insert_a_new_reason1">Insert a new reason</string>
     <string name="confirm">Confirm</string>
     <string name="reason">Reason</string>
-    <string name="your_total_transactions">Your Total Transatcions</string>
     <string name="your_total_funds">Your Total Funds</string>
     <string name="add_wallet">Add Wallet</string>
     <string name="_00">00</string>
@@ -43,4 +42,6 @@
     <string name="entrata">Entrata</string>
     <string name="uscita">Uscita</string>
     <string name="percentuale">Percentuale</string>
+    <string name="last_5_transactions">Last 5 Transactions</string>
+    <string name="your_total_transactions">Your Total Transactions</string>
 </resources>
