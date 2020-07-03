@@ -1,13 +1,14 @@
 package com.example.pbwallet;
 
 public class ElementoLista1 {
-    private String type, subtype, cash, bound;
+    private String type, subtype, cash, bound, date;
 
-    public ElementoLista1(String type, String subtype, String cash, String bound){
+    public ElementoLista1(String type, String subtype, String cash, String bound, String date){
         this.type = type;
         this.subtype = subtype;
         this.cash = cash;
         this.bound = bound;
+        this.date = date;
     }
 
     public String getType() {
@@ -40,5 +41,13 @@ public class ElementoLista1 {
 
     public void setSubtype(String subtype) {
         this.subtype = subtype;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

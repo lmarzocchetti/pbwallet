@@ -39,7 +39,7 @@ public class CustomAdapter  extends ArrayAdapter<ElementoLista> {
             totalcash = Math.abs(totalcash);
             cash.setTextColor(ContextCompat.getColor(getContext(), R.color.rosso_bordeaux));
         }
-        cash.setText(Double.toString(totalcash));
+        cash.setText(totalcash.toString()+" "+HomeActivity.currency);
         return convertView;
     }
 }

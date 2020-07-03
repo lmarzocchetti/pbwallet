@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import java.util.Objects;
 public class AddWalletActivity extends AppCompatActivity {
     TextInputEditText new_name, money_int, money_dec;
     Button confirm;
+    TextView moneySimbol;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class AddWalletActivity extends AppCompatActivity {
         money_dec = findViewById(R.id.money_decTFNEW);
         confirm = findViewById(R.id.confirm_new_wallet);
         confirm.setOnClickListener(confirm_listener);
+        moneySimbol = findViewById(R.id.money_symbolNEW);
+        moneySimbol.setText(HomeActivity.currency);
     }
 
     private void addNewWallet() {
