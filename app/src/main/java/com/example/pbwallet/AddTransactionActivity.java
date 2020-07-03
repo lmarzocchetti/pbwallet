@@ -19,6 +19,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Activity for put a new transaction respect to a wallet with a particular, existing or not existing, subtype
+ */
 public class AddTransactionActivity extends AppCompatActivity {
     String selected_w, selected_subT, selected_type;
     ArrayList<String> wallet_list, subtype_list, type_list;
@@ -29,6 +32,10 @@ public class AddTransactionActivity extends AppCompatActivity {
     AutoCompleteTextView wallet_menu, subtype_menu, type_menu;
     TextInputLayout new_reasonLayout, type_menuLayout, subtypeLayout;
 
+    /**
+     * Initialize attributes from this class, set their own listener and call methods to populate them
+     * @param savedInstanceState saved state for create this activity, in this application is NULL
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +77,9 @@ public class AddTransactionActivity extends AppCompatActivity {
         conf_notExist.setOnClickListener(btn_not_ex_listener);
     }
 
+    /**
+     * populate the wallets menu, which display all wallet in the Database
+     */
     private void populateWalletMenu() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         wallet_list = new ArrayList<>();
@@ -90,6 +100,9 @@ public class AddTransactionActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Populate the subtype menu, which display all subtype in the Database
+     */
     private void populateSubtypeMenu() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         subtype_list = new ArrayList<>();
@@ -110,6 +123,9 @@ public class AddTransactionActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Populate the type menu, which display all type in the Database
+     */
     private void populateTypeMenu() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         type_list = new ArrayList<>();
@@ -130,6 +146,10 @@ public class AddTransactionActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Open the database and take the last trans id and increment it by 1
+     * @return new trans id to create a new transaction in the database
+     */
     private int getNewTransID() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -147,6 +167,10 @@ public class AddTransactionActivity extends AppCompatActivity {
         return ins;
     }
 
+    /**
+     * Insert a new Trans in the Database, update the total money in the respective Card
+     * and update the respective Budget
+     */
     private void insertNewTrans() {
         int idcard = 0, idsubtype = 0;
         double cur_money = 0;
@@ -178,6 +202,11 @@ public class AddTransactionActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Open the Database and update the money in that budget
+     * @param idsubtype the subtype id of the budget to update
+     * @param money quantity of money to add to budget
+     */
     private void updateBudget(int idsubtype, double money) {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -198,6 +227,11 @@ public class AddTransactionActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Open the Database and take the money of the budget with a certain id
+     * @param idbudget the budget id to read the current money
+     * @return the current money in the Budget
+     */
     private double getCurMoneyBudget(int idbudget) {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -213,11 +247,17 @@ public class AddTransactionActivity extends AppCompatActivity {
         return ret;
     }
 
+    /**
+     * Call the 2 methods below
+     */
     private void insertNewTransandSubtype() {
         insertNewSubtype();
         insertNewTrans();
     }
 
+    /**
+     * Insert a new Subtype to the Database
+     */
     private void insertNewSubtype() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -229,6 +269,10 @@ public class AddTransactionActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Open the Database and retrieve the typeID with a selected_type Name
+     * @return The TypeID with a certain name readed by selected_type
+     */
     private int getTypebyName() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -244,6 +288,10 @@ public class AddTransactionActivity extends AppCompatActivity {
         return ins;
     }
 
+    /**
+     * Take the last subtypeID and increment it by 1
+     * @return new subtypeID for instance a new Subtype
+     */
     private int getNewSubtypeID() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -261,6 +309,11 @@ public class AddTransactionActivity extends AppCompatActivity {
         return ins;
     }
 
+    /**
+     * Update the money in the card
+     * @param idcard card to be updated
+     * @param newmoney money to substitute to the current money in the Database
+     */
     private void updateMoney(int idcard, double newmoney) {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -268,6 +321,10 @@ public class AddTransactionActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Concatenate 2 string with the integer and decimal part of the money and transform it in a double
+     * @return integer and decimal money fuse together
+     */
     private double mergeMoney() {
         double ris;
 
@@ -281,6 +338,9 @@ public class AddTransactionActivity extends AppCompatActivity {
         return ris;
     }
 
+    /**
+     * Listener for the wallet_menu, set the respective variable to the selected item
+     */
     private AdapterView.OnItemClickListener wallet_listener =
             new AdapterView.OnItemClickListener() {
                 @Override
@@ -289,6 +349,9 @@ public class AddTransactionActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     * Listener for the subtype_menu, set the respective variable to the selected item
+     */
     private AdapterView.OnItemClickListener subtype_listener =
             new AdapterView.OnItemClickListener() {
                 @Override
@@ -297,6 +360,9 @@ public class AddTransactionActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     * Listener for the type_menu, set the respective variable to the selected item
+     */
     private AdapterView.OnItemClickListener type_listener =
             new AdapterView.OnItemClickListener() {
                 @Override
@@ -305,6 +371,10 @@ public class AddTransactionActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     * Listener for the first button, if the conditions is checked then
+     * insert the new transaction and finish this activity
+     */
     private Button.OnClickListener btn_ex_listener =
             new View.OnClickListener() {
                 @Override
@@ -316,6 +386,10 @@ public class AddTransactionActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     * Listener for the second button, if the conditions is checked then
+     * insert the new transaction, new subtype and finish this activity
+     */
     private Button.OnClickListener btn_not_ex_listener =
             new View.OnClickListener() {
                 @Override
@@ -327,6 +401,9 @@ public class AddTransactionActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     * Listener for the switcher, make visible and invisible some item in the screen.
+     */
     private SwitchMaterial.OnClickListener switch_listener =
             new View.OnClickListener() {
                 @Override

@@ -121,7 +121,12 @@ public class FundsActivity extends AppCompatActivity {
         if(cur.moveToFirst()) {
             idselcard = cur.getInt(cur.getColumnIndex("idcard"));
             money = cur.getDouble(cur.getColumnIndex("money"));
-            wallet_money.setText(df.format(money)+" "+HomeActivity.currency);
+            if(money == 0) {
+                wallet_money.setText(money + HomeActivity.currency);
+            }
+            else {
+                wallet_money.setText(df.format(money) + " " + HomeActivity.currency);
+            }
         }
         else {
             db.close();
@@ -163,14 +168,6 @@ public class FundsActivity extends AppCompatActivity {
     }
 
     private void populateFundMenu() {
-        /*
-           cursor cur = db.queryCardFull;
-           if(cur.moveToFirst) {
-                do {
-                    String s = cur.getString(cur.getColumnIndex("uscard"));
-                } while (cur.moveToNext);
-           }
-         */
         db = new DatabaseBeReader(this);
         fund_list = new ArrayList<>();
         db.open();

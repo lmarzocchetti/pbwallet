@@ -1,10 +1,16 @@
 package com.example.pbwallet;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.media.tv.TvContract;
+import android.os.Build;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
         catch (SQLiteException e){
             e.printStackTrace();
-        }finally {
+        } finally {
             db.close();
             finish();
         }
@@ -48,18 +54,51 @@ public class MainActivity extends AppCompatActivity {
         db.open();
 
         Cursor cur = db.queryBudgetFull();
-        String tmp = "";
+        String tmp, subtype;
+        double money, bound;
 
         if(cur.moveToFirst()) {
             do {
                 tmp = cur.getString(cur.getColumnIndex("date"));
+                money = cur.getDouble(cur.getColumnIndex("money"));
+                bound = cur.getDouble(cur.getColumnIndex("bound"));
+                subtype = retrieveSubtypeName(cur.getInt(cur.getColumnIndex("idsubtype")));
                 if(tmp.equals(java.time.LocalDate.now().toString())) {
+                    //showNotification(subtype, money, bound);
                     db.deleteBudget(cur.getInt(cur.getColumnIndex("idbudget")));
                 }
 
             } while(cur.moveToNext());
         }
+        db.close();
+    }
+
+    private void showNotification(String subtype, double money, double bound) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannel.DEFAULT_CHANNEL_ID);
+        builder.setSmallIcon(R.drawable.ic_baseline_notifications_24);
+        builder.setContentTitle("Your budget is over");
+        builder.setContentText(subtype+" "+money+" / "+bound);
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        NotificationChannel channel = new NotificationChannel("budget", "budget", NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription("budget");
+        NotificationManager notman = getSystemService(NotificationManager.class);
+        notman.createNotificationChannel(channel);
+        NotificationManagerCompat notificationmanager = NotificationManagerCompat.from(this);
+        notificationmanager.notify(0, builder.build());
+    }
+
+    private String retrieveSubtypeName(int idsubtype) {
+        DatabaseBeReader db = new DatabaseBeReader(this);
+        db.open();
+
+        String rit = "";
+
+        Cursor cur = db.querySubtypeBySubtype(idsubtype);
+        if(cur.moveToFirst()) {
+            rit = cur.getString(cur.getColumnIndex("name"));
+        }
 
         db.close();
+        return rit;
     }
 }
