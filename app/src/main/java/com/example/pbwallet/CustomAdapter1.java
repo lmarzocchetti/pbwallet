@@ -1,5 +1,6 @@
 package com.example.pbwallet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ public class CustomAdapter1 extends ArrayAdapter<ElementoLista1> {
         super(context, resource, objects);
     }
 
+    @SuppressLint({"ViewHolder", "SetTextI18n", "InflateParams"})
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -29,6 +31,7 @@ public class CustomAdapter1 extends ArrayAdapter<ElementoLista1> {
         TextView date = (TextView)convertView.findViewById(R.id.layout1_3);
         ElementoLista1 c = getItem(position);
         percentage.setText(c.getCash()+HomeActivity.currency+"/"+c.getBound()+HomeActivity.currency);
+        assert c != null;
         nameType.setText(c.getSubtype());
         date.setText(c.getDate());
         AccessImage ai = new AccessImage();

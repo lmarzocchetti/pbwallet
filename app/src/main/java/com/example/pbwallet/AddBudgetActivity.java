@@ -45,7 +45,7 @@ public class AddBudgetActivity extends AppCompatActivity {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
 
-        db.insertBudget(getNewBudgetID(), 0, Double.parseDouble(Objects.requireNonNull(bound.getText()).toString()),java.time.LocalDate.now().plusMonths(1).toString() , getSubtypeID());
+        db.insertBudget(getNewBudgetID(), 0, Double.parseDouble(Objects.requireNonNull(bound.getText()).toString()), java.time.LocalDate.now().plusMonths(1).toString(), getSubtypeID());
 
         db.close();
     }

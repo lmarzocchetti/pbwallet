@@ -94,6 +94,20 @@ public class FundsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        resetTrans();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        populateFundMenu();
+        populateLastTrans();
+        navbar.setSelectedItemId(R.id.nav_fund);
+    }
+
     @SuppressLint("SetTextI18n")
     private void populateLastTrans() {
         db = new DatabaseBeReader(this);
@@ -237,6 +251,7 @@ public class FundsActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
                             overridePendingTransition(0,0);
                             onStop();
+                            finish();
                             break;
 
                         case R.id.nav_fund:
@@ -247,6 +262,7 @@ public class FundsActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),StatsActivity.class));
                             overridePendingTransition(0,0);
                             onStop();
+                            finish();
                             break;
 
                         case R.id.add_transaction:
@@ -260,6 +276,7 @@ public class FundsActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), BudgetActivity.class));
                             overridePendingTransition(0, 0);
                             onStop();
+                            finish();
                             break;
                     }
                     return true;

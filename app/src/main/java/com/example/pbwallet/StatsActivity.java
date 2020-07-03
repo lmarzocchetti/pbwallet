@@ -1,8 +1,8 @@
 package com.example.pbwallet;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,13 +16,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-import java.math.BigDecimal;
-import java.nio.DoubleBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -39,6 +36,7 @@ public class StatsActivity extends AppCompatActivity {
     SwitchMaterial switchpercent;
     Double money1, money2;
     Double moneypos1, moneyneg1, moneypos2, moneyneg2;
+    BottomNavigationView navbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +54,9 @@ public class StatsActivity extends AppCompatActivity {
         fund_switch1 = findViewById(R.id.fund_menu2);
         fund_switch2 = findViewById(R.id.fund_menu1);
         switchpercent = findViewById(R.id.switchperc);
-        Atd = new ArrayList<TextView>();
-        Acd = new ArrayList<TextView>();
-        Acircle = new ArrayList<ImageView>();
+        Atd = new ArrayList<>();
+        Acd = new ArrayList<>();
+        Acircle = new ArrayList<>();
         Atd.add(date1 = findViewById(R.id.date1));
         Atd.add(date2 = findViewById(R.id.date2));
         Atd.add(date3 = findViewById(R.id.date3));
@@ -100,9 +98,28 @@ public class StatsActivity extends AppCompatActivity {
         }
         percent();
 
-        BottomNavigationView navbar = findViewById(R.id.nav_bar);
+        navbar = findViewById(R.id.nav_bar);
         navbar.setSelectedItemId(R.id.nav_stats);
         navbar.setOnNavigationItemSelectedListener(navigationlistener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        navbar.setSelectedItemId(R.id.nav_stats);
+        resetTrans();
+        resetTrans2();
+        populateMonths();
+        populateFundMenu();
+        populateFundMenu2();
+        populateTrans();
+        populateTrans2();
+        percent();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
@@ -115,6 +132,7 @@ public class StatsActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
                             overridePendingTransition(0,0);
                             onStop();
+                            finish();
                             break;
 
                         case R.id.nav_fund:
@@ -122,6 +140,7 @@ public class StatsActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),FundsActivity.class));
                             overridePendingTransition(0,0);
                             onStop();
+                            finish();
                             break;
 
                         case R.id.nav_stats:
@@ -138,6 +157,7 @@ public class StatsActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), BudgetActivity.class));
                             overridePendingTransition(0, 0);
                             onStop();
+                            finish();
                             break;
                     }
                     return true;
@@ -148,10 +168,7 @@ public class StatsActivity extends AppCompatActivity {
             new SwitchMaterial.OnCheckedChangeListener(){
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if(b)
-                        percent();
-                    else
-                        percent();
+                    percent();
                 }
             };
 
@@ -256,8 +273,6 @@ public class StatsActivity extends AppCompatActivity {
                     esit = true;
                     break;
                 }
-                else
-                    esit = false;
             }
             if(!esit)
                 Amaxc.add(max);
@@ -313,7 +328,7 @@ public class StatsActivity extends AppCompatActivity {
                     DecimalFormat bigd = new DecimalFormat("#.0");
                     money = moneypos2 / moneypos1;
                     money *= 100;
-                    money = 100 - money;
+                    money = money - 100;
                     strmoney = bigd.format(money) + " %";
                     percentuale1.setText(strmoney);
                 }
@@ -336,7 +351,7 @@ public class StatsActivity extends AppCompatActivity {
                     DecimalFormat bigd = new DecimalFormat("#.0");
                     money = moneyneg2 / moneyneg1;
                     money *= 100;
-                    money = 100 - money;
+                    money = money - 100;
                     strmoney = bigd.format(money) + " %";
                     percentuale1.setText(strmoney);
                 }
@@ -344,6 +359,7 @@ public class StatsActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void populateTrans() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -366,6 +382,7 @@ public class StatsActivity extends AppCompatActivity {
         db.close();
     }
 
+    @SuppressLint("SetTextI18n")
     private void populateTrans2(){
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -401,18 +418,10 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     private void populateFundMenu() {
-        /*
-           cursor cur = db.queryCardFull;
-           if(cur.moveToFirst) {
-                do {
-                    String s = cur.getString(cur.getColumnIndex("uscard"));
-                } while (cur.moveToNext);
-           }
-         */
         DatabaseBeReader db = new DatabaseBeReader(this);
         fund_list = new ArrayList<>();
         boolean esit = false;
-        As = new ArrayList<String>();
+        As = new ArrayList<>();
         db.open();
 
         Cursor cur = db.queryTransDist();
@@ -446,18 +455,10 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     private void populateFundMenu2() {
-        /*
-           cursor cur = db.queryCardFull;
-           if(cur.moveToFirst) {
-                do {
-                    String s = cur.getString(cur.getColumnIndex("uscard"));
-                } while (cur.moveToNext);
-           }
-         */
         DatabaseBeReader db = new DatabaseBeReader(this);
         fund_list2 = new ArrayList<>();
         boolean esit = false;
-        As = new ArrayList<String>();
+        As = new ArrayList<>();
         db.open();
 
         Cursor cur = db.queryTransDist();

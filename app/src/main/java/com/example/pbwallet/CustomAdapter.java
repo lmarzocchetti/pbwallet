@@ -1,13 +1,12 @@
 package com.example.pbwallet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -19,6 +18,7 @@ public class CustomAdapter  extends ArrayAdapter<ElementoLista> {
         super(context, resource, objects);
     }
 
+    @SuppressLint({"ViewHolder", "InflateParams", "SetTextI18n"})
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -28,9 +28,10 @@ public class CustomAdapter  extends ArrayAdapter<ElementoLista> {
         TextView cash = (TextView)convertView.findViewById(R.id.layout1);
         TextView subtype = (TextView)convertView.findViewById(R.id.layout1_2);
         ElementoLista c = getItem(position);
+        assert c != null;
         datecard.setText(c.getDatecard());
         subtype.setText(c.getSubtype());
-        Double totalcash = new Double(c.getCash());
+        double totalcash = Double.parseDouble(c.getCash());
         if(totalcash > 0){
             cash.setTextColor(ContextCompat.getColor(getContext(), R.color.verde_cash));
         }

@@ -40,4 +40,9 @@
     <string name="your_total_budget">Your Total Budget</string>
     <string name="dollaro">$</string>
     <string name="sterlina">£</string>
+    <string name="your_stats">Your Stats</string>
+    <string name="todo">TODO</string>
+    <string name="entrata">Entrata</string>
+    <string name="uscita">Uscita</string>
+    <string name="percentuale">Percentuale</string>
 </resources>
