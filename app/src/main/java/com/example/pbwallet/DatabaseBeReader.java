@@ -27,14 +27,12 @@ public class DatabaseBeReader {
     }
 
     //inserimento values in table da modificare per ogni tabella
-    public void insertUser(String name, String surname, String username, String password, Integer idcard, Integer idbudget, String currency){
+    public void insertUser(String name, String surname, String username, String password, String currency){
         ContentValues cv = new ContentValues();
         cv.put("name",name);
         cv.put("surname",surname);
         cv.put("username",username);
         cv.put("password",password);
-        cv.put("idcard",idcard);
-        cv.put("idbudget",idbudget);
         cv.put("currency", currency);
         mDb.insert("user",null,cv);
     }

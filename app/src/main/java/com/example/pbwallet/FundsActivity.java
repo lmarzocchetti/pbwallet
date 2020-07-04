@@ -23,6 +23,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * Activity that visualize user's wallets, money inside them and the last 5 transaction in that card.
+ * @see AddWalletActivity button to create a New wallet.
+ */
 public class FundsActivity extends AppCompatActivity {
     ArrayList<String> fund_list;
     ArrayList<TextView> type, trans, date;
@@ -38,6 +42,10 @@ public class FundsActivity extends AppCompatActivity {
     String selected;
     DatabaseBeReader db;
 
+    /**
+     * Initialize attributes from this class, set their own listener and call methods to populate them.
+     * @param savedInstanceState saved state for create this activity, in this application is NULL.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,12 +102,20 @@ public class FundsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method called by Android-platform when this activity is in stop-state and being restarted.
+     * Simply call the resetTrans method on this class
+     */
     @Override
     protected void onRestart() {
         super.onRestart();
         resetTrans();
     }
 
+    /**
+     * Method called by Android-platform when this activity is in pause-state and being resumed (called after onRestart).
+     * Repopulate the WalletMenu, the last 5 transactions and set the item on the BottomBar(this activity).
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -108,6 +124,12 @@ public class FundsActivity extends AppCompatActivity {
         navbar.setSelectedItemId(R.id.nav_fund);
     }
 
+    /**
+     * Instance the database and open it, Set the total wallet's money in the TextField.
+     * After read in the database the last 5 transactions in this wallet and display them
+     * in their relative TextField with the motive of the transaction, it's date, and money.
+     * Money is printed in Green when the transaction is positive and in red when is not.
+     */
     @SuppressLint("SetTextI18n")
     private void populateLastTrans() {
         db = new DatabaseBeReader(this);
@@ -167,6 +189,10 @@ public class FundsActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Instance the database, and retrieve all card in the database
+     * and insert them in the switch component for wallets.
+     */
     private void populateFundMenu() {
         db = new DatabaseBeReader(this);
         fund_list = new ArrayList<>();
@@ -190,6 +216,10 @@ public class FundsActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Read the name and surname of the user and print in the
+     * respective TextField
+     */
     private void changeNameandSur(){
         String nameandsur = null;
         db = new DatabaseBeReader(this);
@@ -201,6 +231,10 @@ public class FundsActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Reset all TextView with the empty string
+     * and set invisible the line separators
+     */
     private void resetTrans() {
         for(TextView t : trans) {
             t.setText("");
@@ -216,6 +250,10 @@ public class FundsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Listener for the wallet switcher component.
+     * Set the selected param to the selected item in the switcher, resetTrans and RePopuplate them.
+     */
     private AdapterView.OnItemClickListener switch_listener =
             new AdapterView.OnItemClickListener() {
                 @Override
@@ -228,7 +266,10 @@ public class FundsActivity extends AppCompatActivity {
                 }
             };
 
-    private Button.OnClickListener add_wallet_listener =
+    /**
+     * Listener for the button that start a AddWalletActivity.
+     */
+    private FloatingActionButton.OnClickListener add_wallet_listener =
             new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -238,6 +279,11 @@ public class FundsActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     * Listener for the bottom navigation view.
+     * Allow the user to switch between Activity, or select the Plus button
+     * to start AddTransactionActivity to add a new transaction.
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override

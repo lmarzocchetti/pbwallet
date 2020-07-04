@@ -12,16 +12,25 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import java.util.Objects;
 
+/**
+ * Activity that let the user to register and save all the indicated field
+ * in the database.
+ */
 public class SigninPanel extends Activity {
     TextInputEditText name, surname, passwd, passwdconfirm, username;
+    Button enter;
     RadioGroup radiobutton;
     String currency;
 
+    /**
+     * Initialize attributes from this class, set their own listener.
+     * @param savedInstanceState saved state for create this activity, in this application is NULL.
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signinpanel);
 
-        Button enter = findViewById(R.id.button);
+        enter = findViewById(R.id.button);
         name = findViewById(R.id.nameTF);
         surname = findViewById(R.id.surnameTF);
         username = findViewById(R.id.usernameTF);
@@ -29,68 +38,103 @@ public class SigninPanel extends Activity {
         passwdconfirm = findViewById(R.id.passwdconfirmTF);
         radiobutton = findViewById(R.id.radiobutton);
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent homepage = new Intent(SigninPanel.this, HomeActivity.class);
-                if(checkLenPass()) {
-                    if(checkField()) {
-                        if (checkPass()) {
-                            save();
-                            startActivity(homepage);
-                            finish();
-                        } else
-                            wrongPasswd();
-                    }
-                    else
-                        emptyField();
-                }
-            }
-        });
+        enter.setOnClickListener(confirm_button_listener);
 
-        radiobutton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton rb = findViewById(i);
-                currency = (String) rb.getText();
-            }
-        });
+        radiobutton.setOnCheckedChangeListener(radiobutton_listener);
     }
 
-    public void emptyField(){
-        Toast toast = Toast.makeText(this, "One or more fileds empty", Toast.LENGTH_SHORT);
+    /**
+     * Method that create a toast if one or more fields are empty.
+     */
+    private void emptyField(){
+        Toast toast = Toast.makeText(this, "One or more fields empty", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
     }
 
-    public boolean checkField(){
+    /**
+     * Control if all fields are empty or not.
+     * @return true if all fields are not empty, false otherwise.
+     */
+    private boolean checkField(){
         return !Objects.requireNonNull(name.getText()).toString().isEmpty() && !Objects.requireNonNull(surname.getText()).toString().isEmpty() && !Objects.requireNonNull(username.getText()).toString().isEmpty();
     }
 
-    public boolean checkLenPass(){
+    /**
+     * Control if the password is less or equal than 30 character.
+     * @return true if the password's lenght is less or equal than 30.
+     */
+    private boolean checkLenPass(){
         return Objects.requireNonNull(passwd.getText()).toString().length() <= 30;
     }
 
-    public void wrongPasswd(){
+    /**
+     * Make a toast if the password and the confirm password fields are different.
+     */
+    private void wrongPasswd(){
         Toast toast = Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
     }
 
-    //aggiungere birthday
-    public void save(){
+    /**
+     * Insert the new user in the database, with or without the password.
+     */
+    private void save(){
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
       
         if(Objects.requireNonNull(passwd.getText()).toString().isEmpty()) {
-            db.insertUser(Objects.requireNonNull(name.getText()).toString(), Objects.requireNonNull(surname.getText()).toString(), Objects.requireNonNull(username.getText()).toString(), null, null, null, currency);
+            db.insertUser(Objects.requireNonNull(name.getText()).toString(), Objects.requireNonNull(surname.getText()).toString(), Objects.requireNonNull(username.getText()).toString(), null, currency);
         }
         else
-            db.insertUser(Objects.requireNonNull(name.getText()).toString(), Objects.requireNonNull(surname.getText()).toString(), Objects.requireNonNull(username.getText()).toString(), passwd.getText().toString(),null, null, currency);
+            db.insertUser(Objects.requireNonNull(name.getText()).toString(), Objects.requireNonNull(surname.getText()).toString(), Objects.requireNonNull(username.getText()).toString(), passwd.getText().toString(), currency);
         db.close();
     }
 
-    public boolean checkPass(){
+    /**
+     * Check if the 2 password( password and confirm password ) are equals.
+     * @return true if the 2 password matches, false otherwise.
+     */
+    private boolean checkPass(){
         return Objects.requireNonNull(passwd.getText()).toString().equals(Objects.requireNonNull(passwdconfirm.getText()).toString());
     }
+
+    /**
+     * Listener for the confirm button. If all the check methods return true, then
+     * insert the new user and start the HomeActivity.
+     * Else display the toast for wrong password or empty fields if some is missing.
+     */
+    private Button.OnClickListener confirm_button_listener =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent homepage = new Intent(SigninPanel.this, HomeActivity.class);
+                    if(checkLenPass()) {
+                        if(checkField()) {
+                            if (checkPass()) {
+                                save();
+                                startActivity(homepage);
+                                finish();
+                            } else
+                                wrongPasswd();
+                        }
+                        else
+                            emptyField();
+                    }
+                }
+            };
+
+    /**
+     * Listener for radio button, that allow the user to choose what currency wanna display
+     * for his money. Choose are Euro, Dollar and Pounds.
+     */
+    private RadioGroup.OnCheckedChangeListener radiobutton_listener =
+            new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                    RadioButton rb = findViewById(i);
+                    currency = (String) rb.getText();
+                }
+            };
 }
