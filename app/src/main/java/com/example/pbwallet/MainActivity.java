@@ -13,8 +13,18 @@ import android.media.tv.TvContract;
 import android.os.Build;
 import android.os.Bundle;
 
+/**
+ * The MainActivity of this App.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Open the database and control if is the first time opening this app; if this
+     * is true then insert 5 Type Tuple and Start the SigninActivity.
+     * If the user is already registered then control if he/she setup a password, and respectively
+     * start the LoginPanel or the HomeActivity directly(in this case there is also a Control to elapsed budget).
+     * @param savedInstanceState saved state for create this activity, in this application is NULL.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Same method in LoginPanel. Control the elapsed budget in this day.
+     */
     private void controlBudget() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
@@ -87,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
         notificationmanager.notify(0, builder.build());
     }
 
+    /**
+     * Call the Database to do a query of the subtype based on idsubtype and retrieve it's name as String.
+     * @param idsubtype the id of the subtype we want to retrieve it's name.
+     * @return the name relative to the idsubtype passed by param.
+     */
     private String retrieveSubtypeName(int idsubtype) {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
