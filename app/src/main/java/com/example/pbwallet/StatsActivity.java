@@ -111,12 +111,19 @@ public class StatsActivity extends AppCompatActivity {
         navbar.setOnNavigationItemSelectedListener(navigationlistener);
     }
 
-
+    /**
+     * Method called by Android-platform when this activity is in pause-state and being resumed (called after onRestart).
+     * Change total money, the last 5 transactions and set the item on the BottomBar(this activity).
+     */
     @Override
     protected void onResume() {
         super.onResume();
     }
 
+    /**
+     * Method called by Android-platform when this activity is in stop-state and being restarted.
+     * Simply call the resetTrans method on this class
+     */
     @Override
     protected void onRestart() {
         super.onRestart();
