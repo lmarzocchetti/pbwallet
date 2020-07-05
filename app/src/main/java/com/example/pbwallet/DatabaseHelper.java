@@ -6,12 +6,27 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+/**
+ * This class initializes the database the first time it is created
+ * and updates every time the application is started
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    /**
+     * Constructor for DatabaseHelper
+     * @param context context
+     * @param name name of the database
+     * @param factory standard SQLiteCursor
+     * @param version version of the database
+     */
     public DatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
-    //creare tutte le tabelle
+
+    /**
+     * This method executes SQL code for creating database tables
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         String create_table_user = "create table user("
@@ -65,6 +80,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
     }
 }
