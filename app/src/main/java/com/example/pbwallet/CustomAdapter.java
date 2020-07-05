@@ -13,11 +13,22 @@ import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
+/**
+ *  This class initializes a new relative layout in the ViewAllTransaction list,
+ *  extends an ArrayAdapter for TextView management
+ */
 public class CustomAdapter  extends ArrayAdapter<ElementoLista> {
     public CustomAdapter(@NonNull Context context, int resource, @NonNull List<ElementoLista> objects) {
         super(context, resource, objects);
     }
 
+    /**
+     * This method initializes a View with the RelativeLayout, defines the TextView and changes its text and color
+     * @param position Int indicating the position
+     * @param convertView View initialized as a new RelativeLayout
+     * @param parent This param has not been used
+     * @return View to print
+     */
     @SuppressLint({"ViewHolder", "InflateParams", "SetTextI18n"})
     @NonNull
     @Override

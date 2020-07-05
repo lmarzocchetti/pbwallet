@@ -83,10 +83,10 @@ public class SigninPanel extends Activity {
         db.open();
       
         if(Objects.requireNonNull(passwd.getText()).toString().isEmpty()) {
-            db.insertUser(Objects.requireNonNull(name.getText()).toString(), Objects.requireNonNull(surname.getText()).toString(), Objects.requireNonNull(username.getText()).toString(), null, null, null, currency);
+            db.insertUser(Objects.requireNonNull(name.getText()).toString(), Objects.requireNonNull(surname.getText()).toString(), Objects.requireNonNull(username.getText()).toString(), null, currency);
         }
         else
-            db.insertUser(Objects.requireNonNull(name.getText()).toString(), Objects.requireNonNull(surname.getText()).toString(), Objects.requireNonNull(username.getText()).toString(), passwd.getText().toString(),null, null, currency);
+            db.insertUser(Objects.requireNonNull(name.getText()).toString(), Objects.requireNonNull(surname.getText()).toString(), Objects.requireNonNull(username.getText()).toString(), passwd.getText().toString(), currency);
         db.close();
     }
 

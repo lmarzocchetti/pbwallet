@@ -23,6 +23,10 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * Activity for the creation of the statistics page, comparison between two months and
+ * drawing of the graph of the last six months
+ */
 public class StatsActivity extends AppCompatActivity {
     TextView name, mese1, mese2, entrata1, entrata2, uscita1, uscita2, percentuale1, textpercent, date1, date2, date3, date4, date5, date6, cashdate1, cashdate2, cashdate3, cashdate4, cashdate5, cashdate6;
     AutoCompleteTextView fund_switch1,fund_switch2;
@@ -38,6 +42,10 @@ public class StatsActivity extends AppCompatActivity {
     Double moneypos1, moneyneg1, moneypos2, moneyneg2;
     BottomNavigationView navbar;
 
+    /**
+     * Initialize attributes from this class, set their own listener and call methods to populate them
+     * @param savedInstanceState saved state for create this activity, in this application is NULL
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +111,7 @@ public class StatsActivity extends AppCompatActivity {
         navbar.setOnNavigationItemSelectedListener(navigationlistener);
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -122,6 +131,9 @@ public class StatsActivity extends AppCompatActivity {
         percent();
     }
 
+    /**
+     * Listener for navigation bar
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener navigationlistener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -164,6 +176,9 @@ public class StatsActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     * Switch listener to view the percentage of expenses and earnings
+     */
     private SwitchMaterial.OnCheckedChangeListener listener_switch =
             new SwitchMaterial.OnCheckedChangeListener(){
                 @Override
@@ -173,6 +188,9 @@ public class StatsActivity extends AppCompatActivity {
             };
 
 
+    /**
+     * Switch listener for the choice of the first month
+     */
     private AdapterView.OnItemClickListener switch_listener =
             new AdapterView.OnItemClickListener() {
                 @Override
@@ -187,6 +205,9 @@ public class StatsActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     * Switch listener for the choice of the second month
+     */
     private AdapterView.OnItemClickListener switch_listener2 =
             new AdapterView.OnItemClickListener() {
                 @Override
@@ -201,16 +222,26 @@ public class StatsActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     * Method for reset the TextView earnings and expenses for first month
+     */
     private void resetTrans() {
        entrata1.setText("");
        uscita1.setText("");
     }
 
+    /**
+     * Method for reset the TextView earnings and expenses for second month
+     */
     private void resetTrans2() {
         entrata2.setText("");
         uscita2.setText("");
     }
 
+    /**
+     * Method for the population of the switches of the months,
+     * drawing of the graph
+     */
     @SuppressLint("SetTextI18n")
     private void populateMonths(){
         DatabaseBeReader db = new DatabaseBeReader(this);
@@ -309,6 +340,9 @@ public class StatsActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Method for calculation of the percentage
+     */
     private void percent(){
         if(money1 != null && money2 != null){
             if(switchpercent.isChecked()){
@@ -360,6 +394,9 @@ public class StatsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method for calculation of earnings and expenses for first month
+     */
     @SuppressLint("SetTextI18n")
     private void populateTrans() {
         DatabaseBeReader db = new DatabaseBeReader(this);
@@ -383,6 +420,9 @@ public class StatsActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Method for calculation of earnings and expenses for second month
+     */
     @SuppressLint("SetTextI18n")
     private void populateTrans2(){
         DatabaseBeReader db = new DatabaseBeReader(this);
@@ -406,7 +446,9 @@ public class StatsActivity extends AppCompatActivity {
         db.close();
     }
 
-
+    /**
+     * Method that accesses the database and takes name and surname
+     */
     public void changeNameandSur(){
         String nameandsur = null;
         DatabaseBeReader db = new DatabaseBeReader(this);
@@ -418,6 +460,9 @@ public class StatsActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Method for the population of the first switch
+     */
     private void populateFundMenu() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         fund_list = new ArrayList<>();
@@ -455,6 +500,9 @@ public class StatsActivity extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Method for the population of the second switch
+     */
     private void populateFundMenu2() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         fund_list2 = new ArrayList<>();

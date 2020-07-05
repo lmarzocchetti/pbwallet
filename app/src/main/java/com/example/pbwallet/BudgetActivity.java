@@ -25,7 +25,9 @@ public class BudgetActivity extends AppCompatActivity {
     Double cash, bound;
     CustomAdapter1 adapter1;
 
-    /** This method initializes everything */
+    /** This method initializes everything
+     * @param savedInstanceState saved state for create this activity, in this application is NULL
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
