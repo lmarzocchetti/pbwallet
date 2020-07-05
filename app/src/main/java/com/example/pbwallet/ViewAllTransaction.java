@@ -8,11 +8,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Activity for visualize all the transaction in general, with money, date, wallet's reference
+ * and the reason.
+ */
 public class ViewAllTransaction extends AppCompatActivity {
     String carddate, type;
     Double totalmoney;
     CustomAdapter adapter;
 
+    /**
+     * Call the populatealltransactions method.
+     * @param savedInstanceState saved state for create this activity, in this application is NULL.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +29,11 @@ public class ViewAllTransaction extends AppCompatActivity {
         populatealltransactions();
     }
 
+    /**
+     * Open the database and retrieve all transaction, add them to a new ElementoLista
+     * in a LinkedList of ElementoLista, and create and initialize the new CustomAdapter
+     * with this list, finally close the database.
+     */
     public void populatealltransactions(){
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
