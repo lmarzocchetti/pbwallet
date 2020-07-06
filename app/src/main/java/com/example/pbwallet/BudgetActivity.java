@@ -23,7 +23,7 @@ public class BudgetActivity extends AppCompatActivity {
     String nameType, nameSubtype, date;
     FloatingActionButton add_budget;
     Double cash, bound;
-    CustomAdapter1 adapter1;
+    BudgetAdapter budgetadapter;
 
     /** This method initializes everything
      * @param savedInstanceState saved state for create this activity, in this application is NULL
@@ -33,7 +33,7 @@ public class BudgetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
 
-        populatedallbudget();
+        populateAllBudget();
 
         navbar = findViewById(R.id.nav_bar);
         navbar.setSelectedItemId(R.id.nav_budget);
@@ -51,7 +51,7 @@ public class BudgetActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        populatedallbudget();
+        populateAllBudget();
         navbar.setSelectedItemId(R.id.nav_budget);
     }
 
@@ -117,29 +117,29 @@ public class BudgetActivity extends AppCompatActivity {
             };
 
     /** This method populates the screen with all the budgets currently in the database*/
-    private void populatedallbudget(){
+    private void populateAllBudget(){
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
         Cursor cur = db.querySubtypeByBudget();
         Cursor cur2 = db.queryBudgetAsc();
         ListView listview = findViewById(R.id.listview1);
-        List<ElementoLista1> list = new LinkedList<>();
+        List<BudgetElement> list = new LinkedList<>();
         if(cur.moveToFirst() && cur2.moveToFirst()){
             do {
                 nameSubtype = cur.getString(cur.getColumnIndex("name"));
                 cash = cur2.getDouble(cur2.getColumnIndex("money"));
                 bound = cur2.getDouble(cur2.getColumnIndex("bound"));
                 date = cur2.getString(cur2.getColumnIndex("date"));
-                int ciao = cur.getInt(cur.getColumnIndex("idtype"));
-                Cursor cur1 = db.queryTypeBySubtype(ciao);
+                int idtype = cur.getInt(cur.getColumnIndex("idtype"));
+                Cursor cur1 = db.queryTypeBySubtype(idtype);
                 if(cur1.moveToFirst()){
                     nameType = cur1.getString(cur1.getColumnIndex("name"));
                 }
-                list.add(new ElementoLista1(nameType,nameSubtype,cash.toString(),bound.toString(), date));
+                list.add(new BudgetElement(nameType,nameSubtype,cash.toString(),bound.toString(), date));
             }while(cur.moveToNext() && cur2.moveToNext());
         }
-        adapter1 = new CustomAdapter1(this, R.layout.relativelayout1, list);
-        listview.setAdapter(adapter1);
+        budgetadapter = new BudgetAdapter(this, R.layout.relativelayout_budget, list);
+        listview.setAdapter(budgetadapter);
         db.close();
     }
 }

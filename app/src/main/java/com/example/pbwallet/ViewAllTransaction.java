@@ -15,7 +15,7 @@ import java.util.List;
 public class ViewAllTransaction extends AppCompatActivity {
     String carddate, type;
     Double totalmoney;
-    CustomAdapter adapter;
+    TransactionAdapter adapter;
 
     /**
      * Call the populatealltransactions method.
@@ -30,8 +30,8 @@ public class ViewAllTransaction extends AppCompatActivity {
     }
 
     /**
-     * Open the database and retrieve all transaction, add them to a new ElementoLista
-     * in a LinkedList of ElementoLista, and create and initialize the new CustomAdapter
+     * Open the database and retrieve all transaction, add them to a new TransactionElement
+     * in a LinkedList of TransactionElement, and create and initialize the new TransactionAdapter
      * with this list, finally close the database.
      */
     public void populatealltransactions(){
@@ -41,16 +41,16 @@ public class ViewAllTransaction extends AppCompatActivity {
         Cursor cur1 = db.queryUsCard();
         Cursor cur2 = db.querySubtypeFull();
         ListView listview = findViewById(R.id.listview);
-        List<ElementoLista> list = new LinkedList<>();
+        List<TransactionElement> list = new LinkedList<>();
         if(cur.moveToFirst() && cur1.moveToFirst() && cur2.moveToFirst()) {
             do {
                 carddate = (cur1.getString(cur1.getColumnIndex("uscard")) + "\n" + (cur.getString(cur.getColumnIndex("date"))).substring(0, 10));
                 totalmoney = cur.getDouble(cur.getColumnIndex("money"));
                 type = cur2.getString(cur2.getColumnIndex("name"));
-                list.add(new ElementoLista(carddate, totalmoney.toString(), type));
+                list.add(new TransactionElement(carddate, totalmoney.toString(), type));
             }while (cur.moveToNext() && cur1.moveToNext() && cur2.moveToNext());
         }
-        adapter = new CustomAdapter(this, R.layout.relativelayout, list);
+        adapter = new TransactionAdapter(this, R.layout.relativelayout_transaction, list);
         listview.setAdapter(adapter);
         db.close();
     }

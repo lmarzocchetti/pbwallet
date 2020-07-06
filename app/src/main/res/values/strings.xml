@@ -41,9 +41,9 @@
     <string name="sterlina">£</string>
     <string name="your_stats">Your Stats</string>
     <string name="todo">TODO</string>
-    <string name="entrata">Entrata</string>
-    <string name="uscita">Uscita</string>
-    <string name="percentuale">Percentuale</string>
+    <string name="entrata">Earnings</string>
+    <string name="uscita">Expenses</string>
+    <string name="percentuale">Percentage</string>
     <string name="last_5_transactions">Last 5 Transactions</string>
     <string name="your_total_transactions">Your Total Transactions</string>
 </resources>

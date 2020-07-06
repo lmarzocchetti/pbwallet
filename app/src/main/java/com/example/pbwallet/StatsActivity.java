@@ -22,21 +22,25 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 
 /**
  * Activity for the creation of the statistics page, comparison between two months and
  * drawing of the graph of the last six months
  */
 public class StatsActivity extends AppCompatActivity {
-    TextView name, mese1, mese2, entrata1, entrata2, uscita1, uscita2, percentuale1, textpercent, date1, date2, date3, date4, date5, date6, cashdate1, cashdate2, cashdate3, cashdate4, cashdate5, cashdate6;
+    TextView name, month1, month2, earning1, earning2, expense1, expense2, percentage, text_percentage, date1, date2, date3, date4, date5, date6, cash1, cash2, cash3, cash4, cash5, cash6;
     AutoCompleteTextView fund_switch1,fund_switch2;
-    ImageView circle1, circle2, circle3, circle4 , cirlce5, circle6;
+    ImageView circle1, circle2, circle3, circle4 , circle5, circle6;
     String selected, selected2;
     ArrayList<String> fund_list, fund_list2;
-    ArrayList<String> As, Am;
-    ArrayList<TextView> Atd, Acd;
-    ArrayList<Double> Amc, Amaxc, Atestmax;
-    ArrayList<ImageView> Acircle;
+    ArrayList<String> A_switchdate, A_month;
+    ArrayList<TextView> A_textdate, A_textcash;
+    ArrayList<Double> A_monthcash;
+    ArrayList<Double> A_maxcash;
+    ArrayList<ImageView> A_circle;
     SwitchMaterial switchpercent;
     Double money1, money2;
     Double moneypos1, moneyneg1, moneypos2, moneyneg2;
@@ -49,41 +53,41 @@ public class StatsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.stats);
+        setContentView(R.layout.activity_stats);
         name = findViewById(R.id.nameandsurname);
-        mese1 = findViewById(R.id.mese1);
-        mese2 = findViewById(R.id.mese2);
-        entrata1 = findViewById(R.id.entrata1);
-        entrata2 = findViewById(R.id.entrata2);
-        uscita1 = findViewById(R.id.uscita1);
-        uscita2 = findViewById(R.id.uscita2);
-        textpercent  = findViewById(R.id.textView5_1);
-        percentuale1 = findViewById(R.id.percentuale1);
+        month1 = findViewById(R.id.mese1);
+        month2 = findViewById(R.id.mese2);
+        earning1 = findViewById(R.id.entrata1);
+        earning2 = findViewById(R.id.entrata2);
+        expense1 = findViewById(R.id.uscita1);
+        expense2 = findViewById(R.id.uscita2);
+        text_percentage = findViewById(R.id.textView5_1);
+        percentage = findViewById(R.id.percentuale1);
         fund_switch1 = findViewById(R.id.fund_menu2);
         fund_switch2 = findViewById(R.id.fund_menu1);
         switchpercent = findViewById(R.id.switchperc);
-        Atd = new ArrayList<>();
-        Acd = new ArrayList<>();
-        Acircle = new ArrayList<>();
-        Atd.add(date1 = findViewById(R.id.date1));
-        Atd.add(date2 = findViewById(R.id.date2));
-        Atd.add(date3 = findViewById(R.id.date3));
-        Atd.add(date4 = findViewById(R.id.date4));
-        Atd.add(date5 = findViewById(R.id.date5));
-        Atd.add(date6 = findViewById(R.id.date6));
-        Acd.add(cashdate1 = findViewById(R.id.cashdate1));
-        Acd.add(cashdate2 = findViewById(R.id.cashdate2));
-        Acd.add(cashdate3 = findViewById(R.id.cashdate3));
-        Acd.add(cashdate4 = findViewById(R.id.cashdate4));
-        Acd.add(cashdate5 = findViewById(R.id.cashdate5));
-        Acd.add(cashdate6 = findViewById(R.id.cashdate6));
-        Acircle.add(circle1 = findViewById(R.id.circle1));
-        Acircle.add(circle2 = findViewById(R.id.circle2));
-        Acircle.add(circle3 = findViewById(R.id.circle3));
-        Acircle.add(circle4 = findViewById(R.id.circle4));
-        Acircle.add(cirlce5 = findViewById(R.id.circle5));
-        Acircle.add(circle6 = findViewById(R.id.circle6));
-        for(ImageView i : Acircle){
+        A_textdate = new ArrayList<>();
+        A_textcash = new ArrayList<>();
+        A_circle = new ArrayList<>();
+        A_textdate.add(date1 = findViewById(R.id.date1));
+        A_textdate.add(date2 = findViewById(R.id.date2));
+        A_textdate.add(date3 = findViewById(R.id.date3));
+        A_textdate.add(date4 = findViewById(R.id.date4));
+        A_textdate.add(date5 = findViewById(R.id.date5));
+        A_textdate.add(date6 = findViewById(R.id.date6));
+        A_textcash.add(cash1 = findViewById(R.id.cashdate1));
+        A_textcash.add(cash2 = findViewById(R.id.cashdate2));
+        A_textcash.add(cash3 = findViewById(R.id.cashdate3));
+        A_textcash.add(cash4 = findViewById(R.id.cashdate4));
+        A_textcash.add(cash5 = findViewById(R.id.cashdate5));
+        A_textcash.add(cash6 = findViewById(R.id.cashdate6));
+        A_circle.add(circle1 = findViewById(R.id.circle1));
+        A_circle.add(circle2 = findViewById(R.id.circle2));
+        A_circle.add(circle3 = findViewById(R.id.circle3));
+        A_circle.add(circle4 = findViewById(R.id.circle4));
+        A_circle.add(circle5 = findViewById(R.id.circle5));
+        A_circle.add(circle6 = findViewById(R.id.circle6));
+        for(ImageView i : A_circle){
             i.setVisibility(View.INVISIBLE);
         }
         money1 = null;
@@ -204,7 +208,7 @@ public class StatsActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     if(!fund_list.get(i).equals(selected)) {
                         selected = fund_list.get(i);
-                        mese1.setText(selected);
+                        month1.setText(selected);
                         resetTrans();
                         populateTrans();
                         percent();
@@ -221,7 +225,7 @@ public class StatsActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     if(!fund_list2.get(i).equals(selected2)) {
                         selected2 = fund_list2.get(i);
-                        mese2.setText(selected2);
+                        month2.setText(selected2);
                         resetTrans2();
                         populateTrans2();
                         percent();
@@ -233,16 +237,16 @@ public class StatsActivity extends AppCompatActivity {
      * Method for reset the TextView earnings and expenses for first month
      */
     private void resetTrans() {
-       entrata1.setText("");
-       uscita1.setText("");
+        earning1.setText("");
+        expense1.setText("");
     }
 
     /**
      * Method for reset the TextView earnings and expenses for second month
      */
     private void resetTrans2() {
-        entrata2.setText("");
-        uscita2.setText("");
+        earning2.setText("");
+        expense2.setText("");
     }
 
     /**
@@ -254,16 +258,15 @@ public class StatsActivity extends AppCompatActivity {
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
         int j = 0;
-        Am = new ArrayList<>();
-        Amc = new ArrayList<>();
-        Atestmax = new ArrayList<>();
+        A_month = new ArrayList<>();
+        A_monthcash = new ArrayList<>();
         boolean esit = false;
         Cursor cur = db.queryTransDist();
         if(cur.moveToFirst()) {
             do {
                 String ins = cur.getString(cur.getColumnIndex("date"));
                 ins = ins.substring(0,7);
-                for(String i : Am){
+                for(String i : A_month){
                     if(i.equals(ins)) {
                         esit = true;
                         break;
@@ -271,75 +274,58 @@ public class StatsActivity extends AppCompatActivity {
                     esit = false;
                 }
                 if(!esit) {
-                    Am.add(ins);
+                    A_month.add(ins);
                     j++;
                 }
             } while(cur.moveToNext() && j<6);
         }
-        for(int i = Am.size()-1, h = 0; i >= 0; i--,h++){
-            Atd.get(h).setText(Am.get(i));
+        for(int i = A_month.size()-1, h = 0; i >= 0; i--,h++){
+            A_textdate.get(h).setText(A_month.get(i));
         }
         double cash;
-        for(int i = 0; i < Am.size(); i++){
+        for(int i = 0; i < A_month.size(); i++){
             cash = 0;
-            cur = db.queryTransDate("date", Am.get(i));
+            cur = db.queryTransDate("date", A_month.get(i));
             if(cur.moveToFirst()){
                 do{
                     cash += cur.getDouble(cur.getColumnIndex("money"));
                 }while(cur.moveToNext());
             }
-            Amc.add(cash);
+            A_monthcash.add(cash);
         }
-        Atestmax.addAll(Amc);
-        Amaxc = new ArrayList<>();
-        int indice = 0;
-        Double max = 0.0;
-        esit = false;
-        for(int l = 0; l < Am.size(); l++) {
-            for (int i = 0; i < Atestmax.size(); i++) {
-                if (i == 0) {
-                    max = Atestmax.get(i);
-                    indice = i;
-                } else {
-                    if (max <= Atestmax.get(i)) {
-                        max = Atestmax.get(i);
-                        indice = i;
-                    }
-                }
+
+        A_maxcash = new ArrayList<>();
+        A_maxcash.addAll(A_monthcash);
+        Collections.sort(A_maxcash, new Comparator<Double>() {
+            @Override
+            public int compare(Double aDouble, Double t1) {
+                return t1.compareTo(aDouble);
             }
-            for(int i = 0; i < Amaxc.size(); i++) {
-                if(Amaxc.get(i).equals(max)){
-                    esit = true;
-                    break;
-                }
-            }
-            if(!esit)
-                Amaxc.add(max);
-            esit = false;
-            Atestmax.remove(indice);
-        }
+        });
+        LinkedHashSet<Double> A_Linked = new LinkedHashSet<>(A_maxcash);
+        A_maxcash = new ArrayList<>(A_Linked);
 
         int bottom = 90;
         RelativeLayout.LayoutParams params, params1, params2;
-        for(int i = Amaxc.size()-1, h=0; i >= 0; i--, h++){
-            Acd.get(h).setText(Amaxc.get(i).toString()+HomeActivity.currency);
-            params = (RelativeLayout.LayoutParams) Acd.get(h).getLayoutParams();
+        for(int i = A_maxcash.size()-1, h=0; i >= 0; i--, h++){
+            A_textcash.get(h).setText(A_maxcash.get(i).toString()+HomeActivity.currency);
+            params = (RelativeLayout.LayoutParams) A_textcash.get(h).getLayoutParams();
             params.setMargins(0, 0, 0, bottom);
-            Acd.get(h).setLayoutParams(params);
+            A_textcash.get(h).setLayoutParams(params);
             bottom += 75;
         }
 
-        for(int i = 0; i < Amc.size(); i++){
-            for(int c = 0; c < Amaxc.size(); c++) {
-                if(Amc.get(i).equals(Amaxc.get(c))){
-                    params = (RelativeLayout.LayoutParams) Acd.get(Amaxc.size()-c-1).getLayoutParams();
-                    params1 = (RelativeLayout.LayoutParams) Atd.get(Amc.size()-i-1).getLayoutParams();
-                    params2 = (RelativeLayout.LayoutParams) Acircle.get(i).getLayoutParams();
+        for(int i = 0; i < A_monthcash.size(); i++){
+            for(int c = 0; c < A_maxcash.size(); c++) {
+                if(A_monthcash.get(i).equals(A_maxcash.get(c))){
+                    params = (RelativeLayout.LayoutParams) A_textcash.get(A_maxcash.size()-c-1).getLayoutParams();
+                    params1 = (RelativeLayout.LayoutParams) A_textdate.get(A_monthcash.size()-i-1).getLayoutParams();
+                    params2 = (RelativeLayout.LayoutParams) A_circle.get(i).getLayoutParams();
                     int marginBottom = params.bottomMargin;
                     int startMargin = params1.getMarginStart()+25;
                     params2.setMargins(startMargin,0,0,marginBottom);
-                    Acircle.get(i).setLayoutParams(params2);
-                    Acircle.get(i).setVisibility(View.VISIBLE);
+                    A_circle.get(i).setLayoutParams(params2);
+                    A_circle.get(i).setVisibility(View.VISIBLE);
                     break;
                 }
             }
@@ -354,17 +340,17 @@ public class StatsActivity extends AppCompatActivity {
         if(money1 != null && money2 != null){
             if(switchpercent.isChecked()){
                 String strmoney;
-                textpercent.setText("Percentuale\nGuadagni");
+                text_percentage.setText("Earnings\nPercentage");
                 double money;
                 if(moneypos2 == 0){
-                    percentuale1.setText("0.0 %");
+                    percentage.setText("0.0 %");
                 }
                 else if(moneypos1 == 0 && moneypos2 != 0){
                     strmoney = moneypos2 +" %";
-                    percentuale1.setText(strmoney);
+                    percentage.setText(strmoney);
                 }
                 else if(moneypos2.equals(moneypos1)){
-                    percentuale1.setText("0.0 %");
+                    percentage.setText("0.0 %");
                 }
                 else {
                     DecimalFormat bigd = new DecimalFormat("#.0");
@@ -372,22 +358,22 @@ public class StatsActivity extends AppCompatActivity {
                     money *= 100;
                     money = money - 100;
                     strmoney = bigd.format(money) + " %";
-                    percentuale1.setText(strmoney);
+                    percentage.setText(strmoney);
                 }
             }
             else{
                 String strmoney;
-                textpercent.setText("Percentuale\nSpesi");
+                text_percentage.setText("Expenses\nPercentage");
                 double money;
                 if(moneyneg2 == 0){
-                    percentuale1.setText("0.0 %");
+                    percentage.setText("0.0 %");
                 }
                 else if(moneyneg1 == 0 && moneyneg2 != 0){
                     strmoney = moneyneg2 +" %";
-                    percentuale1.setText(strmoney);
+                    percentage.setText(strmoney);
                 }
                 else if(moneyneg2.equals(moneyneg1)){
-                    percentuale1.setText("0.0 %");
+                    percentage.setText("0.0 %");
                 }
                 else {
                     DecimalFormat bigd = new DecimalFormat("#.0");
@@ -395,7 +381,7 @@ public class StatsActivity extends AppCompatActivity {
                     money *= 100;
                     money = money - 100;
                     strmoney = bigd.format(money) + " %";
-                    percentuale1.setText(strmoney);
+                    percentage.setText(strmoney);
                 }
             }
         }
@@ -421,8 +407,8 @@ public class StatsActivity extends AppCompatActivity {
                 }
             }while(cur.moveToNext());
         }
-        entrata1.setText(moneypos1.toString()+" "+HomeActivity.currency);
-        uscita1.setText(moneyneg1.toString()+" "+HomeActivity.currency);
+        earning1.setText(moneypos1.toString()+" "+HomeActivity.currency);
+        expense1.setText(moneyneg1.toString()+" "+HomeActivity.currency);
         money1 = moneypos1 - moneyneg1;
         db.close();
     }
@@ -447,8 +433,8 @@ public class StatsActivity extends AppCompatActivity {
                 }
             }while(cur.moveToNext());
         }
-        entrata2.setText(moneypos2.toString()+" "+HomeActivity.currency);
-        uscita2.setText(moneyneg2.toString()+" "+HomeActivity.currency);
+        earning2.setText(moneypos2.toString()+" "+HomeActivity.currency);
+        expense2.setText(moneyneg2.toString()+" "+HomeActivity.currency);
         money2 = moneypos2 - moneyneg2;
         db.close();
     }
@@ -474,7 +460,7 @@ public class StatsActivity extends AppCompatActivity {
         DatabaseBeReader db = new DatabaseBeReader(this);
         fund_list = new ArrayList<>();
         boolean esit = false;
-        As = new ArrayList<>();
+        A_switchdate = new ArrayList<>();
         db.open();
 
         Cursor cur = db.queryTransDist();
@@ -482,7 +468,7 @@ public class StatsActivity extends AppCompatActivity {
             do {
                 String ins = cur.getString(cur.getColumnIndex("date"));
                 ins = ins.substring(0,7);
-                for(String i : As){
+                for(String i : A_switchdate){
                     if(i.equals(ins)) {
                         esit = true;
                         break;
@@ -491,7 +477,7 @@ public class StatsActivity extends AppCompatActivity {
                 }
                 if(!esit) {
                     fund_list.add(ins);
-                    As.add(ins);
+                    A_switchdate.add(ins);
                 }
             } while(cur.moveToNext());
         }
@@ -502,7 +488,7 @@ public class StatsActivity extends AppCompatActivity {
         if(!fund_list.isEmpty()) {
             fund_switch1.setText(fund_list.get(0), false);
             selected = fund_list.get(0);
-            mese1.setText(selected);
+            month1.setText(selected);
         }
         db.close();
     }
@@ -514,7 +500,7 @@ public class StatsActivity extends AppCompatActivity {
         DatabaseBeReader db = new DatabaseBeReader(this);
         fund_list2 = new ArrayList<>();
         boolean esit = false;
-        As = new ArrayList<>();
+        A_switchdate = new ArrayList<>();
         db.open();
 
         Cursor cur = db.queryTransDist();
@@ -522,7 +508,7 @@ public class StatsActivity extends AppCompatActivity {
             do {
                 String ins = cur.getString(cur.getColumnIndex("date"));
                 ins = ins.substring(0,7);
-                for(String i : As){
+                for(String i : A_switchdate){
                     if(i.equals(ins)) {
                         esit = true;
                         break;
@@ -531,7 +517,7 @@ public class StatsActivity extends AppCompatActivity {
                 }
                 if(!esit) {
                     fund_list2.add(ins);
-                    As.add(ins);
+                    A_switchdate.add(ins);
                 }
             } while(cur.moveToNext());
         }
@@ -542,7 +528,7 @@ public class StatsActivity extends AppCompatActivity {
         if(!fund_list2.isEmpty()) {
             fund_switch2.setText(fund_list2.get(0), false);
             selected2 = fund_list2.get(0);
-            mese2.setText(selected2);
+            month2.setText(selected2);
         }
         db.close();
     }

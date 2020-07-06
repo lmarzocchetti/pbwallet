@@ -25,10 +25,12 @@ import java.util.ArrayList;
  * @see ViewAllTransaction
  */
 public class HomeActivity extends AppCompatActivity {
-    TextView name, cash, table1, table2, table3, table4, table5, table1_1, table2_1, table3_1, table4_1, table5_1, table1_2, table2_2, table3_2, table4_2, table5_2;
+    TextView name, totalfunds, cash1, cash2, cash3, cash4, cash5;
+    TextView card1, card2, card3, card4, card5;
     ImageView bar1,bar2,bar3,bar4;
-    ArrayList<TextView> aT, aT1, aT2;
-    ArrayList<ImageView> aI;
+    TextView subtype1, subtype2, subtype3, subtype4, subtype5;
+    ArrayList<TextView> acash, acard, asubtype;
+    ArrayList<ImageView> abar;
     static String currency;
     BottomNavigationView navbar;
     Button alltrans;
@@ -40,55 +42,35 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.activity_home);
         name = findViewById(R.id.nameandsurname);
-        cash = findViewById(R.id.totalfunds);
-        table1 = findViewById(R.id.textView1);
-        table2 = findViewById(R.id.textView2);
-        table3 = findViewById(R.id.textView3);
-        table4 = findViewById(R.id.textView4);
-        table5 = findViewById(R.id.textView5);
-        table1_1 = findViewById(R.id.textView1_1);
-        table2_1 = findViewById(R.id.textView2_1);
-        table3_1 = findViewById(R.id.textView3_1);
-        table4_1 = findViewById(R.id.textView4_1);
-        table5_1 = findViewById(R.id.textView5_1);
-        table1_2 = findViewById(R.id.textView1_2);
-        table2_2 = findViewById(R.id.textView2_2);
-        table3_2 = findViewById(R.id.textView3_2);
-        table4_2 = findViewById(R.id.textView4_2);
-        table5_2 = findViewById(R.id.textView5_2);
-        aT = new ArrayList<>();
-        aT.add(table1);
-        aT.add(table2);
-        aT.add(table3);
-        aT.add(table4);
-        aT.add(table5);
-        aT1 = new ArrayList<>();
-        aT1.add(table1_1);
-        aT1.add(table2_1);
-        aT1.add(table3_1);
-        aT1.add(table4_1);
-        aT1.add(table5_1);
-        aT2 = new ArrayList<>();
-        aT2.add(table1_2);
-        aT2.add(table2_2);
-        aT2.add(table3_2);
-        aT2.add(table4_2);
-        aT2.add(table5_2);
-        bar1 = findViewById(R.id.bar1);
-        bar2 = findViewById(R.id.bar2);
-        bar3 = findViewById(R.id.bar3);
-        bar4 = findViewById(R.id.bar4);
-        aI = new ArrayList<>();
-        aI.add(bar1);
-        aI.add(bar2);
-        aI.add(bar3);
-        aI.add(bar4);
-        bar1.setVisibility(View.INVISIBLE);
-        bar2.setVisibility(View.INVISIBLE);
-        bar3.setVisibility(View.INVISIBLE);
-        bar4.setVisibility(View.INVISIBLE);
+        totalfunds = findViewById(R.id.totalfunds);
+        acash = new ArrayList<>();
+        acash.add(cash1 = findViewById(R.id.textView1));
+        acash.add(cash2 = findViewById(R.id.textView2));
+        acash.add(cash3 = findViewById(R.id.textView3));
+        acash.add(cash4 = findViewById(R.id.textView4));
+        acash.add(cash5 = findViewById(R.id.textView5));
+        acard = new ArrayList<>();
+        acard.add(card1 = findViewById(R.id.textView1_1));
+        acard.add(card2 = findViewById(R.id.textView2_1));
+        acard.add(card3 = findViewById(R.id.textView3_1));
+        acard.add(card4 = findViewById(R.id.textView4_1));
+        acard.add(card5 = findViewById(R.id.textView5_1));
+        asubtype = new ArrayList<>();
+        asubtype.add(subtype1 = findViewById(R.id.textView1_2));
+        asubtype.add(subtype2 = findViewById(R.id.textView2_2));
+        asubtype.add(subtype3 = findViewById(R.id.textView3_2));
+        asubtype.add(subtype4 = findViewById(R.id.textView4_2));
+        asubtype.add(subtype5 = findViewById(R.id.textView5_2));
+        abar = new ArrayList<>();
+        abar.add(bar1 = findViewById(R.id.bar1));
+        abar.add(bar2 = findViewById(R.id.bar2));
+        abar.add(bar3 = findViewById(R.id.bar3));
+        abar.add(bar4 = findViewById(R.id.bar4));
+        for(ImageView i : abar){
+            i.setVisibility(View.INVISIBLE);
+        }
 
         alltrans = findViewById(R.id.buttonalltrans);
         alltrans.setOnClickListener(all_trans_listener);
@@ -130,16 +112,16 @@ public class HomeActivity extends AppCompatActivity {
      * and set invisible the line separators
      */
     private void resetTrans() {
-        for(TextView t : aT) {
+        for(TextView t : acash) {
             t.setText("");
         }
-        for(TextView t : aT1) {
+        for(TextView t : acard) {
             t.setText("");
         }
-        for(TextView t : aT2) {
+        for(TextView t : asubtype) {
             t.setText("");
         }
-        for(ImageView t : aI) {
+        for(ImageView t : abar) {
             t.setVisibility(View.INVISIBLE);
         }
     }
@@ -163,13 +145,13 @@ public class HomeActivity extends AppCompatActivity {
             do {
                 totaltrans = cur.getDouble(cur.getColumnIndex("money"));
                 if(totaltrans > 0) {
-                    aT.get(i).setTextColor(ContextCompat.getColor(this, R.color.verde_cash));
+                    acash.get(i).setTextColor(ContextCompat.getColor(this, R.color.verde_cash));
                 }
                 else {
                     totaltrans = Math.abs(totaltrans);
-                    aT.get(i).setTextColor(ContextCompat.getColor(this, R.color.rosso_bordeaux));
+                    acash.get(i).setTextColor(ContextCompat.getColor(this, R.color.rosso_bordeaux));
                 }
-                aT.get(i).setText(totaltrans +" "+ currency);
+                acash.get(i).setText(totaltrans +" "+ currency);
                 System.out.println(totaltrans);
                 i++;
             } while(cur.moveToNext() && i < 5);
@@ -180,13 +162,13 @@ public class HomeActivity extends AppCompatActivity {
 
         if(cur.moveToFirst()) {
             do {
-                aT1.get(i).setText(cur.getString(cur.getColumnIndex("uscard")));
+                acard.get(i).setText(cur.getString(cur.getColumnIndex("uscard")));
                 i++;
             } while(cur.moveToNext() && i < 5);
         }
 
         for(int j = 0; j < i-1; j++) {
-            aI.get(j).setVisibility(View.VISIBLE);
+            abar.get(j).setVisibility(View.VISIBLE);
         }
 
         i = 0;
@@ -194,7 +176,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if(cur.moveToFirst()) {
             do {
-                aT2.get(i).setText(cur.getString(cur.getColumnIndex("name")));
+                asubtype.get(i).setText(cur.getString(cur.getColumnIndex("name")));
                 i++;
             } while(cur.moveToNext() && i < 5);
         }
@@ -230,7 +212,7 @@ public class HomeActivity extends AppCompatActivity {
 
         DecimalFormat df = new DecimalFormat("#.00");
         String strcash = Double.valueOf(df.format(totalcash)).toString()+" "+currency;
-        cash.setText(strcash);
+        totalfunds.setText(strcash);
     }
 
     /**
