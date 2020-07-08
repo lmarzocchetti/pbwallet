@@ -69,6 +69,7 @@ public class DatabaseBeReader {
         cv.put("username", username);
         cv.put("password", password);
         cv.put("currency", currency);
+      
         try {
             mDb.insertOrThrow("user", null, cv);
         } catch (SQLiteException e) {
@@ -88,6 +89,7 @@ public class DatabaseBeReader {
         cv.put("idcard",idcard);
         cv.put("uscard",uscard);
         cv.put("money",money);
+      
         try {
             mDb.insertOrThrow("card", null, cv);
         } catch (SQLiteException e) {
@@ -111,6 +113,7 @@ public class DatabaseBeReader {
         cv.put("idsubtype",idsubtype);
         cv.put("money",money);
         cv.put("date", date);
+
         try {
             mDb.insertOrThrow("trans", null, cv);
         } catch (SQLiteException e) {
@@ -153,6 +156,7 @@ public class DatabaseBeReader {
         cv.put("idsubtype",idsubtype);
         cv.put("idtype",idtype);
         cv.put("name",name);
+      
         try {
             mDb.insertOrThrow("subtype", null, cv);
         } catch (SQLiteException e) {
@@ -170,6 +174,7 @@ public class DatabaseBeReader {
         ContentValues cv = new ContentValues();
         cv.put("idtype",idtype);
         cv.put("name",name);
+
         try {
             mDb.insertOrThrow("type", null, cv);
         } catch (SQLiteException e) {
