@@ -20,7 +20,7 @@ public class SigninPanel extends Activity {
     TextInputEditText name, surname, passwd, passwdconfirm, username;
     Button enter;
     RadioGroup radiobutton;
-    String currency;
+    String currency = "";
 
     /**
      * Initialize attributes from this class, set their own listener.
@@ -53,11 +53,28 @@ public class SigninPanel extends Activity {
     }
 
     /**
+     * Method that create a toast if no radiobutton is checked.
+     */
+    private void emptyCurrency(){
+        Toast toast = Toast.makeText(this,"No currency chosen", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
+    /**
      * Control if all fields are empty or not.
      * @return true if all fields are not empty, false otherwise.
      */
     private boolean checkField(){
-        return !Objects.requireNonNull(name.getText()).toString().isEmpty() && !Objects.requireNonNull(surname.getText()).toString().isEmpty() && !Objects.requireNonNull(username.getText()).toString().isEmpty();
+        return !Objects.requireNonNull(name.getText()).toString().isEmpty() && !Objects.requireNonNull(surname.getText()).toString().isEmpty() && !Objects.requireNonNull(username.getText()).toString().isEmpty() && !currency.isEmpty();
+    }
+
+    /**
+     * Control if a radiobutton is checked or not.
+     * @return true if radiobutton is checked, false otherwise.
+     */
+    private boolean checkcurrency(){
+        return !currency.isEmpty();
     }
 
     /**
@@ -111,16 +128,18 @@ public class SigninPanel extends Activity {
                 public void onClick(View view) {
                     Intent homepage = new Intent(SigninPanel.this, HomeActivity.class);
                     if(checkLenPass()) {
-                        if(checkField()) {
-                            if (checkPass()) {
-                                save();
-                                startActivity(homepage);
-                                finish();
+                        if(checkcurrency()) {
+                            if (checkField()) {
+                                if (checkPass()) {
+                                    save();
+                                    startActivity(homepage);
+                                    finish();
+                                } else
+                                    wrongPasswd();
                             } else
-                                wrongPasswd();
-                        }
-                        else
-                            emptyField();
+                                emptyField();
+                        } else
+                            emptyCurrency();
                     }
                 }
             };

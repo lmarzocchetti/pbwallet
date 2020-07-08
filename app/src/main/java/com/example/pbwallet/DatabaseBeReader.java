@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 /**
  * This class manages all the queries and inserts and updates of the database
@@ -29,7 +30,12 @@ public class DatabaseBeReader {
      */
     public void open()
     {
-        mDb = mDbHelper.getWritableDatabase();
+        try {
+            mDb = mDbHelper.getWritableDatabase();
+        }
+        catch(SQLiteException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -55,7 +61,7 @@ public class DatabaseBeReader {
         cv.put("username",username);
         cv.put("password",password);
         cv.put("currency", currency);
-        mDb.insert("user",null,cv);
+        mDb.insertOrThrow("user",null,cv);
     }
 
     /**
@@ -69,7 +75,7 @@ public class DatabaseBeReader {
         cv.put("idcard",idcard);
         cv.put("uscard",uscard);
         cv.put("money",money);
-        mDb.insert("card",null,cv);
+        mDb.insertOrThrow("card",null,cv);
     }
 
        /**
@@ -87,7 +93,7 @@ public class DatabaseBeReader {
         cv.put("idsubtype",idsubtype);
         cv.put("money",money);
         cv.put("date", date);
-        mDb.insert("trans",null,cv);
+        mDb.insertOrThrow("trans",null,cv);
     }
 
     /**
@@ -119,7 +125,7 @@ public class DatabaseBeReader {
         cv.put("idsubtype",idsubtype);
         cv.put("idtype",idtype);
         cv.put("name",name);
-        mDb.insert("subtype",null,cv);
+        mDb.insertOrThrow("subtype",null,cv);
     }
 
     /**
@@ -131,7 +137,7 @@ public class DatabaseBeReader {
         ContentValues cv = new ContentValues();
         cv.put("idtype",idtype);
         cv.put("name",name);
-        mDb.insert("type",null,cv);
+        mDb.insertOrThrow("type",null,cv);
     }
 
     /**
