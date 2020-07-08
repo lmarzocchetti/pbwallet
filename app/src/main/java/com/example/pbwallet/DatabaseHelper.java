@@ -1,6 +1,7 @@
 package com.example.pbwallet;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -23,12 +24,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
-
     /**
      * This method executes SQL code for creating database tables
      */
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) throws SQLException {
         String create_table_user = "create table user("
                 + "name varchar(50) not null,"
                 + "surname varchar(30) not null,"

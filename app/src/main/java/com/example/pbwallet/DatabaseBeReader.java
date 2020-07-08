@@ -3,8 +3,10 @@ package com.example.pbwallet;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 /**
  * This class manages all the queries and inserts and updates of the database
@@ -13,7 +15,7 @@ public class DatabaseBeReader {
     SQLiteDatabase mDb;
     DatabaseHelper mDbHelper;
     Context mContext;
-    private static final String DB_NAME = "bereader_db";
+    static final String DB_NAME = "bereader_db";
     private static final int DB_VERSION = 1;
 
     /**
@@ -22,7 +24,12 @@ public class DatabaseBeReader {
      */
     public DatabaseBeReader(Context ctx) {
         mContext = ctx;
-        mDbHelper = new DatabaseHelper(ctx, DB_NAME, null, DB_VERSION);
+        try {
+            mDbHelper = new DatabaseHelper(ctx, DB_NAME, null, DB_VERSION);
+        }
+        catch (SQLException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+        }
     }
 
     /**
@@ -33,8 +40,9 @@ public class DatabaseBeReader {
         try {
             mDb = mDbHelper.getWritableDatabase();
         }
-        catch(SQLiteException e){
-            e.printStackTrace();
+        catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            throw new SQLiteException();
         }
     }
 
@@ -54,14 +62,20 @@ public class DatabaseBeReader {
      * @param password String indicating the password of the user
      * @param currency String indicating the currency chosen by the user
      */
-    public void insertUser(String name, String surname, String username, String password, String currency){
+    public void insertUser(String name, String surname, String username, String password, String currency) {
         ContentValues cv = new ContentValues();
-        cv.put("name",name);
-        cv.put("surname",surname);
-        cv.put("username",username);
-        cv.put("password",password);
+        cv.put("name", name);
+        cv.put("surname", surname);
+        cv.put("username", username);
+        cv.put("password", password);
         cv.put("currency", currency);
-        mDb.insertOrThrow("user",null,cv);
+      
+        try {
+            mDb.insertOrThrow("user", null, cv);
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            throw new SQLiteException();
+        }
     }
 
     /**
@@ -75,7 +89,13 @@ public class DatabaseBeReader {
         cv.put("idcard",idcard);
         cv.put("uscard",uscard);
         cv.put("money",money);
-        mDb.insertOrThrow("card",null,cv);
+      
+        try {
+            mDb.insertOrThrow("card", null, cv);
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            throw new SQLiteException();
+        }
     }
 
        /**
@@ -93,7 +113,13 @@ public class DatabaseBeReader {
         cv.put("idsubtype",idsubtype);
         cv.put("money",money);
         cv.put("date", date);
-        mDb.insertOrThrow("trans",null,cv);
+
+        try {
+            mDb.insertOrThrow("trans", null, cv);
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            throw new SQLiteException();
+        }
     }
 
     /**
@@ -101,8 +127,8 @@ public class DatabaseBeReader {
      *  @param idbudget Integer indicating the id of the budget
      *  @param bound double indicating the limit of the budget
      *  @param idsubtype Integer indicating the id of the subtype to which the budget is connected
-     * @param money double indicating the money of the budget
-     * @param date String indicating the budget end date
+     *  @param money double indicating the money of the budget
+     *  @param date String indicating the budget end date
      */
     public void insertBudget(Integer idbudget, double money ,double bound, String date ,Integer idsubtype){
         ContentValues cv = new ContentValues();
@@ -111,33 +137,50 @@ public class DatabaseBeReader {
         cv.put("bound",bound);
         cv.put("date", date);
         cv.put("idsubtype",idsubtype);
-        mDb.insert("budget", null, cv);
+        try {
+            mDb.insertOrThrow("budget", null, cv);
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            throw new SQLiteException();
+        }
     }
 
     /**
      *  This method inserts a tuple
      *  @param idsubtype Integer indicating the id of the subtype
-     * @param idtype Integer indicating the id of the type to which the subtype is connected
-     * @param name String indicating the name of the subtype
+     *  @param idtype Integer indicating the id of the type to which the subtype is connected
+     *  @param name String indicating the name of the subtype
      */
     public void insertSubtype(Integer idsubtype, Integer idtype, String name){
         ContentValues cv = new ContentValues();
         cv.put("idsubtype",idsubtype);
         cv.put("idtype",idtype);
         cv.put("name",name);
-        mDb.insertOrThrow("subtype",null,cv);
+      
+        try {
+            mDb.insertOrThrow("subtype", null, cv);
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            throw new SQLiteException();
+        }
     }
 
     /**
-     *  This method inserts a tuple
+     * This method inserts a tuple
      * @param idtype Integer indicating the id of the type
      * @param name String indicating the name of the type
      */
-    public void insertType(Integer idtype, String name){
+    public void insertType(Integer idtype, String name) {
         ContentValues cv = new ContentValues();
         cv.put("idtype",idtype);
         cv.put("name",name);
-        mDb.insertOrThrow("type",null,cv);
+
+        try {
+            mDb.insertOrThrow("type", null, cv);
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            throw new SQLiteException();
+        }
     }
 
     /**

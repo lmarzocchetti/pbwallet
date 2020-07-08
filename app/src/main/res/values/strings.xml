@@ -46,4 +46,5 @@
     <string name="percentuale">Percentage</string>
     <string name="last_5_transactions">Last 5 Transactions</string>
     <string name="your_total_transactions">Your Total Transactions</string>
+    <string name="log_in">Log-in</string>
 </resources>

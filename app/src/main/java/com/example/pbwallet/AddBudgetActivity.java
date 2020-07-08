@@ -1,12 +1,18 @@
 package com.example.pbwallet;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,9 +60,32 @@ public class AddBudgetActivity extends AppCompatActivity {
      */
     private void addBudget() {
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
 
-        db.insertBudget(getNewBudgetID(), 0, Double.parseDouble(Objects.requireNonNull(bound.getText()).toString()), java.time.LocalDate.now().plusMonths(1).toString(), getSubtypeID());
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
+
+        try {
+            db.insertBudget(getNewBudgetID(), 0, Double.parseDouble(Objects.requireNonNull(bound.getText()).toString()), java.time.LocalDate.now().plusMonths(1).toString(), getSubtypeID());
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.insertBudget(getNewBudgetID(), 0, Double.parseDouble(Objects.requireNonNull(bound.getText()).toString()), java.time.LocalDate.now().plusMonths(1).toString(), getSubtypeID());
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
 
         db.close();
     }
@@ -67,7 +96,19 @@ public class AddBudgetActivity extends AppCompatActivity {
      */
     private int getSubtypeID() {
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
 
         int ret = -1;
 
@@ -87,7 +128,19 @@ public class AddBudgetActivity extends AppCompatActivity {
      */
     private int getNewBudgetID() {
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
 
         int ret = -1;
 
@@ -110,7 +163,19 @@ public class AddBudgetActivity extends AppCompatActivity {
     private void populateSubtypeMenu() {
         DatabaseBeReader db = new DatabaseBeReader(this);
         subtype_list = new ArrayList<>();
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
 
         Cursor cur = db.queryOnlySubType();
 
@@ -125,6 +190,23 @@ public class AddBudgetActivity extends AppCompatActivity {
         subtype.setAdapter(adapter);
 
         db.close();
+    }
+
+    /**
+     * If this method is called, there is a serious problem with the database,
+     * so create a toast to notificate the user, delete all database and restart the app.
+     */
+    private void databaseError() {
+        Toast t = Toast.makeText(this, "Database error\nDeleting database...", Toast.LENGTH_SHORT);
+        t.setGravity(Gravity.CENTER, 0, 0);
+        t.show();
+        getApplicationContext().deleteDatabase(DatabaseBeReader.DB_NAME);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        }, 3000);
     }
 
     /**
