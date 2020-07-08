@@ -140,8 +140,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="30dp"
-        android:checkedButton="@id/radio_button_2">
+        android:layout_margin="30dp">
 
         <RadioButton
             android:id="@+id/radio_button_1"

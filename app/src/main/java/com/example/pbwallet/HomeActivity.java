@@ -75,6 +75,8 @@ public class HomeActivity extends AppCompatActivity {
         alltrans = findViewById(R.id.buttonalltrans);
         alltrans.setOnClickListener(all_trans_listener);
 
+        if(MainActivity.checkbudget)
+            controlBudget();
         changeCash();
         changeNameandSur();
         changeLastTrans();
@@ -138,6 +140,7 @@ public class HomeActivity extends AppCompatActivity {
 
         DatabaseBeReader db = new DatabaseBeReader(this);
         db.open();
+        //db.insertBudget(25,122,123,"2020-07-08",1);
 
         Cursor cur = db.queryLastTrans();
 
@@ -152,7 +155,6 @@ public class HomeActivity extends AppCompatActivity {
                     acash.get(i).setTextColor(ContextCompat.getColor(this, R.color.rosso_bordeaux));
                 }
                 acash.get(i).setText(totaltrans +" "+ currency);
-                System.out.println(totaltrans);
                 i++;
             } while(cur.moveToNext() && i < 5);
         }
@@ -213,6 +215,55 @@ public class HomeActivity extends AppCompatActivity {
         DecimalFormat df = new DecimalFormat("#.00");
         String strcash = Double.valueOf(df.format(totalcash)).toString()+" "+currency;
         totalfunds.setText(strcash);
+    }
+
+    /**
+     * Same method in LoginPanel. Control the elapsed budget in this day.
+     */
+    private void controlBudget() {
+        DatabaseBeReader db = new DatabaseBeReader(this);
+        db.open();
+
+        Cursor cur = db.queryBudgetFull();
+        String tmp, subtype;
+        double money, bound;
+
+        if(cur.moveToFirst()) {
+            do {
+                tmp = cur.getString(cur.getColumnIndex("date"));
+                money = cur.getDouble(cur.getColumnIndex("money"));
+                bound = cur.getDouble(cur.getColumnIndex("bound"));
+                subtype = retrieveSubtypeName(cur.getInt(cur.getColumnIndex("idsubtype")));
+                if(tmp.equals(java.time.LocalDate.now().toString())) {
+                    new Thread(new ShowNotification(subtype, money, bound, this)).start();
+                    db.deleteBudget(cur.getInt(cur.getColumnIndex("idbudget")));
+                }
+
+            } while(cur.moveToNext());
+        }
+        MainActivity.checkbudget = false;
+        db.close();
+    }
+
+
+    /**
+     * Call the Database to do a query of the subtype based on idsubtype and retrieve it's name as String.
+     * @param idsubtype the id of the subtype we want to retrieve it's name.
+     * @return the name relative to the idsubtype passed by param.
+     */
+    private String retrieveSubtypeName(int idsubtype) {
+        DatabaseBeReader db = new DatabaseBeReader(this);
+        db.open();
+
+        String rit = "";
+
+        Cursor cur = db.querySubtypeBySubtype(idsubtype);
+        if(cur.moveToFirst()) {
+            rit = cur.getString(cur.getColumnIndex("name"));
+        }
+
+        db.close();
+        return rit;
     }
 
     /**
