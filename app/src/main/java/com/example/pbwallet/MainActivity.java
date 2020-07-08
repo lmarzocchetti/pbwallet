@@ -12,6 +12,10 @@ import android.database.sqlite.SQLiteException;
 import android.media.tv.TvContract;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.Gravity;
+import android.widget.Toast;
 
 /**
  * The MainActivity of this App.
@@ -64,7 +68,19 @@ public class MainActivity extends AppCompatActivity {
      */
     private void controlBudget() {
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
 
         Cursor cur = db.queryBudgetFull();
         String tmp, subtype;
@@ -107,7 +123,19 @@ public class MainActivity extends AppCompatActivity {
      */
     private String retrieveSubtypeName(int idsubtype) {
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
 
         String rit = "";
 
@@ -119,4 +147,22 @@ public class MainActivity extends AppCompatActivity {
         db.close();
         return rit;
     }
+
+    /**
+     * If this method is called, there is a serious problem with the database,
+     * so create a toast to notificate the user, delete all database and restart the app.
+     */
+    private void databaseError() {
+        Toast t = Toast.makeText(this, "Database error\nDeleting database...", Toast.LENGTH_SHORT);
+        t.setGravity(Gravity.CENTER, 0, 0);
+        t.show();
+        getApplicationContext().deleteDatabase(DatabaseBeReader.DB_NAME);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        }, 3000);
+    }
+
 }

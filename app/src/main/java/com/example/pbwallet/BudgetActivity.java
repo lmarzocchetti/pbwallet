@@ -2,10 +2,15 @@ package com.example.pbwallet;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -119,7 +124,20 @@ public class BudgetActivity extends AppCompatActivity {
     /** This method populates the screen with all the budgets currently in the database*/
     private void populateAllBudget(){
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
+
         Cursor cur = db.querySubtypeByBudget();
         Cursor cur2 = db.queryBudgetAsc();
         ListView listview = findViewById(R.id.listview1);
@@ -141,5 +159,22 @@ public class BudgetActivity extends AppCompatActivity {
         budgetadapter = new BudgetAdapter(this, R.layout.relativelayout_budget, list);
         listview.setAdapter(budgetadapter);
         db.close();
+    }
+
+    /**
+     * If this method is called, there is a serious problem with the database,
+     * so create a toast to notificate the user, delete all database and restart the app.
+     */
+    private void databaseError() {
+        Toast t = Toast.makeText(this, "Database error\nDeleting database...", Toast.LENGTH_SHORT);
+        t.setGravity(Gravity.CENTER, 0, 0);
+        t.show();
+        getApplicationContext().deleteDatabase(DatabaseBeReader.DB_NAME);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        }, 3000);
     }
 }

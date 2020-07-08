@@ -3,7 +3,11 @@ package com.example.pbwallet;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -256,7 +261,20 @@ public class StatsActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void populateMonths(){
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
+
         int j = 0;
         A_month = new ArrayList<>();
         A_monthcash = new ArrayList<>();
@@ -393,7 +411,20 @@ public class StatsActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void populateTrans() {
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
+
         moneypos1 = 0.0; moneyneg1 = 0.0;
         Cursor cur = db.queryTransDate("date", selected);
         if(cur.moveToFirst()){
@@ -419,7 +450,20 @@ public class StatsActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void populateTrans2(){
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
+
         moneypos2 = 0.0; moneyneg2 = 0.0;
         Cursor cur = db.queryTransDate("date", selected2);
         if(cur.moveToFirst()){
@@ -445,7 +489,20 @@ public class StatsActivity extends AppCompatActivity {
     public void changeNameandSur(){
         String nameandsur = null;
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
+
         Cursor cur = db.queryUserFull();
         if(cur.moveToFirst())
             nameandsur = cur.getString(cur.getColumnIndex("name"))+" "+cur.getString(cur.getColumnIndex("surname"));
@@ -461,7 +518,19 @@ public class StatsActivity extends AppCompatActivity {
         fund_list = new ArrayList<>();
         boolean esit = false;
         A_switchdate = new ArrayList<>();
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
 
         Cursor cur = db.queryTransDist();
         if(cur.moveToFirst()) {
@@ -501,7 +570,19 @@ public class StatsActivity extends AppCompatActivity {
         fund_list2 = new ArrayList<>();
         boolean esit = false;
         A_switchdate = new ArrayList<>();
-        db.open();
+
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
 
         Cursor cur = db.queryTransDist();
         if(cur.moveToFirst()) {
@@ -531,5 +612,22 @@ public class StatsActivity extends AppCompatActivity {
             month2.setText(selected2);
         }
         db.close();
+    }
+
+    /**
+     * If this method is called, there is a serious problem with the database,
+     * so create a toast to notificate the user, delete all database and restart the app.
+     */
+    private void databaseError() {
+        Toast t = Toast.makeText(this, "Database error\nDeleting database...", Toast.LENGTH_SHORT);
+        t.setGravity(Gravity.CENTER, 0, 0);
+        t.show();
+        getApplicationContext().deleteDatabase(DatabaseBeReader.DB_NAME);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        }, 3000);
     }
 }
