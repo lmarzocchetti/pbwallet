@@ -250,7 +250,19 @@ public class HomeActivity extends AppCompatActivity {
      */
     private void controlBudget() {
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+        
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
 
         Cursor cur = db.queryBudgetFull();
         String tmp, subtype;
@@ -281,7 +293,19 @@ public class HomeActivity extends AppCompatActivity {
      */
     private String retrieveSubtypeName(int idsubtype) {
         DatabaseBeReader db = new DatabaseBeReader(this);
-        db.open();
+        
+        try {
+            db.open();
+        } catch (SQLiteException e) {
+            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
+            try {
+                db.open();
+            } catch (SQLiteException e_1) {
+                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
+                databaseError();
+                finish();
+            }
+        }
 
         String rit = "";
 
