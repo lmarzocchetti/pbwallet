@@ -35,7 +35,6 @@ public class LoginPanel extends Activity {
         enter.setOnClickListener(button_listener);
         username = findViewById(R.id.usernameTF);
         passwd = findViewById(R.id.passwdTF);
-
     }
 
     /**
@@ -82,41 +81,6 @@ public class LoginPanel extends Activity {
     }
 
     /**
-     * Same method in MainActivity. Control the elapsed budget in this day.
-     */
-    private void controlBudget() {
-        DatabaseBeReader db = new DatabaseBeReader(this);
-
-        try {
-            db.open();
-        } catch (SQLiteException e) {
-            Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e));
-            try {
-                db.open();
-            } catch (SQLiteException e_1) {
-                Log.d("pbwallet", "Exception: " + Log.getStackTraceString(e_1));
-                databaseError();
-                finish();
-            }
-        }
-
-        Cursor cur = db.queryBudgetFull();
-        String tmp;
-
-        if(cur.moveToFirst()) {
-            do {
-                tmp = cur.getString(cur.getColumnIndex("date"));
-                if(tmp.equals(java.time.LocalDate.now().toString())) {
-                    db.deleteBudget(cur.getInt(cur.getColumnIndex("idbudget")));
-                }
-
-            } while(cur.moveToNext());
-        }
-
-        db.close();
-    }
-
-    /**
      * If this method is called, there is a serious problem with the database,
      * so create a toast to notificate the user, delete all database and restart the app.
      */
@@ -144,7 +108,6 @@ public class LoginPanel extends Activity {
                 public void onClick(View view) {
                     Intent homepage = new Intent(LoginPanel.this , HomeActivity.class);
                     if(checkPass()) {
-                        controlBudget();
                         startActivity(homepage);
                         finish();
                     }
